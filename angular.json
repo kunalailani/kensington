@@ -25,7 +25,15 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+			  "src/assets/js/jquery-3.1.1.min.js",
+			  "src/assets/js/bootstrap.min.js",			  
+			  "src/assets/js/moment.min.js",
+			  "src/assets/js/jquery.daterangepicker.min.js",
+			  "src/assets/js/slick.min.js",
+			  "src/assets/js/ion.rangeSlider.min.js",
+			  "src/assets/js/apps.min.js"
+			]
           },
           "configurations": {
             "production": {

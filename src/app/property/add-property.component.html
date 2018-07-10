@@ -1,0 +1,69 @@
+<section class="page-section main-section">
+	<div class="container">
+		<div id="content">
+			<section class="section-row">
+				<div class="row">
+					<div class="panel-box">
+							<div class="panel-header">
+								<h3 class="panel-title">Add Property</h3>
+							</div>
+							<div class="panel-body">
+								<form #addPropertyForm = "ngForm" novalidate>
+									<div class="form-group">
+										<input type="text" class="form-control" name="purchase_price" placeholder="Purchase Price">
+									</div>
+									<div class="form-group">
+										<select class="form-control" name="room">
+											<option value="{{i + 1}}" *ngFor="let room_no of propertyObj.getTotalCounts().room; let i = index;">{{i + 1}}</option>
+										</select>									
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="living_place" placeholder="Living Place">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="usable_area" placeholder="Usable Area">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" name="property" placeholder="Property">
+									</div>
+									<div class="form-group">
+										<select class="form-control">
+											<option value="item" *ngFor="let type of propertyObj.getTotalCounts().typeOptions">{{type}}</option>
+										</select>									
+									</div>
+									<div class="form-group">
+										<input type="radio" name="storeyType" [value]="true" [(ngModel)]="storeyType"> With Storey
+										<input type="radio" name="storeyType" [value]="false" [(ngModel)]="storeyType"> Without Storey
+									</div>
+									<div class="form-group" *ngIf="!storeyType">
+										<select class="form-control">
+											<option value="{{i + 1}}" *ngFor="let num of propertyObj.getTotalCounts().basementCellar; let i = index;"> {{ i  + 1 }} </option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="radio" name="basementCellar" [value]="true" [(ngModel)]="basementCellar"> Yes
+										<input type="radio" name="basementCellar" [value]="false" [(ngModel)]="basementCellar"> No
+									</div>
+									<div class="form-group" *ngIf="basementCellar">
+										<select class="form-control">
+											<option value="item" *ngFor="let item of basementCellarValues"> {{ item }} </option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="radio" name="isAttic" [value]="true" [(ngModel)]="isAttic"> Yes
+										<input type="radio" name="isAttic" [value]="false" [(ngModel)]="isAttic"> No
+									</div>
+									<div class="form-group" *ngIf="isAttic">
+										<select class="form-control">
+											<option value="">Select Attic Expansion level</option>
+											<option value="item" *ngFor="let item of atticValue"> {{ item }} </option>
+										</select>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>

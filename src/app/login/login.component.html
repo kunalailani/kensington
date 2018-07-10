@@ -1,0 +1,86 @@
+<section class="page-section main-section">
+	<div class="container">
+		<div id="content">
+<!-- Messages Form Section -->
+			<section class="section-row">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel-box">
+							<div class="panel-header">
+								<h3 class="panel-title">Log In/Register</h3>
+							</div>
+							<div class="panel-body">
+								<form action="#">									
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Username">
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="Email">
+									</div>									
+									<div class="form-group">
+										<select class="form-control">
+											<option>---Select Role---</option>
+											<option>User</option>
+											<option>Agent</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="submit" class="btn-submit btn-primary btn" value="Login">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel-box">
+							<div class="panel-header">
+								<h3 class="panel-title">Register</h3>
+							</div>
+							<div class="panel-body">
+								<form #registrationForm = "ngForm" novalidate (ngSubmit)="register(registrationForm)">
+											<div class="form-group">
+												<input type="text" class="form-control" [(ngModel)]="regModal.full_name" name="full_name" placeholder="Full Name">
+											</div>
+										<div class="form-group">
+											<input type="text" class="form-control" [(ngModel)]="regModal.user_name" name="user_name" placeholder="Username">
+										</div>
+										<div class="form-group">
+												<input type="email" class="form-control" [(ngModel)]="regModal.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required>
+											</div>
+										<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+											<div *ngIf = "email.errors?.required">
+												Email field can't be blank
+											</div>
+											<div *ngIf = "email.errors?.pattern && email.touched">
+												The email id doesn't seem right
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<select class="form-control" [(ngModel)]="regModal.user_role" name="user_role">
+												<option value="0">---Select Role---</option>
+												<option value="user">User</option>
+												<option value="agent">Agent</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control" [(ngModel)]="regModal.pwd" name="pwd" placeholder="Password">
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control" [(ngModel)]="regModal.confirmpwd" name="confirmpwd" placeholder="Confirm Password">
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn-submit btn-primary btn" [disabled]="!registrationForm.form.valid" value="Register">
+										</div>							
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,11 @@
+.page-header {
+	background-image: url(/assets/images/bg_page_header_1.jpg) !important;
+}
+.property-feature {
+	display: block; 
+	list-style: none; 
+	padding: 0;
+}
+.property-feature li strong {
+	margin-left: 20px;
+}

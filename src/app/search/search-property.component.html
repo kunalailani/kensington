@@ -1,0 +1,491 @@
+<section id="page-builder" class="page-section main-section">
+	<!-- HERO IMAGE WITH SEARCH FORM -->
+	<div class="row tpb-row" style="background-image: url(assets/images/home_hero_image_default.jpg); padding-top: 144px; padding-bottom: 168px; margin: 0; background-size: cover; background-position: center;">
+		<div class="tpb tpb-property_simple_search col-md-12">
+			<div class="container">
+				<!-- Tabmenu Container / Default Bootstrap Structure -->
+				<div class="search-tabmenu">
+					<!-- Tabmenu Navigation -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="active"><a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> For Sale</a></li>
+						<li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> For Rent</a></li>
+					</ul>
+					<!-- Tabmenu Body / Content -->
+					<div class="tab-content">
+						<!-- Tabmenu Content 1 / Property For SALE -->
+						<div role="tabpanel" class="tab-pane active" id="for-sale">
+							<form action="#">
+								<div class="form-body">
+									<!-- Property for Sale Content Row 1 -->
+									<div class="row">
+										<div class="col-md-3 form-group">
+											<label for="sale-location">Property Location</label>
+											<select class="form-control" id="sale-location">
+												<option>Any Location</option>
+												<option>Melbourne</option>
+												<option>Sydney</option>
+												<option>Adelaide</option>
+												<option>Darwin</option>
+												<option>Perth</option>
+												<option>Canberra</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-type">Property Type</label>
+											<select class="form-control" id="sale-type">
+												<option>Any Type</option>
+												<option>Houses</option>
+												<option>Apartments</option>
+												<option>Unit</option>
+												<option>Townhouse</option>
+												<option>Land</option>
+												<option>RUral</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-bedroom">Bed Room</label>
+											<select class="form-control" id="sale-bedroom">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-bathroom">Bath Room</label>
+											<select class="form-control" id="sale-bathroom">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+									</div>
+									<!-- Property for Sale Content Row 2 -->
+									<div class="row">
+										<div class="col-md-3 form-group">
+											<label for="sale-garage">Garage</label>
+											<select class="form-control" id="sale-garage">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-keyword">Keyword</label>
+											<input type="text" class="form-control" id="sale-keyword" placeholder="(e.g.'office')">
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-range-feet">Area (m2)</label>
+											<div class="range-box">
+												<input id="sale-range-feet" readonly="">
+											</div>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-range-price">Price (USD)</label>
+											<div class="range-box">
+												<input id="sale-range-price" readonly="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Property for Sale Submit Button -->
+								<button class="btn btn-primary pull-right btn-submit" type="submit"><i class="fa fa-search"></i> Search</button>
+							</form>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="for-rent">
+							<form action="#">
+								<div class="form-body">
+									<!-- Property for Sale Content Row 1 -->
+									<div class="row">
+										<div class="col-md-3 form-group">
+											<label for="rent-location">Property Location</label>
+											<select class="form-control" id="rent-location">
+												<option>Any Location</option>
+												<option>Melbourne</option>
+												<option>Sydney</option>
+												<option>Adelaide</option>
+												<option>Darwin</option>
+												<option>Perth</option>
+												<option>Canberra</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-type">Property Type</label>
+											<select class="form-control" id="rent-type">
+												<option>Any Type</option>
+												<option>Houses</option>
+												<option>Apartments</option>
+												<option>Unit</option>
+												<option>Townhouse</option>
+												<option>Land</option>
+												<option>RUral</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-bedroom">Bed Room</label>
+											<select class="form-control" id="rent-bedroom">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-bathroom">Bath Room</label>
+											<select class="form-control" id="rent-bathroom">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+									</div>
+									<!-- Property for rent Content Row 2 -->
+									<div class="row">
+										<div class="col-md-3 form-group">
+											<label for="rent-garage">Garage</label>
+											<select class="form-control" id="rent-garage">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-keyword">Keyword</label>
+											<input type="text" class="form-control" id="rent-keyword" placeholder="(e.g.'office')">
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-range-feet">Area (m2)</label>
+											<div class="range-box">
+												<input id="rent-range-feet" readonly="">
+											</div>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-range-price">Price (USD)</label>
+											<div class="range-box">
+												<input id="rent-range-price" readonly="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Property for rent Submit Button -->
+								<button class="btn btn-primary pull-right btn-submit" type="submit"><i class="fa fa-search"></i> Search</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="property-search-result" class="archive-property">	
+	<!-- ====== PAGE CONTENT ====== -->
+	<div class="page-section">
+		<div class="container">
+			
+			<div class="panel filter-panel">
+				<div class="panel-body">
+					<h4 class="filter-title pull-left">60 Matches Found</h4>
+					<form action="#" class="form-inline pull-right">
+						<div class="form-group">
+							<label>Sort By:</label>
+							<select class="form-control">
+								<option value="1">Lowest Price</option>
+								<option value="2">Highest Price</option>
+								<option value="3">Popular</option>
+								<option value="4">Newest</option>
+							</select>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="property-list archive-flex archive-with-footer">
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 550.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Sold</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 122.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">Villa For Sale</a>
+									<a href="#" class="property-label__status">Available</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Dicta omnis facere</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 200.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Sold</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Quae ipsum porro</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 400.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Rent</a>
+									<a href="#" class="property-label__status">Available</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Stunning new 4 bedroom must see House in brawa</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 400.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Available</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Quae ipsum porro</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 400.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Rent</a>
+									<a href="#" class="property-label__status">Sold</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Stunning new 4 bedroom must see House in mino</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 400.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Available</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Stunning new 4 bedroom must see House in monroe</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 400.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Sold</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Dicta omnis facere</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6">
+						<!-- Property Item -->
+						<div class="property-item">
+							<div class="property-heading">
+								<span class="item-price">$ 122.000.000</span>
+								<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+							</div>
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Available</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+							</div>
+							<div class="property-content">
+								<a href="single-property.html" class="property-title">Dicta omnis facere</a>
+								<div class="property-address">
+									2096 Monroe Street, Houston, 77030 USA
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="pagination">
+				<a href="#" class="prev"></a>
+				<span class="current">1</span>
+				<a href="#" class="page">2</a>
+				<a href="#" class="page">3</a>
+				<a href="#" class="page">4</a>
+				<a href="#" class="page">5</a>
+				<a href="#" class="next"></a>
+			</div>
+
+		</div>
+	</div>
+
+</section>
