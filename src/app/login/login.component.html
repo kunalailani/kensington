@@ -7,28 +7,18 @@
 					<div class="col-md-6">
 						<div class="panel-box">
 							<div class="panel-header">
-								<h3 class="panel-title">Log In/Register</h3>
+								<h3 class="panel-title">Log In</h3>
 							</div>
 							<div class="panel-body">
-								<form action="#">									
+								<form #loginForm = "ngForm" novalidate (ngSubmit)="login(loginForm)">																		
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Username">
+										<input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="loginModal.email" required autocomplete="off">
+									</div>																		
+									<div class="form-group">
+										<input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="loginModal.password" required autocomplete="off">
 									</div>
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Email">
-									</div>									
-									<div class="form-group">
-										<select class="form-control">
-											<option>---Select Role---</option>
-											<option>User</option>
-											<option>Agent</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Password">
-									</div>
-									<div class="form-group">
-										<input type="submit" class="btn-submit btn-primary btn" value="Login">
+										<input type="submit" [disabled]="!loginForm.form.valid" class="btn-submit btn-primary btn" value="Login">
 									</div>
 								</form>
 							</div>
@@ -42,13 +32,10 @@
 							<div class="panel-body">
 								<form #registrationForm = "ngForm" novalidate (ngSubmit)="register(registrationForm)">
 											<div class="form-group">
-												<input type="text" class="form-control" [(ngModel)]="regModal.full_name" name="full_name" placeholder="Full Name">
-											</div>
+												<input type="text" class="form-control" [(ngModel)]="regModal.full_name" name="full_name" placeholder="Full Name" required autocomplete="off">
+											</div>										
 										<div class="form-group">
-											<input type="text" class="form-control" [(ngModel)]="regModal.user_name" name="user_name" placeholder="Username">
-										</div>
-										<div class="form-group">
-												<input type="email" class="form-control" [(ngModel)]="regModal.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required>
+												<input type="email" class="form-control" [(ngModel)]="regModal.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required autocomplete="off">
 											</div>
 										<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
 											<div *ngIf = "email.errors?.required">
@@ -58,19 +45,18 @@
 												The email id doesn't seem right
 											</div>
 										</div>
-										
 										<div class="form-group">
-											<select class="form-control" [(ngModel)]="regModal.user_role" name="user_role">
-												<option value="0">---Select Role---</option>
-												<option value="user">User</option>
-												<option value="agent">Agent</option>
-											</select>
+											<input type="radio" name="role" value="guest-user" [(ngModel)]="regModal.role"> User
+											<input type="radio" name="role" value="agent" [(ngModel)]="regModal.role"> Agent
 										</div>
 										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="regModal.pwd" name="pwd" placeholder="Password">
+											<input type="password" class="form-control" [(ngModel)]="regModal.password" name="password" placeholder="Password" required autocomplete="off">
 										</div>
 										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="regModal.confirmpwd" name="confirmpwd" placeholder="Confirm Password">
+											<input type="password" class="form-control" [(ngModel)]="confirm_password" name="confirmpwd" placeholder="Confirm Password" required autocomplete="off">
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" [(ngModel)]="regModal.phone_number" name="phone_number" placeholder="Phone Number" required autocomplete="off">
 										</div>
 										<div class="form-group">
 											<input type="submit" class="btn-submit btn-primary btn" [disabled]="!registrationForm.form.valid" value="Register">

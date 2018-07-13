@@ -1,9 +1,9 @@
 <!-- ====== PROPERTY ARCHIVE PAGE HEADER ====== -->
 <section class="page-header main-section">
 	<div class="container">
-		<h1 class="page-header-title">Properties</h1>
+		<h1 class="page-header-title">My Properties</h1>
 		<ul class="breadcrumb">
-			<li><a href="#">Home</a></li>
+			<li><a href="#/">Home</a></li>
 			<li class="active">Properties</li>
 		</ul>
 	</div>
@@ -17,7 +17,7 @@
 				<!-- Content -->
 				<div id="content">
 					<div class="row">
-						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of propertyList">
+						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of myPropertyList">
 							<div class="row">
 								<div class="col-lg-5">
 									<a [routerLink]="['/property-detail', property._id]" class="property-image">
@@ -40,7 +40,7 @@
 										</div>
 										<p class="property-description">{{property.description}}</p>
 										<div class="property-footer">
-											<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+											<div class="item-wide"><span class="fi flaticon-wide"></span> {{property.useable_area}}</div>
 											<div class="item-room"><span class="fi flaticon-room"></span> {{property.room}}</div>
 											<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> {{property.bathroom}}</div>
 											<div class="item-garage"><span class="fi flaticon-garage"></span> {{property.garages}}</div>
@@ -55,7 +55,7 @@
 					<div class="pagination">
 						<a href="#" class="prev"></a>
 						<span class="current">1</span>
-						<a href="#" class="page">2</a>
+						<a href="javascript:void(0)" class="page" (click)="fetchMyProperty()">2</a>
 						<a href="#" class="page">3</a>
 						<a href="#" class="page">4</a>
 						<a href="#" class="page">5</a>
@@ -66,11 +66,8 @@
 			<div class="col-md-4">
 
 				<!-- Sidebar -->
-				<div id="sidebar">									
-
-					<app-search></app-search>
-
-					<app-recent-property></app-recent-property>
+				<div id="sidebar">
+					<app-search></app-search>					
 				</div>
 			</div>
 		</div>

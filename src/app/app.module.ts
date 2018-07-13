@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LandingModule } from './landing/landing.module';
 
@@ -14,9 +15,12 @@ import { HomeComponent } from './home/home.component';
 import { PropertyComponent } from './property/property.component';
 import { PropertyDetailComponent } from './property/property-detail.component';
 import { AddPropertyComponent } from './property/add-property.component';
+import { MyPropertyListComponent } from './property/my-property.component';
 import { LoginComponent } from './login/login.component';
 
 import { ApiHandlerService } from './shared/api-handler.service';
+import { ConfiguratorService } from './shared/configurator.service';
+import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -29,7 +33,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
       component: PropertyComponent
     },
     {
-      path: 'property-detail',
+      path: 'property-detail/:id',
       component: PropertyDetailComponent
     },
     {
@@ -43,6 +47,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
       path: 'add-property',
       component: AddPropertyComponent
+    },
+    {
+      path: 'my-property',
+      component: MyPropertyListComponent
     }
   ], { useHash: true });
 
@@ -58,15 +66,19 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     PropertyDetailComponent,
     AddPropertyComponent,
     RecentPropertyComponent,
-    LoginComponent
+    LoginComponent,
+    MyPropertyListComponent,
+    GooglePlacesDirective
   ],
   imports: [
     BrowserModule,
     rootRouting,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
-    ApiHandlerService
+    ApiHandlerService,
+    ConfiguratorService
   ],
   bootstrap: [AppComponent]
 })

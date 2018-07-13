@@ -1,16 +1,16 @@
 <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
 <section class="page-header main-section">
 	<div class="container">
-		<h1 class="page-header-title">Single page Properties</h1>
+		<h1 class="page-header-title">Detail of property</h1>
 		<ul class="breadcrumb">
 			<li><a href="#">Home</a></li>
-			<li class="active">Single page Properties</li>
+			<li class="active">Property Detail</li>
 		</ul>
 	</div>
 </section>
 
 <!-- ====== SINGLE PROPERTY CONTENT ====== -->
-<section class="page-section">
+<section class="page-section" *ngIf="propertyDetails">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -21,14 +21,14 @@
 						<div class="post-property-header">
 							<div class="row">
 								<div class="col-md-8 col-sm-8">
-									<h3 class="post-title"><a href="#">Eos laudantium dicta</a></h3>
+									<h3 class="post-title"><a href="#">{{propertyDetails.property_type}}</a></h3>
 								</div>
 								<div class="col-md-4 col-sm-4 text-right">
-									<span class="property-price">USD 176,969</span>
+									<span class="property-price">USD {{propertyDetails.purchase_price}} </span>
 								</div>
 							</div>
 							<div class="property-address">
-								2096 Monroe Street, Houston, 77030 USA
+								{{propertyDetails.property_location}}
 							</div>
 							<div class="property-label">
 								<a href="#" class="property-label__type">Villa For Sale</a>
@@ -39,33 +39,23 @@
 						<!-- Property Gallery Slider -->
 						<div class="property-image">
 							<div id="property-slider" class="property-slider">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 1">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 2">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 4">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 5">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 6">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 7">
+								<!-- <img src="{{baseUri + images}}" *ngFor="let images of propertyDetails.property_images" alt="property image"> -->
+								<img src="{{baseUri + propertyDetails.property_images[0]}}" alt="property image">
 							</div>
 							<!-- Property Gallery Slider Navigation -->
 							<div id="property-slider-nav" class="property-slider-nav">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 1">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 2">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 4">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 5">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 6">
-								<img src="assets/images/img_slider_default.jpg" alt="Property Photo 7">
+								<img src="{{baseUri + images}}" *ngFor="let images of propertyDetails.property_images" alt="property image">
 							</div>
 						</div>
 						<!-- Property facility Detail -->
 						<div class="property-footer">
 							<div class="item-wide"><span class="fi flaticon-wide"></span> 223 m2</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+							<div class="item-room"><span class="fi flaticon-room"></span> {{propertyDetails.room}} </div>
+							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> {{propertyDetails.bathroom}}</div>
+							<div class="item-garage"><span class="fi flaticon-garage"></span> {{propertyDetails.garages}}</div>
 							<div class="item-comment"><span class="fa fa-comments-o"></span> No Comments</div>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget erat nec mi tempor elementum. Morbi enim orci, pharetra sed sem eu, imperdiet molestie libero. Donec pretium eros id tellus lobortis, sed maximus odio pulvinar. Nunc tristique nunc sit amet lectus ultrices, in blandit dolor placerat. In efficitur maximus rutrum. Proin porta purus ante, nec eleifend odio consectetur at. Nulla commodo nisi magna, ut feugiat nunc efficitur at. Mauris dignissim imperdiet velit, id laoreet orci tempus eget. Vivamus id ligula fermentum, imperdiet enim a, consectetur sapien. Duis efficitur dapibus congue.</p>
-						<p>Etiam et magna cursus, semper leo ullamcorper, congue felis. Nullam bibendum massa ut sem aliquam dignissim. magna, ut feugiat nunc efficitur at. Mauris dignissim imperdiet velit, id laoreet orci tempus eget. VivamNullam nisi urna, congue suscipit faucibus sed, congue vitae nibh. Donec est mauris, commodo vel risus ut, euismod efficitur arcu. Nam turpis lacus, rhoncus ut congue sit amet, tincidunt quis velit. Nam nec augue facilisis, fermentum leo quis, elementum tellus. Curabitur sagittis erat nec mauris pharetra, nec tempus ligula blandit. Cras efficitur vel nibh sed accumsan.</p>
+						<p>{{propertyDetails.description}}</p>
 						<!-- The Space Section -->
 						<hr>
 						<div class="row">
@@ -73,27 +63,28 @@
 								<h3 class="heading-title">Costs</h3>
 							</div>
 						</div>
+						<hr>
 						<div class="row">
-							<div class="col-md-6">
-								<!-- <ul class="property-feature">
-									<li>Purchase price: <strong>24,000 </strong></li>
-								</ul> -->
+							<div class="col-md-12">								
 								<table class="detail-table" style="width: 100%">
 									<tr>
-										<td>
-											Purchase price
-										</td>
-										<td>
-											24,000
-										</td>
+										<td>Purchase price</td>
+										<td>{{propertyDetails.purchase_price}}</td>
+										<td>Estimated Rate</td>
+										<td>{{propertyDetails.estimated_rate}}</td>
+									</tr>
+									<tr>
+										<td>Notary Fee</td>
+										<td>{{propertyDetails.notary_fee}}</td>
+										<td>Brokerage Costs</td>
+										<td>{{propertyDetails.brokerage_costs}}</td>
+									</tr>
+									<tr>
+										<td>Land Transfer Tax by rate</td>
+										<td>{{propertyDetails.land_rate || '-'}}</td>
 									</tr>
 								</table>
-							</div>
-							<div class="col-md-6">
-								<ul class="property-feature">
-									<li>Commission for buyers: <strong>No</strong></li>
-								</ul>
-							</div>
+							</div>							
 						</div>
 						<!-- Facilities Section -->
 						<hr>
@@ -102,18 +93,87 @@
 								<h3 class="heading-title">Building and Energy Pass</h3>
 							</div>
 						</div>
+						<hr>
 						<div class="row">
-							<div class="col-md-6">
-								<ul class="property-feature">
-									<li>Construction Year: <strong>1942 </strong></li>
-									<li>Construction Phase: <strong>House finished</strong></li>
-								</ul>
+							<div class="col-md-12">
+								<table class="detail-table" style="width: 100%">
+									<tr>
+										<td>Construction Year</td>
+										<td>{{propertyDetails.construction_year}}</td>
+										<td>Heating</td>
+										<td>{{propertyDetails.heating}}</td>
+									</tr>
+									<tr>
+										<td>Repair</td>
+										<td>{{propertyDetails.repair}}</td>
+										<td>Essential Enery Source</td>
+										<td>{{propertyDetails.essential_enery_source || '-'}}</td>
+									</tr>
+									<tr>
+										<td>Basement</td>
+										<td>{{propertyDetails.basement}}</td>
+										<td>Attic</td>
+										<td>{{propertyDetails.attic}}</td>
+									</tr>
+									<tr>
+										<td>Cellar</td>
+										<td>{{propertyDetails.cellar}}</td>										
+									</tr>
+								</table>
 							</div>
-							<div class="col-md-6">
-								<ul class="property-feature">
-									<li>Sources: <strong>Wood</strong></li>
-									<li>Energy Certificate: <strong>is available</strong></li>
-								</ul>
+						</div>
+
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="heading-title">Property Details</h3>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<table class="detail-table" style="width: 100%">
+									<tr>
+										<td>Property Type</td>
+										<td>{{propertyDetails.property_type}}</td>
+										<td>Undeveloped Property</td>
+										<td>{{propertyDetails.undeveloped_property}}</td>
+									</tr>
+									<tr>
+										<td>Storey</td>
+										<td>{{propertyDetails.storey}}</td>
+										<td>Vaccant From</td>
+										<td>{{propertyDetails.vacant_from}}</td>
+									</tr>
+									<tr>
+										<td>Living Space</td>
+										<td>{{propertyDetails.living_space}}</td>
+										<td>Rooms</td>
+										<td>{{propertyDetails.room}}</td>
+									</tr>
+									<tr>
+										<td>Usable Area</td>
+										<td>{{propertyDetails.useable_area}}</td>
+										<td>Bath Room</td>
+										<td>{{propertyDetails.bathroom}}</td>										
+									</tr>
+									<tr>
+										<td>Garages</td>
+										<td>{{propertyDetails.garages}}</td>
+										<td>Bedroom</td>
+										<td>{{propertyDetails.bedroom}}</td>										
+									</tr>
+									<tr>
+										<td>Plots</td>
+										<td>{{propertyDetails.plots}}</td>
+										<td>Kitchens</td>
+										<td>{{propertyDetails.kitchens}}</td>										
+									</tr>
+									<tr>
+										<td>Residential and Commercial</td>
+										<td>{{propertyDetails.residential_and_commercial}}</td>																				
+									</tr>
+								</table>
 							</div>
 						</div>						
 					</article>											

@@ -1,30 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { Registration } from './registration';
+import { Registration, Login } from './registration';
+import { ApiHandlerService } from '../shared/api-handler.service';
+import { ConfiguratorService } from '../shared/configurator.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  private regModal: Registration;
-  constructor() {}
+  public regModal: Registration;
+  public loginModal: Login;
+  public confirm_password: string;
+
+  constructor(private apiService: ApiHandlerService, private router: Router, private configurtorService: ConfiguratorService) {}
 
   ngOnInit() {
   	this.regModal = new Registration({
-  		full_name: '',
-  		user_name: '',
+  		full_name: '',  		
   		emai: '',
-  		pwd: "",
-  		confirmpwd: '',  		
-  		user_role: '0'
+  		password: "",  		
+  		role: 'guest-user',
+      phone_number: ''
   	});
+    this.loginModal = new Login({
+      emai: '',
+      password: ''
+    });
+    this.confirm_password = '';
+  }
+
+  setAuthConfig(token, username) {
+    localStorage.setItem('authorizedToken', token);
+      localStorage.setItem('username', username);
+      let authDataToSet = {
+        username: username,
+        isLoggedin: token ? true : false
+      }
+      this.configurtorService.setConfiguratorData(authDataToSet);
+      this.router.navigate(['/add-property']);
   }
 
   register({ value, valid}: { value: Registration, valid: boolean}) {
   	this.regModal = value;
-  	console.log(this.regModal);
-  	console.log("valid form" + valid);
+  	this.apiService.post('/api/v1/user/register', this.regModal).subscribe((res) => {
+    this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+    })
+  }
+
+  login({value, valid}: {value: any, valid: boolean}) {
+    this.loginModal = value;
+    this.apiService.post('/api/v1/user/login', this.loginModal).subscribe((res) => {
+    this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+    })
   }
 
 }

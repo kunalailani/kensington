@@ -3,26 +3,26 @@ import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-property',
-  templateUrl: './property.component.html',
+  selector: 'app-my-property',
+  templateUrl: './my-property.component.html',
   styleUrls: ['./property.component.css']
 })
-export class PropertyComponent implements OnInit {
+export class MyPropertyListComponent implements OnInit {
 
-  public propertyList: Array<any>;
+  public myPropertyList: Array<any>;
 
   public baseUri: string = environment.api_url + '/property-details/';
 
   constructor(private apiHandlerService: ApiHandlerService) { }
 
   ngOnInit() {
-  	this.fetchProperty();
+  	this.fetchMyProperty();
   }
 
-  fetchProperty() {
-  	this.apiHandlerService.get('/api/v1/property/list-property?offset=3&limit=2').subscribe((res) => {
+  fetchMyProperty() {
+  	this.apiHandlerService.get('/api/v1/property/list-my-property').subscribe((res) => {
   		console.log(res);
-  		this.propertyList = res.data;
+  		this.myPropertyList = res.data;
 
   	})
   }

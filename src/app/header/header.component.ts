@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfiguratorService } from '../shared/configurator.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public isLoggedin: boolean;
+  public username: string;
 
-  ngOnInit() {
+  constructor(private configurtorService: ConfiguratorService) { 
+  	this.getLoginData(); 
   }
 
+  ngOnInit() {  	 
+  	this.configurtorService.dataChange().subscribe((data) => {
+  		this.username = data.username;
+  		this.isLoggedin = data.isLoggedin
+  	})
+  }
+
+  getLoginData() {  
+  	this.username = localStorage.getItem('username');
+  	this.isLoggedin = localStorage.getItem('authorizedToken') ? true : false;
+  }
+
+  logout() {
+    let logoutDecision = confirm("Are you sure you want to logoout");
+    if (logoutDecision) {
+      localStorage.clear();
+      this.configurtorService.setConfiguratorData({});
+    }
+  }
 }
