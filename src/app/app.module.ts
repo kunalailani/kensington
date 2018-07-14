@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 
 import { ApiHandlerService } from './shared/api-handler.service';
 import { ConfiguratorService } from './shared/configurator.service';
+import { LoaderService } from './shared/loader.service';
 import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
 
@@ -78,7 +79,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   ],
   providers: [
     ApiHandlerService,
-    ConfiguratorService
+    ConfiguratorService,
+    LoaderService
   ],
   bootstrap: [AppComponent]
 })

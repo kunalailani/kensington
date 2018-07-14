@@ -28,7 +28,7 @@ export class ApiHandlerService {
   	return new HttpHeaders(headerConfig);
   }
   public handleError(error: any) {
-
+    console.log("error ", error);
   }
   get(path: string, params = {}): Observable<any> {
   	return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(true),
@@ -36,7 +36,11 @@ export class ApiHandlerService {
         fromObject: params
       })
     })
-  	.pipe(catchError((error) => of(`I caught: ${error}`)))
+  	.pipe(map(res => res),
+      catchError((error) => {
+        this.handleError(error);
+        return error;
+      }))
   }
 
   post(path: string, body: any = {}): Observable<any> {

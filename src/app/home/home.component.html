@@ -198,21 +198,20 @@
 		</div>
 		<!-- Section Content -->
 		<div class="row">
-			<div class="col-md-4 col-sm-6">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
 				<!-- Property Item Tall -->
 				<div class="property-item">
 					<div class="property-header">
-						<a href="archive-property.html" class="item-category">Home</a>
-						<a href="single-property.html" class="item-title">Luxury home for sale in Los Angeles</a>
-						<div class="item-price">$ 600.000</div>
+						<a [routerLink]="['/property-detail', property._id]" class="item-category">{{property.name}}</a>
+						<a [routerLink]="['/property-detail', property._id]" class="item-title">{{property.property_type}} in {{property.property_location}} </a>
+						<div class="item-price">$ {{ property.purchase_price }} </div>
 					</div>
-					<figure class="item-img" style="background-image: url('assets/images/best_offer_default.jpg');">
-						<a href="single-property.html"></a>
+					<figure class="item-img" data-id="{{baseUri + property.property_images[0]}}"  [style.backgroundImage]="'url(' + baseUri + property.property_images[0] + ')'">
+						<a [routerLink]="['/property-detail', property._id]"></a>
 					</figure>
 				</div>
 			</div>
-			<div class="col-md-4 col-md-push-4 col-sm-6">
-				<!-- Property Item Tall -->
+			<!-- <div class="col-md-4 col-md-push-4 col-sm-6">				
 				<div class="property-item">
 					<div class="property-header">
 						<a href="archive-property.html" class="item-category">Home</a>
@@ -223,13 +222,11 @@
 						<a href="single-property.html"></a>
 					</figure>
 				</div>
-			</div>
-			<div class="col-md-4 col-md-pull-4">
-				<!-- Property Item Short / Multiple Row Item -->
+			</div> -->
+			<!-- <div class="col-md-4 col-md-pull-4">				
 				<div class="multiple-item">
 					<div class="row">
-						<div class="col-md-12 col-sm-6">
-							<!-- Property Item Short -->
+						<div class="col-md-12 col-sm-6">							
 							<div class="property-item">
 								<div class="property-header">
 									<a href="archive-property.html" class="item-category">Apartment</a>
@@ -241,8 +238,7 @@
 								</figure>
 							</div>
 						</div>
-						<div class="col-md-12 col-sm-6">
-							<!-- Property Item Short -->
+						<div class="col-md-12 col-sm-6">							
 							<div class="property-item">
 								<div class="property-header">
 									<a href="archive-property.html" class="item-category">Apartment</a>
@@ -256,170 +252,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
-
-<!-- ====== BEST OFFER SECTION ====== -->
-<section id="best-offer" class="page-section">
-	<div class="container">
-
-		<!-- Section Header / Title with Column Slider Control / Add 'header-column' to use this style -->
-		<div class="section-header header-column">
-			<h2 class="section-title">Best Offer</h2>
-			<!-- Slider Control -->
-			<div class="slide-control">
-				<button id="slide-left" class="slide-left"><i class="fa fa-angle-left"></i></button>
-				<button id="slide-right" class="slide-right"><i class="fa fa-angle-right"></i></button>
-			</div>
-		</div>
-		<div id="product-slider" class="row product-slider">
-			<div class="col-md-4 col-sm-6">
-				<!-- Property Item -->
-				<div class="property-item">
-					<div class="property-heading">
-						<span class="item-price">$ 545,000.00</span>
-						<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-					</div>
-					<div class="img-box">
-						<div class="property-label">
-							<a href="#" class="property-label__type">House For Sale</a>
-							<a href="#" class="property-label__status">Available</a>
-						</div>
-						<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-						<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="property-content">
-						<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
-						<div class="property-address">
-							2096 Monroe Street, Houston, 77030 USA
-						</div>
-						<div class="property-footer">
-							<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<!-- Property Item -->
-				<div class="property-item">
-					<div class="property-heading">
-						<span class="item-price">$ 995,000.00</span>
-						<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-					</div>
-					<div class="img-box">
-						<div class="property-label">
-							<a href="#" class="property-label__type">House For Sale</a>
-							<a href="#" class="property-label__status">Sold</a>
-						</div>
-						<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-						<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="property-content">
-						<a href="single-property.html" class="property-title">Dicta omnis facere</a>
-						<div class="property-address">
-							2096 Monroe Street, Houston, 77030 USA
-						</div>
-						<div class="property-footer">
-							<div class="item-wide"><span class="fi flaticon-wide"></span> 450</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 3</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<!-- Property Item -->
-				<div class="property-item">
-					<div class="property-heading">
-						<span class="item-price">$ 200.000</span>
-						<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-					</div>
-					<div class="img-box">
-						<div class="property-label">
-							<a href="#" class="property-label__type">House For Rent</a>
-							<a href="#" class="property-label__status">Available</a>
-						</div>
-						<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-						<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="property-content">
-						<a href="single-property.html" class="property-title">Quae ipsum porro</a>
-						<div class="property-address">
-							2096 Monroe Street, Houston, 77030 USA
-						</div>
-						<div class="property-footer">
-							<div class="item-wide"><span class="fi flaticon-wide"></span> 450</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 3</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<!-- Property Item -->
-				<div class="property-item">
-					<div class="property-heading">
-						<span class="item-price">$ 400.000</span>
-						<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-					</div>
-					<div class="img-box">
-						<div class="property-label">
-							<a href="#" class="property-label__type">Villa For Rent</a>
-							<a href="#" class="property-label__status">Available</a>
-						</div>
-						<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-						<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="property-content">
-						<a href="single-property.html" class="property-title">Property 6</a>
-						<div class="property-address">
-							2096 Monroe Street, Houston, 77030 USA
-						</div>
-						<div class="property-footer">
-							<div class="item-wide"><span class="fi flaticon-wide"></span> 450</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 3</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<!-- Property Item -->
-				<div class="property-item">
-					<div class="property-heading">
-						<span class="item-price">$ 400.000</span>
-						<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-					</div>
-					<div class="img-box">
-						<div class="property-label">
-							<a href="#" class="property-label__type">House For Rent</a>
-							<a href="#" class="property-label__status">Sold</a>
-						</div>
-						<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-						<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="property-content">
-						<a href="single-property.html" class="property-title">Property 6</a>
-						<div class="property-address">
-							2096 Monroe Street, Houston, 77030 USA
-						</div>
-						<div class="property-footer">
-							<div class="item-wide"><span class="fi flaticon-wide"></span> 450</div>
-							<div class="item-room"><span class="fi flaticon-room"></span> 3</div>
-							<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-							<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>	

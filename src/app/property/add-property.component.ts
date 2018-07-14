@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AddProperty } from './add-property';
 import { ApiHandlerService } from '../shared/api-handler.service';
+import { LoaderService } from '../shared/loader.service';
 import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
 
@@ -27,7 +28,8 @@ export class AddPropertyComponent implements OnInit {
 
   public isLoggedin: boolean = false;
 
-  constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router) { 
+  constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router,
+    private loaderService: LoaderService) { 
 
   	this.propertyObj = new AddProperty({
   		room: 0,
@@ -51,12 +53,12 @@ export class AddPropertyComponent implements OnInit {
   		plots: 0,
   		land_transfer_by_state: '0',
   		repair: '',
-  		heating: 0,
-  		essential_energy_src: 0,
+  		heating: 0,  		
       notarty_fee: '',
       brokerage_costs: '',
       residential_and_commercial: 0,
-      undeveloped_property: 0
+      undeveloped_property: 0,
+      essential_energy_src: ''
   	});
 
     let loginData = this.configurtorService.getConfiguratorData();
@@ -74,10 +76,13 @@ export class AddPropertyComponent implements OnInit {
   addProperty({value, valid}: {value: AddProperty, valid: boolean}) {    
   	this.propertyObj = value;
   	console.log(this.propertyObj);
-    this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {        
-        this.uploadPropertyImages(res.data._id);
-    })
-     //this.uploadPropertyImages('eb6d22b3-3f25-4571-9d6f-d2fc995eeb0c');
+    this.loaderService.displayLoader(true);
+    this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {
+        if (res.data)
+          this.uploadPropertyImages(res.data._id);
+        else
+          this.loaderService.displayLoader(false);
+    })     
   }
 
   getValues(propName) {  	
@@ -95,8 +100,7 @@ export class AddPropertyComponent implements OnInit {
       propertyImageList.push(propertyFileList[i]);
       this.formData.append('property_images', propertyFileList[i]);
       reader.onload = ((e) => {                  
-         this.propertyImagePreview.push(reader.result) 
-         console.log(reader.result.split(",")[1]);
+         this.propertyImagePreview.push(reader.result)          
       });
     }
     /*this.formData.append('property_images', propertyImageList);*/
@@ -120,8 +124,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   fileSelectionLimitValidations(file, fileRef) {
-    let fileList: FileList = file.target.files;
-    console.log(fileList);
+    let fileList: FileList = file.target.files;    
     if (fileList.length < 3 || fileList.length > 5) {
       fileRef.value = '';
       alert("Please Upload more than 3 and maximum 5 files");
@@ -138,8 +141,11 @@ export class AddPropertyComponent implements OnInit {
 
   uploadPropertyImages(property_id) {    
     this.apiHandlerService.put('/api/v1/property/upload-all-images/' + property_id, this.formData).subscribe((res) => {
-      alert("Property Added Successfully");
-      this.router.navigate(['/my-property']);
+      this.loaderService.displayLoader(false);
+      if (res.success) {
+        alert("Property Added Successfully");
+        this.router.navigate(['/my-property']);
+      }      
     })
   }
 

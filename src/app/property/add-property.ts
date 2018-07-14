@@ -21,7 +21,7 @@ export class AddProperty {
 	construction_year: string;
 	additonal_certificate: Object;
 	energy_certificate: string;
-	essential_energy_source: string;
+	essential_energy_src: string;
 	property_description: string;
 	property_image: Object;
 	floor_plans: Object;
@@ -29,8 +29,7 @@ export class AddProperty {
 	notarty_fee: number;
 	brokerage_costs: number;
 	repair: number;
-	heating: number;
-	essential_energy_src: number;
+	heating: number;	
 	notary_fee: number;
 	residential_and_commercial: string;
 	undeveloped_property: string;

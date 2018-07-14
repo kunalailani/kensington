@@ -1,5 +1,5 @@
 <!-- ====== PROPERTY ARCHIVE PAGE HEADER ====== -->
-<section class="page-header main-section">
+<section class="page-header main-section" style="background-image: url(assets/images/bg_page_header_1.jpg)">
 	<div class="container">
 		<h1 class="page-header-title">Add Property</h1>
 	</div>
@@ -46,25 +46,25 @@
 											</label>											
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" name="living_space" placeholder="Living Space" required autocomplete="off" [(ngModel)]="propertyObj.living_space">
+											<input type="number" class="form-control" name="living_space" placeholder="Living Space" required autocomplete="off" [(ngModel)]="propertyObj.living_space">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" name="useable_area" placeholder="Usable Area" required autocomplete="off" [(ngModel)]="propertyObj.useable_area">
+											<input type="number" class="form-control" name="useable_area" placeholder="Usable Area" required autocomplete="off" [(ngModel)]="propertyObj.useable_area">
 										</div>
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.garages" name="garages">
+											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.garages" name="garages">
 												<option value="0">Select Garages</option>
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('garages'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="form-group">
-											<select class="form-control" required [(ngModel)]="propertyObj.plots" name="plots">
+											<select class="form-control" [(ngModel)]="propertyObj.plots" name="plots">
 												<option value="0">Select Plots</option>
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('plot'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="form-group">										
-											<select class="form-control" required autocomplete="off"  [(ngModel)]="propertyObj.residential_and_commercial" name="residential_and_commercial">
+											<select class="form-control" autocomplete="off"  [(ngModel)]="propertyObj.residential_and_commercial" name="residential_and_commercial">
 												<option value="0" selected="">Select Residential and Commercial</option>
 												<option value="{{property_item}}" *ngFor="let property_item of getValues('residential_and_commercial')">{{ property_item }}</option>
 											</select>									
@@ -72,19 +72,19 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">										
-											<select class="form-control" required autocomplete="off"  [(ngModel)]="propertyObj.undeveloped_property" name="undeveloped_property">
+											<select class="form-control" autocomplete="off"  [(ngModel)]="propertyObj.undeveloped_property" name="undeveloped_property">
 												<option value="0">Select Undeveloped Property</option>
 												<option value="{{property_item}}" *ngFor="let property_item of getValues('undeveloped_property')">{{ property_item }}</option>
 											</select>									
 										</div>
 										<div class="form-group">
 											<label class="form-control">
-												Vaccant From
+												* Vaccant From
 												<input type="date"  name="vacant_from" required autocomplete="off" [(ngModel)]="propertyObj.vacant_from">
 											</label>											
 										</div>										
 										<div class="form-group">
-											<select class="form-control" name="room" tabindex="2" required autocomplete="off" [(ngModel)]="propertyObj.room">
+											<select class="form-control" name="room" autocomplete="off" [(ngModel)]="propertyObj.room">
 												<option value="0">Select Rooms</option>
 												<option value="{{i + 1}}" *ngFor="let room_no of getValues('room'); let i = index;">{{i + 1}}</option>
 											</select>									
@@ -102,7 +102,7 @@
 											</select>
 										</div>
 										<div class="form-group">
-											<select class="form-control" required [(ngModel)]="propertyObj.kitchens" name="kitchens">
+											<select class="form-control" [(ngModel)]="propertyObj.kitchens" name="kitchens">
 												<option value="0">Select Kitchens</option>
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('kitchens'); let i = index;"> {{ i + 1 }} </option>
 											</select>
@@ -122,10 +122,10 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">										
-												<input type="text" name="construction_year" class="form-control" placeholder="Construnction Year" required autocomplete="off" [(ngModel)]="propertyObj.construction_year">
+												<input type="text" name="construction_year" class="form-control" placeholder="Construnction Year" autocomplete="off" [(ngModel)]="propertyObj.construction_year">
 										</div>																					
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.repair" name="repair">
+											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.repair" name="repair">
 												<option value="">Select Repair type</option>
 												<option value="{{item}}" *ngFor="let item of getValues('repair')"> {{ item }} </option>
 											</select>
@@ -133,14 +133,14 @@
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Energy Certificate
-												<input type="file" name="energy_certificate" (change)="energyCertificateChange($event)" required [(ngModel)]="propertyObj.energy_certificate">
+												<input type="file" name="energy_certificate" (change)="energyCertificateChange($event)" [(ngModel)]="propertyObj.energy_certificate">
 											</label>
 										</div>
 										<div class="form-group">											
 											<label class="form-control">
 												<input type="radio" name="has_basement" [value]="true" [(ngModel)]="propertyObj.has_basement"> Yes
 												<input type="radio" name="has_basement" [value]="false" [(ngModel)]="propertyObj.has_basement"> NO
-												<select *ngIf="propertyObj.has_basement" class="custom-conditional-select-box" required autocomplete="off" name="basement" [(ngModel)]="propertyObj.basement">
+												<select *ngIf="propertyObj.has_basement" class="custom-conditional-select-box" autocomplete="off" name="basement" [(ngModel)]="propertyObj.basement">
 													<option value="">Select Basement</option>
 													<option value="{{ item }}" *ngFor="let item of getValues('basementCellar'); let i = index;"> {{ item }} </option>
 												</select>
@@ -150,7 +150,7 @@
 											<label class="form-control">
 												<input type="radio" name="has_cellar" [value]="true" [(ngModel)]="propertyObj.has_cellar"> Yes
 												<input type="radio" name="has_cellar" [value]="false" [(ngModel)]="propertyObj.has_cellar"> NO
-												<select *ngIf="propertyObj.has_cellar" class="custom-conditional-select-box" required autocomplete="off" name="cellar" [(ngModel)]="propertyObj.cellar">
+												<select *ngIf="propertyObj.has_cellar" class="custom-conditional-select-box" autocomplete="off" name="cellar" [(ngModel)]="propertyObj.cellar">
 													<option value="">Select Cellar</option>
 													<option value="{{ item }}" *ngFor="let item of getValues('basementCellar'); let i = index;"> {{ item }} </option>
 												</select>
@@ -159,28 +159,28 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.heating" name="heating">
+											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.heating" name="heating">
 												<option value="0">Select Heating</option>
 												<option value="item" *ngFor="let item of getValues('heating')"> {{ item }} </option>
 											</select>
 										</div>
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.essential_energy_src" name="essential_enerty_src">
-												<option value="0">Select Essential Energy Sources</option>
-												<option value="item" *ngFor="let item of getValues('essential_energy_source')"> {{ item }} </option>
+											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.essential_energy_src" name="essential_energy_src">
+												<option value="">Select Essential Energy Sources</option>
+												<option value="{{item}}" *ngFor="let item of getValues('essential_energy_source')"> {{ item }} </option>
 											</select>
 										</div>
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Additional Certificate
-												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event)" required [(ngModel)]="propertyObj.additonal_certificate">
+												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event)" [(ngModel)]="propertyObj.additonal_certificate">
 											</label>											
 										</div>
 										<div class="form-group">											
 											<label class="form-control">
 												<input type="radio" name="has_attic" [value]="true" [(ngModel)]="propertyObj.has_attic"> Yes
 												<input type="radio" name="has_attic" [value]="false" [(ngModel)]="propertyObj.has_attic"> NO
-												<select *ngIf="propertyObj.has_attic" class="custom-conditional-select-box" required autocomplete="off" name="attic" [(ngModel)]="propertyObj.attic">
+												<select *ngIf="propertyObj.has_attic" class="custom-conditional-select-box" autocomplete="off" name="attic" [(ngModel)]="propertyObj.attic">
 													<option value="">Select Attic </option>
 													<option value="{{ item }}" *ngFor="let item of getValues('attic'); let i = index;"> {{ item }} </option>
 												</select>
@@ -201,25 +201,25 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" class="form-control" name="purchase_price" placeholder="Purchase Price" tabindex="1" [(ngModel)]="propertyObj.purchase_price" required autocomplete="off">
+											<input type="number" class="form-control" name="purchase_price" placeholder="Purchase Price" tabindex="1" [(ngModel)]="propertyObj.purchase_price" required autocomplete="off">
 										</div>
 										<div class="form-group">
-											<select class="form-control" name="land_transfer_by_state" required [(ngModel)]="propertyObj.land_transfer_by_state">
+											<select class="form-control" name="land_transfer_by_state" [(ngModel)]="propertyObj.land_transfer_by_state">
 												<option value="0" selected>Land Transfer tax by rate</option>
 												<option value="{{item.state_name}}" *ngFor="let item of getValues('land_tras_tax_by_state')">{{item.state_name + '(' + item.tax + ')'}}</option>
 											</select>									
 										</div>
 										<div class="form-group">
-											<input type="text" name="brokerage_costs" class="form-control" placeholder="Brokerage Costs" required autocomplete="off" [(ngModel)]="propertyObj.brokerage_costs">
+											<input type="number" name="brokerage_costs" class="form-control" placeholder="Brokerage Costs" autocomplete="off" [(ngModel)]="propertyObj.brokerage_costs">
 										</div>											
 									</div>
 
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" name="estimated_rate" class="form-control" placeholder="Estimated Rate" required autocomplete="off" [(ngModel)]="propertyObj.estimated_rate">
+											<input type="number" name="estimated_rate" class="form-control" placeholder="Estimated Rate" autocomplete="off" [(ngModel)]="propertyObj.estimated_rate">
 										</div>
 										<div class="form-group">
-											<input type="text" name="notary_fee" class="form-control" placeholder="Notary Fee" required autocomplete="off" [(ngModel)]="propertyObj.notary_fee">
+											<input type="number" name="notary_fee" class="form-control" placeholder="Notary Fee" autocomplete="off" [(ngModel)]="propertyObj.notary_fee">
 										</div>
 
 									</div>									
@@ -242,7 +242,7 @@
 											<div class="form-group">
 												<label class="form-control" style="height: 60px;">
 													Upload Property Image
-													<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" [(ngModel)]="propertyObj.property_image" multiple="true" accept=".jpg, .png">
+													<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" [(ngModel)]="propertyObj.property_image" multiple="true" accept=".jpg, .png" required>
 												</label>
 												<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
 													<div class="col" *ngFor="let images of propertyImagePreview">
@@ -251,13 +251,13 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Address/Location" name="property_location" [(ngModel)]="propertyObj.property_location" #LocationCtrl="ngModel" Googleplace (setAddress)="getAddressOnChange($event,LocationCtrl)">
+												<input type="text" class="form-control" placeholder="Address/Location" name="property_location" [(ngModel)]="propertyObj.property_location" #LocationCtrl="ngModel" Googleplace (setAddress)="getAddressOnChange($event,LocationCtrl)" required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<textarea autocomplete="off" placeholder="Property Description" class="form-control" [(ngModel)]="propertyObj.description" name="description"></textarea>
+												<textarea required autocomplete="off" placeholder="Property Description" class="form-control" [(ngModel)]="propertyObj.description" name="description"></textarea>
 											</div>
 											<div class="form-group">
 												<label class="form-control" style="height: 60px;">
@@ -271,7 +271,7 @@
 												</div>												
 											</div>
 											<div class="form-group">
-												<input type="number" class="form-control" name="property" min="0" max="10" placeholder="Property" required autocomplete="off" [(ngModel)]="propertyObj.property">
+												<input type="number" class="form-control" name="property" min="0" max="10" placeholder="Property" required autocomplete="off" [(ngModel)]="propertyObj.property" required>
 											</div>
 										</div>									
 									</div>								
@@ -281,7 +281,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<input type="submit" class="btn-submit btn-primary btn pull-right" value="Add">
+							<input type="submit" class="btn-submit btn-primary btn pull-right" [disabled]="!addPropertyForm.form.valid" value="Add">
 						</div>
 					</div>
 

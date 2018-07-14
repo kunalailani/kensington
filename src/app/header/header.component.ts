@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfiguratorService } from '../shared/configurator.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public isLoggedin: boolean;
   public username: string;
 
-  constructor(private configurtorService: ConfiguratorService) { 
+  constructor(private configurtorService: ConfiguratorService, private router: Router) { 
   	this.getLoginData(); 
   }
 
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
     if (logoutDecision) {
       localStorage.clear();
       this.configurtorService.setConfiguratorData({});
+      this.router.navigate(['/']);
     }
   }
 }

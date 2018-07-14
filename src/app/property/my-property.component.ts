@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
+import { LoaderService } from '../shared/loader.service';
 
 @Component({
   selector: 'app-my-property',
@@ -13,9 +14,10 @@ export class MyPropertyListComponent implements OnInit {
 
   public baseUri: string = environment.api_url + '/property-details/';
 
-  constructor(private apiHandlerService: ApiHandlerService) { }
+  constructor(private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
   ngOnInit() {
+    this.loaderService.displayLoader(true);
   	this.fetchMyProperty();
   }
 
@@ -23,7 +25,7 @@ export class MyPropertyListComponent implements OnInit {
   	this.apiHandlerService.get('/api/v1/property/list-my-property').subscribe((res) => {
   		console.log(res);
   		this.myPropertyList = res.data;
-
+      this.loaderService.displayLoader(false);
   	})
   }
 
