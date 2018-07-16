@@ -48,8 +48,8 @@ export class ApiHandlerService {
     .pipe(catchError((error) => of(`I caught: ${error}`)))
   }
 
-  put(path: string, body: any): Observable<any> {
-    return this.http.put(`${environment.api_url}${path}`, body, {headers: this.setHeaders(false)})
+  put(path: string, body: any, isJson): Observable<any> {
+    return this.http.put(`${environment.api_url}${path}`, body, {headers: this.setHeaders(isJson)})
    .pipe(catchError((error) => of(`I caught: ${error}`))) 
   }
 }

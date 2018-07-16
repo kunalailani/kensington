@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { PropertyComponent } from './property/property.component';
 import { PropertyDetailComponent } from './property/property-detail.component';
 import { AddPropertyComponent } from './property/add-property.component';
+import { EditPropertyComponent } from './property/edit-property.component';
 import { MyPropertyListComponent } from './property/my-property.component';
 import { LoginComponent } from './login/login.component';
 
@@ -23,6 +24,7 @@ import { ConfiguratorService } from './shared/configurator.service';
 import { LoaderService } from './shared/loader.service';
 import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
+import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
@@ -52,6 +54,14 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
       path: 'my-property',
       component: MyPropertyListComponent
+    },
+    {
+      path: 'edit-property/:id',
+      component: EditPropertyComponent
+    },
+    {
+      path: 'page/:slug',
+      component: DynamicpageComponent
     }
   ], { useHash: true });
 
@@ -69,7 +79,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     RecentPropertyComponent,
     LoginComponent,
     MyPropertyListComponent,
-    GooglePlacesDirective
+    EditPropertyComponent,
+    GooglePlacesDirective,
+    DynamicpageComponent
   ],
   imports: [
     BrowserModule,

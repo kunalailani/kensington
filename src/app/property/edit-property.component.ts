@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgModel} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AddProperty } from './add-property';
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -9,12 +9,12 @@ import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
 
 @Component({
-  selector: 'add-property',
-  templateUrl: './add-property.component.html',
+  selector: 'edit-property',
+  templateUrl: './edit-property.component.html',
   styleUrls: ['./property.component.css']
 })
 
-export class AddPropertyComponent implements OnInit {   
+export class EditPropertyComponent implements OnInit {   
 
   public propertyObj: AddProperty;
   public propertyImagePreview: Array<any>;
@@ -29,57 +29,36 @@ export class AddPropertyComponent implements OnInit {
   public isLoggedin: boolean = false;
 
   constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router,
-    private loaderService: LoaderService) { 
-
-  	this.propertyObj = new AddProperty({
-  		room: 0,
-  		purchase_price: '',
-  		living_space: '',
-  		useable_area: '',
-  		property: '',
-  		property_type: '',
-  		storey: 0,
-      has_attic: true,
-      has_basement: true,
-      has_cellar: true,
-  		basement: '',
-      cellar: '',
-  		attic: '',
-      basement_cellar: 0,
-  		bedroom: 0,
-  		bathroom: 0,
-  		kitchens: 0,
-  		garages: 0,
-  		plots: 0,
-  		land_transfer_by_state: '0',
-  		repair: '',
-  		heating: 0,  		
-      notarty_fee: '',
-      brokerage_costs: '',
-      residential_and_commercial: 0,
-      undeveloped_property: 0,
-      essential_energy_src: ''
-  	});
-
-    let loginData = this.configurtorService.getConfiguratorData();
-    if (loginData['isLoggedin']) {
-      console.log("user is logged in");
-      this.isLoggedin = true;
-    }
+    private loaderService: LoaderService, private activatedRoute: ActivatedRoute) {    
   }
 
+  public propertyDataObj: any;
+  propertyId: string;
+
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.propertyId = params['id'];
+      this.fetchPropertyDetail(params['id']);
+    })
+  }
+
+  fetchPropertyDetail(propertyId) {
+    this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
+      this.propertyDataObj = res.data;
+    });
   }
 
   
 
-  addProperty({value, valid}: {value: AddProperty, valid: boolean}) {    
-  	this.propertyObj = value;
-  	console.log(this.propertyObj);
+  editProperty({value, valid}: {value: AddProperty, valid: boolean}) {      	
+  	console.log(this.propertyDataObj);
     this.loaderService.displayLoader(true);
-    this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {
-        if (res.data)
-          this.uploadPropertyImages(res.data._id);
+    this.apiHandlerService.put('/api/v1/property/update/' + this.propertyId, this.propertyDataObj, true).subscribe((res) => {
+        if (res.data) {
+          console.log(res);
+          this.loaderService.displayLoader(false);
+          this.router.navigate(['/my-property']);
+        }
         else
           this.loaderService.displayLoader(false);
     })     
@@ -139,15 +118,15 @@ export class AddPropertyComponent implements OnInit {
     this.formData.append('energy_certificate', event.target.files[0]);
   }
 
-  uploadPropertyImages(property_id) {    
-    this.apiHandlerService.put('/api/v1/property/upload-all-images/' + property_id, this.formData, false).subscribe((res) => {
+  /*uploadPropertyImages(property_id) {    
+    this.apiHandlerService.put('/api/v1/property/upload-all-images/' + property_id, this.formData).subscribe((res) => {
       this.loaderService.displayLoader(false);
       if (res.success) {
         alert("Property Added Successfully");
         this.router.navigate(['/my-property']);
       }      
     })
-  }
+  }*/
 
   getAddressOnChange(addressObj, LocationCtrl) {
   	console.log(JSON.stringify(addressObj));

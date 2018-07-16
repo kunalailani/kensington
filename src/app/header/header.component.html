@@ -123,59 +123,13 @@
 					<ul class="nav navbar-nav">
 
 						<!-- Dropdown Menu -->
-						<li class="dropdown">
-							<a>Privatangebote</a>
+						<li class="dropdown" *ngFor="let menuItem of menus">
+							<a>{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
-								<li><a href="#/">Wohnung mieten</a></li>
-								<li><a href="#/">Wohnung kaufen</a></li>
-								<li><a href="#/">Haus mieten</a></li>
-								<li><a href="#/">Haus kaufen</a></li>
-								<li><a href="#/">Gewerbeimmobilien mieten</a></li>
-								<li><a href="#/">Gewerbeimmobilien kaufen</a></li>
-								<li><a href="#/">Ferienhaus mieten</a></li>
+								<li *ngFor="let submenu of menuItem.sub_menu[0].pages"><a [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a></li>
 							</ul>
-						</li>
+						</li>						
 						
-						<!-- Dropdown Menu -->
-						<li class="dropdown">
-							<a>Privat anbieten</a>
-							<ul class="dropdown-menu">
-								<li><a href="#/">Anzeige schalten</a></li>
-								<li><a href="#/">Wohnung vermieten</a></li>
-								<li><a href="#/">Wohnung verkaufen </a></li>
-								<li><a href="#/">Haus vermieten </a></li>
-								<li><a href="#/">Haus verkaufen</a></li>
-								<li><a href="#/">Gewerbeimmobilien vermieten</a></li>
-								<li><a href="#/">Gewerbeimmobilien verkaufen</a></li>
-								<li><a href="#/">Ferienhaus vermieten</a></li>
-							</ul>
-						</li>
-
-						<!-- Dropdown Menu -->
-						<li class="dropdown">
-							<a>Maklerservice</a>
-							<ul class="dropdown-menu">
-								<li><a href="#/">Maklerangebote vergleichen</a></li>
-								<li><a href="#/">Makler beauftragen </a></li>
-							</ul>
-						</li>
-
-						<!-- Dropdown Menu -->
-						<!-- <li class="dropdown">
-							<a>Finanzierungservice</a>
-							<ul class="dropdown-menu">
-								<li><a href="#/">Über uns</a></li>
-								<li><a href="#/">Das passende Konzept</a></li>
-								<li><a href="#/">Baufinanzierung</a></li>
-								<li><a href="#/">Kaufen | Bauen </a></li>
-								<li><a href="#/">Anschlussfinanzierung</a></li>
-								<li><a href="#/">Forward Darlehen | Zinssicherung</a></li>
-								<li><a href="#/">KfW | Staat</a></li>
-								<li><a href="#/">Modernisierung | Energetische Sanierung</a></li>
-								<li><a href="#/">Finanzierungs-Manager</a></li>
-								<li><a href="#/">Rückrufservice</a></li>								
-							</ul>
-						</li> -->
 						<li class="dropdown">
 							<a>Property</a>
 							<ul class="dropdown-menu">

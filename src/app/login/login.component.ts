@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   		full_name: '',  		
   		emai: '',
   		password: "",  		
-  		role: 'guest-user',
+  		role: 'individual',
       phone_number: ''
   	});
     this.loginModal = new Login({
@@ -47,14 +47,22 @@ export class LoginComponent implements OnInit {
   register({ value, valid}: { value: Registration, valid: boolean}) {
   	this.regModal = value;
   	this.apiService.post('/api/v1/user/register', this.regModal).subscribe((res) => {
-    this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+       if (res.success) {
+         this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+       } else {
+         alert(res.msg);
+       }
     })
   }
 
   login({value, valid}: {value: any, valid: boolean}) {
     this.loginModal = value;
     this.apiService.post('/api/v1/user/login', this.loginModal).subscribe((res) => {
-    this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+      if (res.success)
+        this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+      else {
+        alert(res.msg);
+      }
     })
   }
 

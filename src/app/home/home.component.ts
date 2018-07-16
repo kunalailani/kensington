@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
 
   public baseUri: string = environment.api_url + '/property-details/';
 
+  termsConditionData: string;
+
   constructor(private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
   ngOnInit() {
@@ -26,6 +28,14 @@ export class HomeComponent implements OnInit {
   		console.log(res);
   		this.propertyList = res.data;
       this.loaderService.displayLoader(false);
+      //this.getTermsAndCondition();
   	})
+  }
+
+  getTermsAndCondition() {
+     this.apiHandlerService.get('/api/v1/page/get-page-by-slug/terms-conditions').subscribe((res) => {
+       console.log('terms-conditions', res);
+       this.termsConditionData = res.data;
+     })
   }
 }

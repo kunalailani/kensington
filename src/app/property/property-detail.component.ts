@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
+
+declare var $: any;
 
 @Component({
   selector: 'app-property-detail',
   templateUrl: './property-detail.component.html',
   styleUrls: ['./property.component.css']
 })
+
 export class PropertyDetailComponent implements OnInit {
 
   public propertyId: string;
@@ -22,6 +25,11 @@ export class PropertyDetailComponent implements OnInit {
   		this.propertyId = params['id'];
   		this.fetchPropertyDetail(this.propertyId);
   	})  	
+    //this.fetchPropertyDetail(this.activatedRoute.snapshot.paramMap.get('id'));
+  }
+
+  ngAfterViewInit() {
+    console.log("hello");
   }
 
   fetchPropertyDetail(propertyId) {

@@ -20,19 +20,19 @@
 						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of myPropertyList">
 							<div class="row">
 								<div class="col-lg-5">
-									<a [routerLink]="['/property-detail', property._id]" class="property-image">
+									<a [routerLink]="['/edit-property', property._id]" class="property-image">
 										<img src="{{baseUri + property.property_images[0]}}" alt="Post list 1">
 									</a>
-									<a [routerLink]="['/property-detail', property._id]" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+									<a [routerLink]="['/edit-property', property._id]" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
 								</div>
 								<div class="col-lg-7">
 									<div class="property-content">
-										<h3 class="property-title"><a href="#/property-detail">{{property.property_type}}</a></h3>
+										<h3 class="property-title"><a href="#/edit-property">{{property.property_type}}</a></h3>
 										<p>
 											<span class="property-price">$ {{property.purchase_price}}</span>
 											<span class="property-label">
-												<a [routerLink]="['/property-detail', property._id]" class="property-label__type">Villa For Sale</a>
-												<a [routerLink]="['/property-detail', property._id]" class="property-label__status">Available</a>
+												<a [routerLink]="['/edit-property', property._id]" class="property-label__type">Villa For Sale</a>
+												<a [routerLink]="['/edit-property', property._id]" class="property-label__status">Available</a>
 											</span>
 										</p>
 										<div class="property-address">
