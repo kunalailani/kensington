@@ -58,7 +58,8 @@ export class AddPropertyComponent implements OnInit {
       brokerage_costs: '',
       residential_and_commercial: 0,
       undeveloped_property: 0,
-      essential_energy_src: ''
+      essential_energy_src: '',
+      is_onRent: false
   	});
 
     let loginData = this.configurtorService.getConfiguratorData();

@@ -194,7 +194,7 @@
 	<div class="container">
 		<!-- Section Title -->
 		<div class="section-header">
-			<h2 class="section-title">Recent Offer</h2>
+			<h2 class="section-title">Individual Property</h2>
 		</div>
 		<!-- Section Content -->
 		<div class="row">
@@ -253,6 +253,58 @@
 					</div>
 				</div>
 			</div> -->
+		</div>
+	</div>
+</section>
+
+<section id="featured-property" class="page-section">
+	<div class="container">
+		<!-- Section Title -->
+		<div class="section-header">
+			<h2 class="section-title">Agent Property</h2>
+		</div>
+		<!-- Section Content -->
+		<div class="row">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
+				<!-- Property Item Tall -->
+				<div class="property-item">
+					<div class="property-header">
+						<a [routerLink]="['/property-detail', property._id]" class="item-category">{{property.name}}</a>
+						<a [routerLink]="['/property-detail', property._id]" class="item-title">{{property.property_type}} in {{property.property_location}} </a>
+						<div class="item-price">$ {{ property.purchase_price }} </div>
+					</div>
+					<figure class="item-img" data-id="{{baseUri + property.property_images[0]}}"  [style.backgroundImage]="'url(' + baseUri + property.property_images[0] + ')'">
+						<a [routerLink]="['/property-detail', property._id]"></a>
+					</figure>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+<section id="featured-property" class="page-section">
+	<div class="container">
+		<!-- Section Title -->
+		<div class="section-header">
+			<h2 class="section-title">Holiday Homes</h2>
+		</div>
+		<!-- Section Content -->
+		<div class="row">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
+				<!-- Property Item Tall -->
+				<div class="property-item">
+					<div class="property-header">
+						<a [routerLink]="['/property-detail', property._id]" class="item-category">{{property.name}}</a>
+						<a [routerLink]="['/property-detail', property._id]" class="item-title">{{property.property_type}} in {{property.property_location}} </a>
+						<div class="item-price">$ {{ property.purchase_price }} </div>
+					</div>
+					<figure class="item-img" data-id="{{baseUri + property.property_images[0]}}"  [style.backgroundImage]="'url(' + baseUri + property.property_images[0] + ')'">
+						<a [routerLink]="['/property-detail', property._id]"></a>
+					</figure>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </section>

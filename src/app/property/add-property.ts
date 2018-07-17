@@ -40,6 +40,7 @@ export class AddProperty {
 	property_location: string;
 	name: string;
 	property_type: string;
+	is_onRent: boolean;
 
 
 	constructor(values: Object = {}) {
