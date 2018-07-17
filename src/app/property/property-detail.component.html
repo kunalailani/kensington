@@ -40,12 +40,14 @@
 						<div class="property-image">
 							<div id="property-slider" class="property-slider">
 								<!-- <img src="{{baseUri + images}}" *ngFor="let images of propertyDetails.property_images" alt="property image"> -->
-								<img src="{{baseUri + propertyDetails.property_images[0]}}" alt="property image">
+								<img src="{{baseUri + propertyDetails.property_images[activeImage]}}" alt="property image">
 							</div>
-							<!-- Property Gallery Slider Navigation -->
-							<div id="property-slider-nav" class="property-slider-nav">
-								<img src="{{baseUri + images}}" *ngFor="let images of propertyDetails.property_images" alt="property image">
-							</div>
+							<!-- Property Gallery Slider Navigation -->							
+								<ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig" (afterChange)="afterChange($event)" style="background: #000;">
+									<div class="slide" ngxSlickItem *ngFor="let images of propertyDetails.property_images; let i = index;" (click)="changeImage(i)" style="cursor: pointer;">
+										<img src="{{baseUri + images}}"  alt="property image">
+									</div>
+								</ngx-slick>							
 						</div>
 						<!-- Property facility Detail -->
 						<div class="property-footer">

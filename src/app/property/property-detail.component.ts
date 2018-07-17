@@ -17,6 +17,10 @@ export class PropertyDetailComponent implements OnInit {
   public propertyDetails: any;
   public baseUri: string = environment.api_url + '/property-details/';
 
+  slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
+
+  public activeImage: number = 0;
+
   constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService) { }
 
   ngOnInit() {
@@ -30,12 +34,21 @@ export class PropertyDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     console.log("hello");
+    $("#property-slider").not('.slick-initialized').slick()
   }
 
   fetchPropertyDetail(propertyId) {
   	this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
   		this.propertyDetails = res.data;
   	});
+  }
+
+  afterChange(e) {
+    console.log('afterChange');
+  }
+
+  changeImage(index) {
+    this.activeImage = index;
   }
 
 }

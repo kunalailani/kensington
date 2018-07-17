@@ -3,6 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SlickModule } from 'ngx-slick';
 
 import { LandingModule } from './landing/landing.module';
 
@@ -25,6 +26,7 @@ import { LoaderService } from './shared/loader.service';
 import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
 import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
+
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
@@ -87,7 +89,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     BrowserModule,
     rootRouting,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SlickModule.forRoot()
   ],
   providers: [
     ApiHandlerService,

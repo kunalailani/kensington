@@ -42,7 +42,7 @@
 								</div>
 								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
 								<a [routerLink]="['/property-detail', property._id]" class="img-box__image"><img src="{{baseUri + property.property_images[0] }}" alt="Property" class="img-responsive">
-								<img src="{{baseUrl + property.property_images[1]}}" alt="Property" class="img-responsive" *ngIf="property.property_images.length > 0">
+								<img src="{{baseUri + property.property_images[1]}}" alt="Property" class="img-responsive" *ngIf="property.property_images.length > 0">
 								</a>
 							</div>
 							<div class="property-content">

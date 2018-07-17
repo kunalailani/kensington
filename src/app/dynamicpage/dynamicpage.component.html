@@ -1,5 +1,5 @@
 <!-- ====== ABOUT PAGE HEADER ====== -->
-<section class="page-header"  *ngIf="dynamicContent" style="background-image: url(assets/images/bg_page_header_1.jpg)">
+<section class="page-header main-section"  *ngIf="dynamicContent" style="background-image: url(assets/images/bg_page_header_1.jpg);">
 	<div class="container">
 		<h1 class="page-header-title">{{dynamicContent.title}}</h1>
 		<ul class="breadcrumb">
@@ -27,8 +27,7 @@
 					</div>
 				</div> -->
 				<div class="col-md-12">
-					<div class="content-description">						
-						<span [innerHtml]="dynamicContent.content"></span>
+					<div class="content-description" [innerHtml]="dynamicContent.content" style="padding: 20px; text-align: justify;">						
 					</div>
 				</div>
 			</div>
