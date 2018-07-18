@@ -59,7 +59,7 @@ export class AddPropertyComponent implements OnInit {
       residential_and_commercial: 0,
       undeveloped_property: 0,
       essential_energy_src: '',
-      is_onRent: false
+      is_onRent: true
   	});
 
     let loginData = this.configurtorService.getConfiguratorData();

@@ -33,8 +33,7 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log("hello");
-    $("#property-slider").not('.slick-initialized').slick()
+    console.log("hello");   
   }
 
   fetchPropertyDetail(propertyId) {

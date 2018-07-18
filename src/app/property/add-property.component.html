@@ -240,9 +240,9 @@
 												<input type="text" class="form-control" name="name" placeholder="Property Name" required autocomplete="off" [(ngModel)]="propertyObj.name">
 											</div>
 											<div class="form-group">
-												<input type="radio" name="property_for" value="true" [(ngModel)]="propertyObj.is_onRent"> For Rent
-												<input type="radio" name="property_for" value="false" [(ngModel)]="propertyObj.property_for"> For Sale
-												<input type="text" *ngIf="is_onRent" name="rent_price" [(ngModel)]="propertyObj.rent_price">
+												<input type="radio" name="is_onRent" [value]="true" [(ngModel)]="propertyObj.is_onRent"> For Rent
+												<input type="radio" name="is_onRent" [value]="false" [(ngModel)]="propertyObj.is_onRent"> For Sale
+												<input type="text" *ngIf="propertyObj.is_onRent" placeholder="Rent Price" name="rent_price" [(ngModel)]="propertyObj.rent_price">
 											</div>
 											<div class="form-group">
 												<label class="form-control" style="height: 60px;">

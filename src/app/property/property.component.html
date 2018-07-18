@@ -20,7 +20,7 @@
 						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of propertyList">
 							<div class="row">
 								<div class="col-lg-5">
-									<a [routerLink]="['/property-detail', property._id]" class="property-image">
+									<a href="{{baseUri + property.property_images[0]}}" class="property-image">
 										<img src="{{baseUri + property.property_images[0]}}" alt="Post list 1">
 									</a>
 									<a [routerLink]="['/property-detail', property._id]" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>

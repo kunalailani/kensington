@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
 import { LoaderService } from '../shared/loader.service';
+
+declare var $: any;
+import 'magnific-popup';
 
 @Component({
   selector: 'app-property',
@@ -19,6 +22,12 @@ export class PropertyComponent implements OnInit {
   ngOnInit() {
     this.loaderService.displayLoader(true);
   	this.fetchProperty();
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      $('.property-image').magnificPopup({ type: 'image' });
+    }, 2000)    
   }
 
   fetchProperty() {

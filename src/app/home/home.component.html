@@ -20,60 +20,36 @@
 									<!-- Property for Sale Content Row 1 -->
 									<div class="row">
 										<div class="col-md-3 form-group">
-											<label for="sale-location">Property Location</label>
-											<select class="form-control" id="sale-location">
-												<option>Any Location</option>
-												<option>Melbourne</option>
-												<option>Sydney</option>
-												<option>Adelaide</option>
-												<option>Darwin</option>
-												<option>Perth</option>
-												<option>Canberra</option>
-											</select>
-										</div>
+											<label for="postcode">Postcode</label>
+											<input type="text" class="form-control" id="postcode" placeholder="4440404" name="postcode">
+										</div>										
 										<div class="col-md-3 form-group">
 											<label for="sale-type">Property Type</label>
 											<select class="form-control" id="sale-type">
-												<option>Any Type</option>
-												<option>Houses</option>
-												<option>Apartments</option>
-												<option>Unit</option>
-												<option>Townhouse</option>
-												<option>Land</option>
-												<option>RUral</option>
+												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-bedroom">Bed Room</label>
-											<select class="form-control" id="sale-bedroom">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
+											<select class="form-control" id="sale-bedroom">												
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-bathroom">Bath Room</label>
 											<select class="form-control" id="sale-bathroom">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
-									</div>
-									<!-- Property for Sale Content Row 2 -->
+									</div>									
 									<div class="row">
 										<div class="col-md-3 form-group">
-											<label for="sale-garage">Garage</label>
+											<label for="sale-garage">View</label>
 											<select class="form-control" id="sale-garage">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
+												<option>Garden</option>
+												<option>Balcony</option>
+												<option>Garage</option>
+												<option>EBK</option>												
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
@@ -82,16 +58,28 @@
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>
-											<div class="range-box">
+											<!-- <div class="range-box">
 												<input id="sale-range-feet" readonly="">
-											</div>
+											</div> -->
+											<ion-range-slider #sliderElement min="10" max="100" from="10" to="100" extra_classes="range-slider-background">
+											</ion-range-slider>
 										</div>
 										<div class="col-md-3 form-group">
+											<label for="sale-garage">Relevant</label>
+											<select class="form-control" id="sale-garage">
+												<option>Recommendet Offers</option>
+												<option>From cheapest to expensive</option>
+												<option>From expensivest tocheap</option>
+												<option>Form smallest size to biggest</option>
+												<option>From biggest size to smallest </option>
+											</select>
+										</div>										
+										<!-- <div class="col-md-3 form-group">
 											<label for="sale-range-price">Price (USD)</label>
 											<div class="range-box">
 												<input id="sale-range-price" readonly="">
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<!-- Property for Sale Submit Button -->
