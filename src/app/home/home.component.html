@@ -186,7 +186,7 @@
 		</div>
 		<!-- Section Content -->
 		<div class="row">
-			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of userPropertyList" [ngClass]="{'col-md-12' : userPropertyList.length == 1, 'col-md-6' : userPropertyList.length == 2}">
 				<!-- Property Item Tall -->
 				<div class="property-item">
 					<div class="property-header">
@@ -253,7 +253,7 @@
 		</div>
 		<!-- Section Content -->
 		<div class="row">
-			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of agentPropertyList" [ngClass]="{'col-md-12' : agentPropertyList.length == 1, 'col-md-6' : agentPropertyList.length == 2}">
 				<!-- Property Item Tall -->
 				<div class="property-item">
 					<div class="property-header">
@@ -279,13 +279,13 @@
 		</div>
 		<!-- Section Content -->
 		<div class="row">
-			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyList">
+			<div class="col-md-4 col-sm-6" *ngFor="let property of propertyOnRentList" [ngClass]="{'col-md-12' : propertyOnRentList.length == 1, 'col-md-6' : propertyOnRentList.length == 2}">
 				<!-- Property Item Tall -->
 				<div class="property-item">
 					<div class="property-header">
 						<a [routerLink]="['/property-detail', property._id]" class="item-category">{{property.name}}</a>
 						<a [routerLink]="['/property-detail', property._id]" class="item-title">{{property.property_type}} in {{property.property_location}} </a>
-						<div class="item-price">$ {{ property.purchase_price }} </div>
+						<div class="item-price">$ {{ property.rent_price }} Rent</div>
 					</div>
 					<figure class="item-img" data-id="{{baseUri + property.property_images[0]}}"  [style.backgroundImage]="'url(' + baseUri + property.property_images[0] + ')'">
 						<a [routerLink]="['/property-detail', property._id]"></a>

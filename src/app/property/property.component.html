@@ -27,7 +27,7 @@
 								</div>
 								<div class="col-lg-7">
 									<div class="property-content">
-										<h3 class="property-title"><a href="#/property-detail">{{property.property_type}}</a></h3>
+										<h3 class="property-title"><a [routerLink]="['/property-detail', property._id]">{{property.property_type}}</a></h3>
 										<p>
 											<span class="property-price">$ {{property.purchase_price}}</span>
 											<span class="property-label">
@@ -49,18 +49,7 @@
 								</div>
 							</div>
 						</div>						
-					</div>
-
-					<!-- Property List Pagination -->
-					<div class="pagination" *ngIf="propertyList">
-						<a href="#" class="prev"></a>
-						<span class="current">1</span>
-						<a href="#" class="page">2</a>
-						<a href="#" class="page">3</a>
-						<a href="#" class="page">4</a>
-						<a href="#" class="page">5</a>
-						<a href="#" class="next"></a>
-					</div>
+					</div>					
 				</div>
 			</div>
 			<div class="col-md-4">

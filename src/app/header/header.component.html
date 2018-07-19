@@ -2,21 +2,21 @@
 	<header id="header">
 
 		<!-- Topbar Header Varian 1 -->
-		<div class="topbar-1">
+		<div class="topbar-1" *ngIf="headerData">
 			<!-- Topbar Header Varian 1 for Desktop View-->
 			<nav class="topbar topbar-varian-1 desktop-topbar">
 				<div class="container">
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-address"></span>
-						<p class="item-text">774 Walker County Rd #241, Mountain View, WY, 82939</p>
+						<p class="item-text">{{ headerData.address }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-clock"></span>
-						<p class="item-text">Monday-Friday : 9:00 AM to 7:00 PM <br>Saturday, Sunday : Closed</p>
+						<p class="item-text">{{ headerData.timing }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-phone"></span>
-						<p class="item-text">(307) 786-2619 <br>hello@kensington.com</p>
+						<p class="item-text">{{ headerData.contact }}</p>
 					</div>
 				</div>
 			</nav>
@@ -27,19 +27,19 @@
 					<div>
 						<div class="topbar-item">
 							<span class="item-icon fi flaticon-address"></span>
-							<p class="item-text">774 Walker County Rd #241, Mountain View, WY, 82939</p>
+							<p class="item-text">{{ headerData.address }}</p>
 						</div>
 					</div>
 					<div>
 						<div class="topbar-item">
 							<span class="item-icon fi flaticon-clock"></span>
-							<p class="item-text">Monday-Friday : 9:00 AM to 7:00 PM <br>Saturday, Sunday : Closed</p>
+							<p class="item-text">{{ headerData.timing }}</p>
 						</div>
 					</div>
 					<div>
 						<div class="topbar-item">
 							<span class="item-icon fi flaticon-phone"></span>
-							<p class="item-text">(307) 786-2619 <br>hello@kensington.com</p>
+							<p class="item-text">{{ headerData.contact }}</p>
 						</div>
 					</div>
 				</div>
@@ -62,21 +62,21 @@
 		</div>
 		
 		<!-- Topbar Header Varian 2 -->
-		<div class="topbar-3">
+		<div class="topbar-3" *ngIf="headerData">
 			<!-- Topbar Header varian 3 for Desktop View-->
 			<nav class="topbar topbar-varian-3 desktop-topbar">
 				<div class="container">
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-address"></span>
-						<p class="item-text">774 Walker County Rd #241, Mountain View, WY, 82939</p>
+						<p class="item-text">{{ headerData.address || '-' }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-clock"></span>
-						<p class="item-text">Monday-Friday : 9:00 AM to 7:00 PM <br>Saturday, Sunday : Closed</p>
+						<p class="item-text">{{ headerData.timing || '-' }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-phone"></span>
-						<p class="item-text">(307) 786-2619 <br>hello@kensington.com</p>
+						<p class="item-text">{{ headerData.contact || '-' }}</p>
 					</div>
 					<div class="topbar-item">
 						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -91,15 +91,15 @@
 				<div class="slider slide-topbar">
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-address"></span>
-						<p class="item-text">774 Walker County Rd #241, Mountain View, WY, 82939</p>
+						<p class="item-text">{{ headerData.address }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-clock"></span>
-						<p class="item-text">Monday-Friday : 9:00 AM to 7:00 PM <br>Saturday, Sunday : Closed</p>
+						<p class="item-text">{{ headerData.timing }}</p>
 					</div>
 					<div class="topbar-item">
 						<span class="item-icon fi flaticon-phone"></span>
-						<p class="item-text">(307) 786-2619 <br>hello@kensington.com</p>
+						<p class="item-text">{{ headerData.contact }}</p>
 					</div>
 				</div>
 			</nav>
@@ -126,21 +126,17 @@
 						<li class="dropdown" *ngFor="let menuItem of menus">
 							<a>{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
-								<li *ngFor="let submenu of menuItem.sub_menu[0].pages"><a [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a></li>
+								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">
+									<a [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a>
+									<a *ngIf="submenu.type == 'app_page'" [routerLink]="['/' + submenu.slug + '']"> {{submenu.title}}</a>
+								</li>
 							</ul>
-						</li>						
-						
-						<li class="dropdown">
-							<a>Property</a>
-							<ul class="dropdown-menu">
-								<li><a href="#/add-property">Add Property</a></li>
-								<li><a href="#/property">Property List</a></li>
-							</ul>
-						</li>
+						</li>												
 						<li class="dropdown">
 							<a href="#/login" *ngIf="!isLoggedin">Login</a>
 							<a href="#" *ngIf="isLoggedin">Welcome {{ username }}</a>
 							<ul class="dropdown-menu" *ngIf="isLoggedin">
+								<li><a href="#/add-property">Add Property</a></li>
 								<li><a href="#/my-property">My Property</a></li>
 								<li><a (click)="logout()">Logout</a></li>
 							</ul>

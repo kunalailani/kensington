@@ -12,3 +12,48 @@
     padding: 5px;
     margin-left: 10px;
 }
+.custom-graph {
+	width: 100%;
+    height: 50px;
+    display: flex;
+}
+.property-price-div {
+	background: #BDBDBD;
+}
+.notary-fee-div {
+	background: #6200EE;
+}
+.brokerage-costs-div {
+	background: #3700B3;
+}
+.custom-graph-indicators {
+	list-style: none;
+  	padding: 0;
+  	margin: 0;
+  	display: flex;
+}
+.custom-graph-indicators li {
+	padding-left: 1em; 
+  text-indent: -.7em;
+}
+.custom-graph-indicators li#property-price-div::before {
+	content: '\2022';
+	color: #BDBDBD;
+	font-size: 35px;
+    position: relative;
+    top: 10px;
+}
+.custom-graph-indicators li#notary-fee-div::before {
+	content: "\2022";
+	color: #6200EE;
+	font-size: 35px;
+    position: relative;
+    top: 10px;
+}
+.custom-graph-indicators li#brokerage-costs-div::before {
+	content: "\2022";
+	color: #3700B3;
+	font-size: 35px;
+    position: relative;
+    top: 10px;
+}

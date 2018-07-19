@@ -179,6 +179,28 @@
 										<td>{{propertyDetails.residential_and_commercial}}</td>																				
 									</tr>
 								</table>
+								<hr />
+								<div class="col-md-8">
+									<div class="custom-graph">
+										<div class="property-price-div" [ngStyle]="{'width': propertyPriceWidth }"></div>
+										<div class="notary-fee-div" [ngStyle]="{'width': notaryFeeWidht }"></div>
+										<div class="brokerage-costs-div" [ngStyle]="{'width': brokerageCostsWidth }"></div>
+									</div>
+									<ul class="custom-graph-indicators">
+										<li id="property-price-div">
+											Property Price<br>
+											$ {{ propertyDetails.purchase_price }}
+										</li>
+										<li id="notary-fee-div">
+											Notary fee<br>
+											$ {{ propertyDetails.notary_fee }}
+										</li>
+										<li id="brokerage-costs-div">
+											Brokerage Costs<br>
+											$ {{ propertyDetails.brokerage_cost }}
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>						
 					</article>											

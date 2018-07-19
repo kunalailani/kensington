@@ -12,7 +12,9 @@ import { getPropertyConfigurationData } from '../property/property.constant';
 })
 export class HomeComponent implements OnInit {
 	
-  public propertyList: Array<any>;
+  public userPropertyList: Array<any>;
+  public agentPropertyList: Array<any>;
+  public propertyOnRentList: Array<any>;
 
   public baseUri: string = environment.api_url + '/property-details/';
 
@@ -22,16 +24,29 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loaderService.displayLoader(true);
-  	this.fetchProperty();
+  	this.fetchLatestPropUser();
   }
 
-  fetchProperty() {
-  	this.apiHandlerService.get('/api/v1/property/list-property?offset=3&limit=5').subscribe((res) => {
-  		console.log(res);
-  		this.propertyList = res.data;
-      this.loaderService.displayLoader(false);      
+  fetchLatestPropUser() {
+  	this.apiHandlerService.get('/api/v1/property/latest-property-by-user').subscribe((res) => {  		
+  		this.userPropertyList = res.data;
+      this.fetchLatestPropAgent();
   	})
-  }  
+  }
+
+  fetchLatestPropAgent() {
+    this.apiHandlerService.get('/api/v1/property/latest-property-by-agent').subscribe((res) => {
+      this.agentPropertyList = res.data;
+      this.fetchPropOnRent();
+    })
+  }
+
+  fetchPropOnRent() {
+    this.apiHandlerService.get('/api/v1/property/latest-property-by-rent').subscribe((res) => {
+      this.propertyOnRentList = res.data;
+      this.loaderService.displayLoader(false);
+    })
+  }
 
   getValues(propName) {    
     return getPropertyConfigurationData(propName);

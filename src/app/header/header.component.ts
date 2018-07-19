@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ConfiguratorService } from '../shared/configurator.service';
 import { Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -9,10 +9,11 @@ import { ApiHandlerService } from '../shared/api-handler.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input () headerData: any;
 
   public isLoggedin: boolean;
   public username: string;
-  public menus: Array<any> = [];
+  public menus: Array<any> = [];  
 
   constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService) { 
   	this.getLoginData(); 
@@ -22,8 +23,8 @@ export class HeaderComponent implements OnInit {
   	this.configurtorService.dataChange().subscribe((data) => {
   		this.username = data.username;
   		this.isLoggedin = data.isLoggedin
-  	})
-    this.fetchMenus();
+  	})  
+    this.fetchMenus();     
   }
 
   getLoginData() {  

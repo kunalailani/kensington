@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header [headerData]="headerObj"></app-header>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer [footerData]="headerObj"></app-footer>
 <span *ngIf="objLoaderStatus" class="loading">
 	<img src="assets/images/ajax-loader.gif">
 </span>

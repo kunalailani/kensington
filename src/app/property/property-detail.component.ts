@@ -17,6 +17,10 @@ export class PropertyDetailComponent implements OnInit {
   public propertyDetails: any;
   public baseUri: string = environment.api_url + '/property-details/';
 
+  public propertyPriceWidth: any;
+  public notaryFeeWidht: any;
+  public brokerageCostsWidth: any;
+
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
   public activeImage: number = 0;
@@ -39,6 +43,10 @@ export class PropertyDetailComponent implements OnInit {
   fetchPropertyDetail(propertyId) {
   	this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
   		this.propertyDetails = res.data;
+      let totalPropertyPrice = res.data.purchase_price + res.data.notary_fee + res.data.brokerage_cost;
+      this.propertyPriceWidth = (res.data.purchase_price * 100 ) / totalPropertyPrice + '%';
+      this.notaryFeeWidht = (res.data.notary_fee * 100 ) / totalPropertyPrice + '%';
+      this.brokerageCostsWidth = (res.data.brokerage_cost * 100 ) / totalPropertyPrice + '%';      
   	});
   }
 
