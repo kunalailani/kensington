@@ -210,7 +210,7 @@
 											</select>									
 										</div>
 										<div class="form-group">
-											<input type="number" name="brokerage_costs" class="form-control" placeholder="Brokerage Costs" autocomplete="off" [(ngModel)]="propertyObj.brokerage_costs">
+											<input type="number" name="brokerage_cost" class="form-control" placeholder="Brokerage Costs" autocomplete="off" [(ngModel)]="propertyObj.brokerage_cost">
 										</div>											
 									</div>
 
@@ -277,6 +277,9 @@
 											</div>
 											<div class="form-group">
 												<input type="number" class="form-control" name="property" min="0" max="10" placeholder="Property" required autocomplete="off" [(ngModel)]="propertyObj.property" required>
+											</div>
+											<div class="form-group">
+												<input type="text" class="form-control" name="post_code" placeholder="Post Code" required autocomplete="off" [(ngModel)]="propertyObj.post_code" required>
 											</div>
 										</div>									
 									</div>								

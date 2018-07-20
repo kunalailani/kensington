@@ -55,7 +55,7 @@ export class AddPropertyComponent implements OnInit {
   		repair: '',
   		heating: 0,  		
       notarty_fee: '',
-      brokerage_costs: '',
+      brokerage_cost: '',
       residential_and_commercial: 0,
       undeveloped_property: 0,
       essential_energy_src: '',

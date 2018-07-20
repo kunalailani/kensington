@@ -6,15 +6,15 @@
 			<!-- Topbar Header Varian 1 for Desktop View-->
 			<nav class="topbar topbar-varian-1 desktop-topbar">
 				<div class="container">
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.address_status">
 						<span class="item-icon fi flaticon-address"></span>
 						<p class="item-text">{{ headerData.address }}</p>
 					</div>
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.timing_status">
 						<span class="item-icon fi flaticon-clock"></span>
 						<p class="item-text">{{ headerData.timing }}</p>
 					</div>
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.contact_status">
 						<span class="item-icon fi flaticon-phone"></span>
 						<p class="item-text">{{ headerData.contact }}</p>
 					</div>
@@ -25,19 +25,19 @@
 			<nav class="topbar topbar-varian-1 mobile-topbar">
 				<div class="slider slide-topbar">
 					<div>
-						<div class="topbar-item">
+						<div class="topbar-item" *ngIf="headerData.address_status">
 							<span class="item-icon fi flaticon-address"></span>
 							<p class="item-text">{{ headerData.address }}</p>
 						</div>
 					</div>
 					<div>
-						<div class="topbar-item">
+						<div class="topbar-item" *ngIf="headerData.timing_status">
 							<span class="item-icon fi flaticon-clock"></span>
 							<p class="item-text">{{ headerData.timing }}</p>
 						</div>
 					</div>
 					<div>
-						<div class="topbar-item">
+						<div class="topbar-item" *ngIf="headerData.contact_status">
 							<span class="item-icon fi flaticon-phone"></span>
 							<p class="item-text">{{ headerData.contact }}</p>
 						</div>
@@ -66,15 +66,15 @@
 			<!-- Topbar Header varian 3 for Desktop View-->
 			<nav class="topbar topbar-varian-3 desktop-topbar">
 				<div class="container">
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.address_status">
 						<span class="item-icon fi flaticon-address"></span>
 						<p class="item-text">{{ headerData.address || '-' }}</p>
 					</div>
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.timing_status">
 						<span class="item-icon fi flaticon-clock"></span>
 						<p class="item-text">{{ headerData.timing || '-' }}</p>
 					</div>
-					<div class="topbar-item">
+					<div class="topbar-item" *ngIf="headerData.contact_status">
 						<span class="item-icon fi flaticon-phone"></span>
 						<p class="item-text">{{ headerData.contact || '-' }}</p>
 					</div>
@@ -110,7 +110,7 @@
 			<div class="container">
 				<!-- Navbar Brand -->
 				<div class="navbar-header">
-					<a href="#/" id="navbar-brand" class="navbar-brand"><img src="assets/images/header-logo-default.png" alt="kensington Property"></a>
+					<a href="#/" id="navbar-brand" class="navbar-brand"><img src="assets/images/header-logo-default.png" alt="Baufi Media"></a>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
@@ -127,7 +127,7 @@
 							<a>{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">
-									<a [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a>
+									<a *ngIf="submenu.type != 'app_page'" [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a>
 									<a *ngIf="submenu.type == 'app_page'" [routerLink]="['/' + submenu.slug + '']"> {{submenu.title}}</a>
 								</li>
 							</ul>
