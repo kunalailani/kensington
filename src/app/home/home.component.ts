@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   public userPropertyList: Array<any>;
   public agentPropertyList: Array<any>;
   public propertyOnRentList: Array<any>;
-  public searchFilterObj: any;
+  public searchFilterObj: any = {};
   recommended_offers: string;
 
   public baseUri: string = environment.api_url + '/property-details/';
