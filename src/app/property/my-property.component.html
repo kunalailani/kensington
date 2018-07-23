@@ -49,6 +49,16 @@
 								</div>
 							</div>
 						</div>						
+					</div>
+					<div class="row" *ngIf="!myPropertyList">
+						<div class="col-md-12">
+							{{ resMsg }}
+						</div>
+					</div>
+					<div class="row" *ngIf="myPropertyList && myPropertyList.length >= 5 && hideLoadMore">
+						<div class="col-md-12 text-center">
+							<button class="btn-submit btn-primary btn" (click)="fetchMyProperty()"> Load More </button>
+						</div>
 					</div>					
 				</div>
 			</div>

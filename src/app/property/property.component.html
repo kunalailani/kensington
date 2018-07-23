@@ -49,7 +49,21 @@
 								</div>
 							</div>
 						</div>						
-					</div>					
+					</div>
+					<div class="row" *ngIf="propertyList.length == 0">
+						<div class="col-md-12">
+							<div class="panel">
+								<div class="panel-body">
+									<h4 class="filter-title pull-left">{{ resMsg }}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" *ngIf="propertyList && propertyList.length >= 5 && hideLoadMore">
+						<div class="col-md-12 text-center">
+							<button class="btn-submit btn-primary btn"> Load More </button>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -59,7 +73,7 @@
 
 					<app-search></app-search>
 
-					<app-recent-property></app-recent-property>
+					<!-- <app-recent-property></app-recent-property> -->
 				</div>
 			</div>
 		</div>

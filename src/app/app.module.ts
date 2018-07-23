@@ -28,6 +28,7 @@ import { LoaderService } from './shared/loader.service';
 import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
 import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -66,6 +67,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
       path: 'page/:slug',
       component: DynamicpageComponent
+    },
+    {
+      path: 'my-profile',
+      component: ProfileComponent      
     }
   ], { useHash: true });
 
@@ -85,7 +90,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     MyPropertyListComponent,
     EditPropertyComponent,
     GooglePlacesDirective,
-    DynamicpageComponent
+    DynamicpageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

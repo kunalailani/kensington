@@ -132,8 +132,18 @@ export class AddPropertyComponent implements OnInit {
     }
   }
 
-  additionalCertificateChange(event) {
-    this.formData.append('additional_certificates', event.target.files[0]);
+  additionalCertificateChange(event, additional_certyRef) {
+    console.log(event.target.files[0]);    
+    let additionalFileList: FileList = event.target.files;
+    for (let i = 0; i < additionalFileList.length; i++) {
+      if (event.target.files[i].type != '.pdf') {
+        additional_certyRef.value = '';
+        alert('Please Select file with pdf extension');
+      } else {
+        this.formData.append('additional_certificates', event.target.files[i]);
+      }      
+    }
+    // this.formData.append('additional_certificates', event.target.files[0]);
   }
 
   energyCertificateChange(event) {
@@ -153,5 +163,6 @@ export class AddPropertyComponent implements OnInit {
   getAddressOnChange(addressObj, LocationCtrl) {
   	console.log(JSON.stringify(addressObj));
   	console.log(addressObj.address_components[0].long_name);
+    this.propertyObj['property_location'] = addressObj.address_components[0].long_name;
   }
 }

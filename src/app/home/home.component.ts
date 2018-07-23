@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ApiHandlerService } from '../shared/api-handler.service';
+import { ConfiguratorService } from '../shared/configurator.service';
 import { environment } from '../../environments/environment';
 import { LoaderService } from '../shared/loader.service';
 
@@ -15,19 +18,21 @@ export class HomeComponent implements OnInit {
   public userPropertyList: Array<any>;
   public agentPropertyList: Array<any>;
   public propertyOnRentList: Array<any>;
+  public searchFilterObj: any;
+  recommended_offers: string;
 
   public baseUri: string = environment.api_url + '/property-details/';
 
   termsConditionData: string;
 
-  constructor(private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
+  constructor(private router: Router, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService, private configuratorService: ConfiguratorService) { }
 
-  ngOnInit() {
-    this.loaderService.displayLoader(true);
+  ngOnInit() {   
   	this.fetchLatestPropUser();
   }
 
   fetchLatestPropUser() {
+     this.loaderService.displayLoader(true);
   	this.apiHandlerService.get('/api/v1/property/latest-property-by-user').subscribe((res) => {  		
   		this.userPropertyList = res.data;
       this.fetchLatestPropAgent();
@@ -45,6 +50,29 @@ export class HomeComponent implements OnInit {
     this.apiHandlerService.get('/api/v1/property/latest-property-by-rent').subscribe((res) => {
       this.propertyOnRentList = res.data;
       this.loaderService.displayLoader(false);
+    })
+  }
+
+  areaSliderFinishEvent(event) {
+    console.log(event);
+    this.searchFilterObj["useable_area"] = event.from + ',' + event.to;
+  }
+
+  searchProperty(recommended_offers, search_type) {
+    if (search_type == 'for_rent') {
+      this.searchFilterObj["is_for_rent"] = true;
+    }
+    if (recommended_offers) {
+      this.searchFilterObj["filter_column"] = recommended_offers.split("_")[0];
+      this.searchFilterObj["filter_order"] = recommended_offers.split("_")[1];
+    }    
+    if (this.searchFilterObj["choice"])
+      this.searchFilterObj["choice"] = this.searchFilterObj["choice"] ? this.searchFilterObj["choice"]: null;
+    console.log('property filter data', this.searchFilterObj);
+    this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
+      console.log(res.data);
+      this.configuratorService.setSearchDataResult(res);
+      this.router.navigate(['/search-property']);
     })
   }
 

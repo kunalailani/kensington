@@ -173,7 +173,7 @@
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Additional Certificate
-												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event)" [(ngModel)]="propertyObj.additonal_certificate">
+												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event, additional_certy)" #additional_certy [(ngModel)]="propertyObj.additonal_certificate" accept=".pdf" multiple>
 											</label>											
 										</div>
 										<div class="form-group">											

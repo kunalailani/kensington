@@ -5,13 +5,14 @@ import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import { environment } from '../../environments/environment';
+import { LoaderService } from '../shared/loader.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiHandlerService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loaderService: LoaderService) { }
 
   public setHeaders(isJson): HttpHeaders {
   	const headerConfig = {  		
@@ -29,6 +30,7 @@ export class ApiHandlerService {
   }
   public handleError(error: any) {
     console.log("error ", error);
+    this.loaderService.displayLoader(false);
   }
   get(path: string, params = {}): Observable<any> {
   	return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(true),

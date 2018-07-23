@@ -214,14 +214,14 @@
 						</div>
 						<div class="panel-body">
 							<ul class="property-attachment">
-								<li>
+								<li *ngFor="let additional_files of propertyDetails.additional_certificates; let i = index;">
 									<a href="#" class="attachment-icon"><i class="fa fa-file-pdf-o"></i></a>
 									<div class="attachment-text">
-										<span class="text-title">Property Paper</span>
-										<a href="" class="download-link">Download</a>
+										<span class="text-title">Property Paper {{ i + 1 }}</span>
+										<a target="_blank" href="{{baseUri + additional_files}}" class="download-link">Download</a>
 									</div>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="#" class="attachment-icon"><i class="fa fa-file-word-o"></i></a>
 									<div class="attachment-text">
 										<span class="text-title">Property Documents</span>
@@ -248,7 +248,7 @@
 										<span class="text-title">Property File</span>
 										<a href="" class="download-link">Download</a>
 									</div>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 					</div>					

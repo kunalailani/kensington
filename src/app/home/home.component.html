@@ -15,63 +15,75 @@
 					<div class="tab-content">
 						<!-- Tabmenu Content 1 / Property For SALE -->
 						<div role="tabpanel" class="tab-pane active" id="for-sale">
-							<form action="#">
+							<form>
 								<div class="form-body">
 									<!-- Property for Sale Content Row 1 -->
 									<div class="row">
-										<div class="col-md-3 form-group">
+										<div class="col-md-2 form-group">
 											<label for="postcode">Postcode</label>
-											<input type="text" class="form-control" id="postcode" placeholder="4440404" name="postcode">
+											<input type="text" class="form-control" id="postcode" placeholder="4440404" name="postcode" [(ngModel)]="searchFilterObj.post_code">
 										</div>										
 										<div class="col-md-3 form-group">
 											<label for="sale-type">Property Type</label>
-											<select class="form-control" id="sale-type">
+											<select class="form-control" id="sale-type" [(ngModel)]="searchFilterObj.property_type" name="property_type">
 												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
 											</select>
 										</div>
-										<div class="col-md-3 form-group">
+										<div class="col-md-2 form-group">
 											<label for="sale-bedroom">Bed Room</label>
-											<select class="form-control" id="sale-bedroom">												
+											<select class="form-control" id="sale-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
-										<div class="col-md-3 form-group">
+										<div class="col-md-2 form-group">
 											<label for="sale-bathroom">Bath Room</label>
-											<select class="form-control" id="sale-bathroom">
+											<select class="form-control" id="sale-bathroom" [(ngModel)]="searchFilterObj.bathroom" name="bathroom">
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
+										<div class="col-md-3 form-group">
+											<label for="property_location">Property Location</label>
+											<input type="text" name="property_location" id="property_location" class="form-control" [(ngModel)]="searchFilterObj.property_location" placeholder="Location">
+										</div>
 									</div>									
 									<div class="row">
-										<div class="col-md-3 form-group">
-											<label for="sale-garage">View</label>
-											<select class="form-control" id="sale-garage">
-												<option>Garden</option>
-												<option>Balcony</option>
-												<option>Garage</option>
-												<option>EBK</option>												
+										<div class="col-md-3 form-group">											
+											<!-- <div class="custom-checkbox">
+												<input type="checkbox" name="has_garden" [checked]="searchFilterObj.has_garden" (change)="searchFilterObj.has_garden = !searchFilterObj.has_garden"> Garden
+											</div>
+											<div class="custom-checkbox">
+												<input type="checkbox" name="has_balcony" [checked]="searchFilterObj.has_balcony" (change)="searchFilterObj.has_balcony = !searchFilterObj.has_balcony" > Balcony
+											</div>
+											<div class="custom-checkbox">
+												<input type="checkbox" name="has_garage" [checked]="searchFilterObj.has_garage" (change)="searchFilterObj.has_garage = !searchFilterObj.has_garage"> Garage
+											</div> -->
+											<label for="sale-garage">Choice</label>
+											<select class="form-control" name="choice" [(ngModel)]="searchFilterObj.choice" multiple>
+												<option value="garder">Garder</option>
+												<option value="balcony">Balcony</option>
+												<option value="garage">Garage</option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-keyword">Keyword</label>
-											<input type="text" class="form-control" id="sale-keyword" placeholder="(e.g.'office')">
+											<input type="text" class="form-control" id="sale-keyword" name="keyword" [(ngModel)]="searchFilterObj.keyword" placeholder="(e.g.'Villa')">
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>
 											<!-- <div class="range-box">
 												<input id="sale-range-feet" readonly="">
 											</div> -->
-											<ion-range-slider #sliderElement type="double" min="10" max="300" from="10" to="100">
+											<ion-range-slider #sliderElement type="double" min="10" max="400" from="10" to="100" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-garage">Relevant</label>
-											<select class="form-control" id="sale-garage">
-												<option>Recommendet Offers</option>
-												<option>From cheapest to expensive</option>
-												<option>From expensivest tocheap</option>
-												<option>Form smallest size to biggest</option>
-												<option>From biggest size to smallest </option>
+											<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
+												<option value="">Recommended Offers</option>
+												<option value="price_1">From cheapest to expensive</option>
+												<option value="price_-1">From expensivest tocheap</option>
+												<option value="area_1">Form smallest size to biggest</option>
+												<option value="area_-1">From biggest size to smallest </option>
 											</select>
 										</div>										
 										<!-- <div class="col-md-3 form-group">
@@ -83,7 +95,7 @@
 									</div>
 								</div>
 								<!-- Property for Sale Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" type="submit"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_sale')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="for-rent">
@@ -91,83 +103,75 @@
 								<div class="form-body">
 									<!-- Property for Sale Content Row 1 -->
 									<div class="row">
+										<div class="col-md-2 form-group">
+											<label for="postcode">Postcode</label>
+											<input type="text" class="form-control" id="postcode" placeholder="4440404" name="postcode" [(ngModel)]="searchFilterObj.post_code">
+										</div>										
 										<div class="col-md-3 form-group">
-											<label for="rent-location">Property Location</label>
-											<select class="form-control" id="rent-location">
-												<option>Any Location</option>
-												<option>Melbourne</option>
-												<option>Sydney</option>
-												<option>Adelaide</option>
-												<option>Darwin</option>
-												<option>Perth</option>
-												<option>Canberra</option>
+											<label for="sale-type">Property Type</label>
+											<select class="form-control" id="sale-type" [(ngModel)]="searchFilterObj.property_type" name="property_type">
+												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
+											</select>
+										</div>
+										<div class="col-md-2 form-group">
+											<label for="sale-bedroom">Bed Room</label>
+											<select class="form-control" id="sale-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
+											</select>
+										</div>
+										<div class="col-md-2 form-group">
+											<label for="sale-bathroom">Bath Room</label>
+											<select class="form-control" id="sale-bathroom" [(ngModel)]="searchFilterObj.bathroom" name="bathroom">
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="rent-type">Property Type</label>
-											<select class="form-control" id="rent-type">
-												<option>Any Type</option>
-												<option>Houses</option>
-												<option>Apartments</option>
-												<option>Unit</option>
-												<option>Townhouse</option>
-												<option>Land</option>
-												<option>RUral</option>
-											</select>
-										</div>
-										<div class="col-md-3 form-group">
-											<label for="rent-bedroom">Bed Room</label>
-											<select class="form-control" id="rent-bedroom">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-											</select>
-										</div>
-										<div class="col-md-3 form-group">
-											<label for="rent-bathroom">Bath Room</label>
-											<select class="form-control" id="rent-bathroom">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-											</select>
+											<label for="property_location">Property Location</label>
+											<input type="text" name="property_location" id="property_location" class="form-control" [(ngModel)]="searchFilterObj.property_location" placeholder="Location">
 										</div>
 									</div>
 									<!-- Property for rent Content Row 2 -->
 									<div class="row">
-										<div class="col-md-3 form-group">
-											<label for="rent-garage">Garage</label>
-											<select class="form-control" id="rent-garage">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
+										<div class="col-md-3 form-group">											
+											<label for="sale-garage">Choice</label>
+											<select class="form-control" name="choice" [(ngModel)]="searchFilterObj.choice" multiple>
+												<option value="garder">Garder</option>
+												<option value="balcony">Balcony</option>
+												<option value="garage">Garage</option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="rent-keyword">Keyword</label>
-											<input type="text" class="form-control" id="rent-keyword" placeholder="(e.g.'office')">
+											<label for="sale-keyword">Keyword</label>
+											<input type="text" class="form-control" id="sale-keyword" name="keyword" [(ngModel)]="searchFilterObj.keyword" placeholder="(e.g.'Villa')">
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="rent-range-feet">Area (m2)</label>
-											<div class="range-box">
-												<input id="rent-range-feet" readonly="">
-											</div>
+											<label for="sale-range-feet">Area (m2)</label>
+											<!-- <div class="range-box">
+												<input id="sale-range-feet" readonly="">
+											</div> -->
+											<ion-range-slider #sliderElement type="double" min="10" max="400" from="10" to="100" (onFinish)="areaSliderFinishEvent($event)">
+											</ion-range-slider>
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="rent-range-price">Price (USD)</label>
+											<label for="sale-garage">Relevant</label>
+											<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
+												<option value="">Recommended Offers</option>
+												<option value="price_1">From cheapest to expensive</option>
+												<option value="price_-1">From expensivest tocheap</option>
+												<option value="area_1">Form smallest size to biggest</option>
+												<option value="area_-1">From biggest size to smallest </option>
+											</select>
+										</div>										
+										<!-- <div class="col-md-3 form-group">
+											<label for="sale-range-price">Price (USD)</label>
 											<div class="range-box">
-												<input id="rent-range-price" readonly="">
+												<input id="sale-range-price" readonly="">
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<!-- Property for rent Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" type="submit"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_rent')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
 					</div>
@@ -245,7 +249,8 @@
 	</div>
 </section>
 
-<section id="featured-property" class="page-section">
+
+<section id="howto-buy" class="page-section no-pattern" style="background-image: url(/assets/images/bg_video_1.jpg);">
 	<div class="container">
 		<!-- Section Title -->
 		<div class="section-header">
@@ -265,8 +270,7 @@
 						<a [routerLink]="['/property-detail', property._id]"></a>
 					</figure>
 				</div>
-			</div>
-			
+			</div>			
 		</div>
 	</div>
 </section>
