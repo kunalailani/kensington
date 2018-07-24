@@ -251,7 +251,18 @@
 								</li> -->
 							</ul>
 						</div>
-					</div>					
+					</div>
+<!-- 					<section class="section-row">
+						<div class="panel-box">
+							<div class="panel-header">
+								<h3 class="panel-title">Property Location</h3>
+							</div>
+							<div class="panel-body">
+								<div id="map"></div>
+							</div>
+						</div>
+					</section> -->
+					<div id="map" style="width: 100%; height: 350px;"></div>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -271,12 +282,15 @@
 							<div class="panel-body">
 								<div class="profile-box">
 									<div class="profile-header">
-										<div class="profile-img"><img src="assets/images/img_author_default.jpg" alt="John Doe"></div>
-										<h5 class="profile-title">John Doe</h5>
+										<div class="profile-img">
+											<img *ngIf="!propertyDetails.user_id" src="assets/images/img_author_default.jpg" alt="John Doe">
+											<img *ngIf="propertyDetails.user_id" src="{{ propertyDetails.user_id.logo }}" alt="{{ propertyDetails.user_id.full_name }}">
+										</div>
+										<h5 class="profile-title"> {{ propertyDetails.user_id.full_name || 'John Deo'}} </h5>
 									</div>
 									<ul class="profile-contact">
-										<li><i class="fa fa-envelope"></i> <a href="javascript:void(0)">BAUFIMEDIA</a></li>
-										<li><i class="fa fa-phone"></i> <a href="#">1300 123 123</a></li>
+										<li><i class="fa fa-envelope"></i> <a href="javascript:void(0)">{{ propertyDetails.user_id.email || 'john@gmail.com'}}</a></li>
+										<li><i class="fa fa-phone"></i> <a href="#"> {{ propertyDetails.user_id.phone_number || '84848437338'}} </a></li>
 									</ul>
 								</div>
 							</div>

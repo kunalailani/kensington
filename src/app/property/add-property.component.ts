@@ -163,6 +163,6 @@ export class AddPropertyComponent implements OnInit {
   getAddressOnChange(addressObj, LocationCtrl) {
   	console.log(JSON.stringify(addressObj));
   	console.log(addressObj.address_components[0].long_name);
-    this.propertyObj['property_location'] = addressObj.address_components[0].long_name;
+    this.propertyObj['property_location'] = addressObj.address_components[0].formatted_address;
   }
 }

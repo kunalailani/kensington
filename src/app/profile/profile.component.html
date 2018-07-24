@@ -8,9 +8,13 @@
 						<div class="panel-box">
 							<div class="panel-header">
 								<h3 class="panel-title">My Profile</h3>
+
 							</div>
 							<div class="panel-body">
 								<form #profileForm = "ngForm" novalidate (ngSubmit)="editProfile(profileForm)" *ngIf="userData">
+										<div class="form-group text-center">
+											<img src="{{userData.logo}}" style="width: 200px; height: 200px; border-radius: 50%;" (click)="avatar.click()">
+										</div>										
 											<div class="form-group">
 												<input type="text" class="form-control" [(ngModel)]="userData.full_name" name="full_name" placeholder="Full Name" required autocomplete="off">
 											</div>										
@@ -30,14 +34,18 @@
 											<input type="radio" name="role" value="agent" [(ngModel)]="userData.role"> Agent
 										</div> -->
 										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" required autocomplete="off">
+											<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" autocomplete="off">
 										</div>
 										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" required autocomplete="off">
+											<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" autocomplete="off">
+										</div>
+										<div class="form-group">
+											<input type="password" class="form-control" [(ngModel)]="userData.cnf_password" name="cnf_password" placeholder="Confirm New Password" autocomplete="off">
 										</div>
 										<div class="form-group">
 											<input type="text" class="form-control" [(ngModel)]="userData.phone_number" name="phone_number" placeholder="Phone Number" required autocomplete="off">
-										</div>
+										</div>										
+										<input type="file" style="display: none;" class="form-control" name="logo" #avatar (change)="logoChangeEvent($event)" accept=".jpg, .png">
 										<div class="form-group">
 											<input type="submit" class="btn-submit btn-primary btn" [disabled]="!profileForm.form.valid" value="Edit Profile">
 										</div>							
