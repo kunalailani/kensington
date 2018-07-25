@@ -41,8 +41,7 @@ export class AddProperty {
 	name: string;
 	property_type: string;
 	is_onRent: boolean;
-	post_code: string;
-
+	post_code: string;	
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

@@ -1,7 +1,7 @@
 <!-- ====== PAGE BUILDER TEMPLATE ====== -->
 <section id="page-builder" class="page-section main-section">
 	<!-- HERO IMAGE WITH SEARCH FORM -->
-	<div class="row tpb-row" style="background-image: url(assets/images/home_hero_image_default.jpg); padding-top: 144px; padding-bottom: 168px; margin: 0; background-size: cover; background-position: center;">
+	<div class="row tpb-row" [style.backgroundImage]="'url(' + headerSetting.search_img + ')'" style="padding-top: 144px; padding-bottom: 168px; margin: 0; background-size: cover; background-position: center;">
 		<div class="tpb tpb-property_simple_search col-md-12">
 			<div class="container">
 				<!-- Tabmenu Container / Default Bootstrap Structure -->
@@ -300,3 +300,24 @@
 		</div>
 	</div>
 </section>
+
+<!-- Modal -->
+<div id="loginReqMoal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login Required</h4>
+      </div>
+      <div class="modal-body">
+        <img src="{{ headerSetting.register_img }}" (click)="redirectToLogin()" style="width: 100%;" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

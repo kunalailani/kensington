@@ -21,6 +21,7 @@ export class AddPropertyComponent implements OnInit {
   public floorPlansImagePreview: Array<any>;
   public energy_certificate: any;
   public additional_certificate: any;
+  public assign_to_agent: boolean = false;
 
   public formData: FormData = new FormData();
  
@@ -59,7 +60,7 @@ export class AddPropertyComponent implements OnInit {
       residential_and_commercial: 0,
       undeveloped_property: 0,
       essential_energy_src: '',
-      is_onRent: true
+      is_onRent: true      
   	});
 
     let loginData = this.configurtorService.getConfiguratorData();
@@ -77,6 +78,7 @@ export class AddPropertyComponent implements OnInit {
   addProperty({value, valid}: {value: AddProperty, valid: boolean}) {    
   	this.propertyObj = value;
   	console.log(this.propertyObj);
+    this.propertyObj['assign_to_agent'] = this.assign_to_agent;
     this.loaderService.displayLoader(true);
     this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {
         if (res.data)
@@ -154,7 +156,7 @@ export class AddPropertyComponent implements OnInit {
     this.apiHandlerService.put('/api/v1/property/upload-all-images/' + property_id, this.formData, false).subscribe((res) => {
       this.loaderService.displayLoader(false);
       if (res.success) {
-        alert("Property Added Successfully");
+        alert("Property Added Successfully, Your Property is under review and will be listed once admin review it");
         this.router.navigate(['/my-property']);
       }      
     })

@@ -20,6 +20,7 @@
 						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of myPropertyList">
 							<div class="row">
 								<div class="col-lg-5">
+									<span class="agent-badge" *ngIf="property.is_agent">Agent</span>
 									<a class="property-image" href="{{baseUri + property.property_images[0]}}">
 										<img src="{{baseUri + property.property_images[0]}}" alt="Post list 1">
 									</a>

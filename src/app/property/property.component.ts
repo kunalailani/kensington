@@ -41,7 +41,12 @@ export class PropertyComponent implements OnInit {
           this.hideLoadMore = res.data.length == 5 ? true : false;
           for ( let i = 0; i < res.data.length; i++ ) {
             this.propertyList.push(res.data[i]);
-          }          
+          }
+          
+          setTimeout(() => {
+            $('.property-image').magnificPopup({ type: 'image' });
+          }, 2000);
+
         } else
           this.propertyList = res.data;          
       } else {

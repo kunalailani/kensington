@@ -32,5 +32,49 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- List of various type -->
+		<div class="row">
+			<div class="col-md-8">
+				<!-- Content -->
+				<div id="content">
+					<div class="row">
+						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of variousPropertyList">
+							<div class="row">
+								<div class="col-lg-5">
+									<a href="{{baseUri + property.property_images[0]}}" class="property-image">
+										<img src="{{baseUri + property.property_images[0]}}" alt="Post list 1">
+									</a>
+									<a [routerLink]="['/property-detail', property._id]" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								</div>
+								<div class="col-lg-7">
+									<div class="property-content">
+										<h3 class="property-title"><a [routerLink]="['/property-detail', property._id]">{{property.property_type}}</a></h3>
+										<p>
+											<span class="property-price">$ {{property.purchase_price}}</span>
+											<span class="property-label">
+												<a [routerLink]="['/property-detail', property._id]" class="property-label__type">Villa For Sale</a>
+												<a [routerLink]="['/property-detail', property._id]" class="property-label__status">Available</a>
+											</span>
+										</p>
+										<div class="property-address">
+											{{property.property_location}}
+										</div>
+										<p class="property-description">{{property.description}}</p>
+										<div class="property-footer">
+											<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+											<div class="item-room"><span class="fi flaticon-room"></span> {{property.room}}</div>
+											<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> {{property.bathroom}}</div>
+											<div class="item-garage"><span class="fi flaticon-garage"></span> {{property.garages}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </section>

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
+import { LoaderService } from '../shared/loader.service';
 
 declare var $: any;
 declare var google: any;
@@ -26,7 +27,7 @@ export class PropertyDetailComponent implements OnInit {
 
   public activeImage: number = 0;
 
-  constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
   ngOnInit() {
   	this.activatedRoute.params.subscribe(params => {
@@ -37,59 +38,54 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.getLatLngFromZipCode(this.propertyDetails.post_code);
-    }, 2000);
+    }, 2000);*/
   }
 
   getLatLngFromZipCode(zipcode) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': zipcode}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results[0]);
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
-        drawMap(lat, lng);
+        drawMap(lat, lng, results[0].geometry.bounds);
       }
      });
 
-    function drawMap(lat, lng) {
+    function drawMap(lat, lng, bounds) {
       var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 16,
           scrollwheel: false,
           center: new google.maps.LatLng(lat, lng),
-        });
-      highlightLocation(lat, lng, map);
+        });      
+      highlightLocation(lat, lng, map, bounds);
     }
 
-    function highlightLocation(lat, lng, map) {
-      console.log(lat, lng);
-      var cityCircle = new google.maps.Circle({
+    function highlightLocation(lat, lng, map, bounds) {           
+      var rectangle = new google.maps.Rectangle({
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: '#FF0000',
         fillOpacity: 0.35,
         map: map,
-        center: {lat: lat, lng: lng},
-        radius: 100
-      });
-      /*bounds: {
-            north: 33.685,
-            south: 33.671,
-            east: -116.234,
-            west: -116.251
-          }*/
+        bounds: bounds       
+      });      
     }
-
-  }   
+  }
 
   fetchPropertyDetail(propertyId) {
+    this.loaderService.displayLoader(true);
   	this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
   		this.propertyDetails = res.data;
       let totalPropertyPrice = res.data.purchase_price + res.data.notary_fee + res.data.brokerage_cost;
       this.propertyPriceWidth = (res.data.purchase_price * 100 ) / totalPropertyPrice + '%';
       this.notaryFeeWidht = (res.data.notary_fee * 100 ) / totalPropertyPrice + '%';
-      this.brokerageCostsWidth = (res.data.brokerage_cost * 100 ) / totalPropertyPrice + '%';      
+      this.brokerageCostsWidth = (res.data.brokerage_cost * 100 ) / totalPropertyPrice + '%';
+      this.loaderService.displayLoader(false);
+      this.getLatLngFromZipCode(this.propertyDetails.post_code);
   	});
   }
 

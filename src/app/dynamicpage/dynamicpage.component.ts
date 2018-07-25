@@ -11,6 +11,7 @@ export class DynamicpageComponent implements OnInit {
 
   public dynamicContent: string;
   public slugName: string;
+  public variousPropertyList: Array<any> = [];
 
   constructor(private apiHandlerService: ApiHandlerService, private activatedRoute: ActivatedRoute) { }
 

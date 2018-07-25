@@ -12,8 +12,8 @@
 							</div>
 							<div class="panel-body">
 								<form #profileForm = "ngForm" novalidate (ngSubmit)="editProfile(profileForm)" *ngIf="userData">
-										<div class="form-group text-center">
-											<img src="{{userData.logo}}" style="width: 200px; height: 200px; border-radius: 50%;" (click)="avatar.click()">
+										<div class="form-group text-center" *ngIf="userData.logo">
+											<img src="{{userData.logo}}" style="width: 200px; height: 200px; border-radius: 50%; cursor: pointer;" (click)="avatar.click()">
 										</div>										
 											<div class="form-group">
 												<input type="text" class="form-control" [(ngModel)]="userData.full_name" name="full_name" placeholder="Full Name" required autocomplete="off">

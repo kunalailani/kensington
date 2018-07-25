@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
 
   fetchHeaderFooterSettings() {
     this.apiHandlerService.get('/api/v1/header-footer/settings').subscribe((res) => {
-      this.headerObj = res.data;      
+      this.headerObj = res.data;
+      //localStorage.setItem('search_image', res.data.search_img)
     })
   }
 
