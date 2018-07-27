@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -31,17 +31,34 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService, private configuratorService: ConfiguratorService) { }
 
-  ngOnInit() {
-    let authData = this.configuratorService.getConfiguratorData();
-
-    if (!authData['isLoggedin']) {
-      this.showPopup();
-    }
+  ngOnInit() {    
   	this.fetchLatestPropUser();
   }
 
+  ngAfterViewInit() {
+    let authData = this.configuratorService.getConfiguratorData();
+    setTimeout(() => {
+      if (!authData['isLoggedin']) {
+        this.showPopup();
+      }
+    }, 8000)
+  }
+
   showPopup() {
-    $("#loginReqMoal").modal()
+    var cookies = document.cookie.split(';');
+    var isPopupCookie = false;
+    for (let i = 0; i < cookies.length; i++) {
+      if (cookies[i].split('=')[0].trim() == "popup") {
+        isPopupCookie = true;
+      }
+    }
+    if (!isPopupCookie) {
+      $("#loginReqMoal").modal();
+        let date = new Date();
+        date.setDate(date.getDate() + 1)
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = "popup=1; " + expires + '; path=/';
+    }        
   }
 
   fetchLatestPropUser() {

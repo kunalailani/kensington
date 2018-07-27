@@ -45,6 +45,7 @@ export class PropertyDetailComponent implements OnInit {
 
   getLatLngFromZipCode(zipcode) {
     var geocoder = new google.maps.Geocoder();
+    console.log(zipcode);
     geocoder.geocode( { 'address': zipcode}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         console.log(results[0]);
