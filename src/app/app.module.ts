@@ -37,7 +37,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
       component: HomeComponent
     },
     {
-      path: 'property',
+      path: 'property/:property_type/:property_by_role/:is_onRent/:residential',
       component: PropertyComponent
     },
     {

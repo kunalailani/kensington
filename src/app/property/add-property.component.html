@@ -256,7 +256,7 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<input type="text" class="form-control" placeholder="Address/Location" name="property_location" [(ngModel)]="propertyObj.property_location" #LocationCtrl="ngModel" Googleplace (setAddress)="getAddressOnChange($event,LocationCtrl)" required>
+												<input type="text" class="form-control" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required>
 											</div>
 											<div class="form-group">
 												<input type="checkbox" name="assign_to_agent" [checked]="assign_to_agent" (change)="assign_to_agent = !assign_to_agent"> Do you want to assign this property to any agent if this property remains inactive or ideal ?

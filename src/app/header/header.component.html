@@ -128,7 +128,7 @@
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">
 									<a *ngIf="submenu.type != 'app_page'" [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a>
-									<a *ngIf="submenu.type == 'app_page'" [routerLink]="['/property']"> {{submenu.title}}</a>
+									<a *ngIf="submenu.type == 'app_page'" (click)="redirectToAppPage(submenu.slug)"> {{submenu.title}}</a>
 								</li>
 							</ul>
 						</li>												

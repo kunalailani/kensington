@@ -76,9 +76,9 @@ export class AddPropertyComponent implements OnInit {
   
 
   addProperty({value, valid}: {value: AddProperty, valid: boolean}) {    
-  	this.propertyObj = value;
-  	console.log(this.propertyObj);
+  	this.propertyObj = value;  	
     this.propertyObj['assign_to_agent'] = this.assign_to_agent;
+    console.log(this.propertyObj);
     this.loaderService.displayLoader(true);
     this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {
         if (res.data)
@@ -137,13 +137,14 @@ export class AddPropertyComponent implements OnInit {
   additionalCertificateChange(event, additional_certyRef) {
     console.log(event.target.files[0]);    
     let additionalFileList: FileList = event.target.files;
-    for (let i = 0; i < additionalFileList.length; i++) {
-      if (event.target.files[i].type != '.pdf') {
+    for (let i = 0; i < additionalFileList.length; i++) {      
+      /*if (event.target.files[i].type != 'application/pdf') {
         additional_certyRef.value = '';
         alert('Please Select file with pdf extension');
       } else {
         this.formData.append('additional_certificates', event.target.files[i]);
-      }      
+      }*/
+       this.formData.append('additional_certificates', event.target.files[i]);      
     }
     // this.formData.append('additional_certificates', event.target.files[0]);
   }
@@ -158,13 +159,15 @@ export class AddPropertyComponent implements OnInit {
       if (res.success) {
         alert("Property Added Successfully, Your Property is under review and will be listed once admin review it");
         this.router.navigate(['/my-property']);
+      } else {
+        alert(res.reason);
       }      
     })
   }
 
-  getAddressOnChange(addressObj, LocationCtrl) {
-  	console.log(JSON.stringify(addressObj));
-  	console.log(addressObj.address_components[0].long_name);
-    this.propertyObj['property_location'] = addressObj.address_components[0].formatted_address;
+  getAddressOnChange(addressObj) {
+  	console.log(addressObj);  	
+    this.propertyObj['property_location'] = addressObj.formatted_address;
+    console.log(this.propertyObj['property_location'], addressObj.formatted_address);
   }
 }

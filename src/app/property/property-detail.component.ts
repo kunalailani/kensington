@@ -56,7 +56,7 @@ export class PropertyDetailComponent implements OnInit {
 
     function drawMap(lat, lng, bounds) {
       var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
+          zoom: 12,
           scrollwheel: false,
           center: new google.maps.LatLng(lat, lng),
         });      

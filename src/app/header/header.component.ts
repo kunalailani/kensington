@@ -49,4 +49,15 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
+
+  redirectToAppPage(slug) {
+    let quertyString = slug.split('?')[1];
+    let splitQuertyString = quertyString.split('&');
+    let property_type = splitQuertyString[0].split('=')[1];
+    let property_by_role = splitQuertyString[1].split('=')[1];
+    let is_onRent = splitQuertyString[2].split('=')[1];
+    let residential_and_commercial = splitQuertyString[3].split('=')[1];
+    console.log(property_type, property_by_role, is_onRent);
+    this.router.navigate(['property', property_type, property_by_role, is_onRent, residential_and_commercial]);
+  }
 }

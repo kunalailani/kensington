@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   fetchProfileData() {
   	this.apiHandlerService.get('/api/v1/user/my-profile').subscribe((res) => {
   		console.log('profile data ', res);
-  		this.userData = res.data;
+  		this.userData = res.data;      
   	});
   }
 
