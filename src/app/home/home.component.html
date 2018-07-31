@@ -1,23 +1,22 @@
-<!-- ====== PAGE BUILDER TEMPLATE ====== -->
-<section id="page-builder" class="page-section main-section">
-	<!-- HERO IMAGE WITH SEARCH FORM -->
+
+<!-- <section id="page-builder" class="page-section main-section">	
 	<div class="row tpb-row" [style.backgroundImage]="'url(' + headerSetting.search_img + ')'" style="padding-top: 144px; padding-bottom: 168px; margin: 0; background-size: cover; background-position: center;">
 		<div class="tpb tpb-property_simple_search col-md-12">
 			<div class="container">
-				<!-- Tabmenu Container / Default Bootstrap Structure -->
+				
 				<div class="search-tabmenu">
-					<!-- Tabmenu Navigation -->
+					
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="active"><a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> For Sale</a></li>
 						<li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> For Rent</a></li>
 					</ul>
-					<!-- Tabmenu Body / Content -->
+					
 					<div class="tab-content">
-						<!-- Tabmenu Content 1 / Property For SALE -->
+						
 						<div role="tabpanel" class="tab-pane active" id="for-sale">
 							<form>
 								<div class="form-body">
-									<!-- Property for Sale Content Row 1 -->
+									
 									<div class="row">
 										<div class="col-md-2 form-group">
 											<label for="postcode">Postcode</label>
@@ -48,7 +47,7 @@
 									</div>									
 									<div class="row">
 										<div class="col-md-3 form-group">											
-											<!-- <div class="custom-checkbox">
+											<div class="custom-checkbox">
 												<input type="checkbox" name="has_garden" [checked]="searchFilterObj.has_garden" (change)="searchFilterObj.has_garden = !searchFilterObj.has_garden"> Garden
 											</div>
 											<div class="custom-checkbox">
@@ -56,7 +55,7 @@
 											</div>
 											<div class="custom-checkbox">
 												<input type="checkbox" name="has_garage" [checked]="searchFilterObj.has_garage" (change)="searchFilterObj.has_garage = !searchFilterObj.has_garage"> Garage
-											</div> -->
+											</div>
 											<label for="sale-garage">Choice</label>
 											<select class="form-control" name="choice" [(ngModel)]="searchFilterObj.choice" multiple>
 												<option value="garder">Garder</option>
@@ -70,9 +69,7 @@
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>
-											<!-- <div class="range-box">
-												<input id="sale-range-feet" readonly="">
-											</div> -->
+											
 											<ion-range-slider #sliderElement type="double" min="10" max="400" from="10" to="100" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
 										</div>
@@ -86,22 +83,17 @@
 												<option value="area_-1">From biggest size to smallest </option>
 											</select>
 										</div>										
-										<!-- <div class="col-md-3 form-group">
-											<label for="sale-range-price">Price (USD)</label>
-											<div class="range-box">
-												<input id="sale-range-price" readonly="">
-											</div>
-										</div> -->
+										
 									</div>
 								</div>
-								<!-- Property for Sale Submit Button -->
+								
 								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_sale')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="for-rent">
 							<form action="#">
 								<div class="form-body">
-									<!-- Property for Sale Content Row 1 -->
+									
 									<div class="row">
 										<div class="col-md-2 form-group">
 											<label for="postcode">Postcode</label>
@@ -130,7 +122,7 @@
 											<input type="text" name="property_location" id="property_location" class="form-control" [(ngModel)]="searchFilterObj.property_location" placeholder="Location">
 										</div>
 									</div>
-									<!-- Property for rent Content Row 2 -->
+									
 									<div class="row">
 										<div class="col-md-3 form-group">											
 											<label for="sale-garage">Choice</label>
@@ -146,9 +138,7 @@
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>
-											<!-- <div class="range-box">
-												<input id="sale-range-feet" readonly="">
-											</div> -->
+											
 											<ion-range-slider #sliderElement type="double" min="10" max="400" from="10" to="100" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
 										</div>
@@ -161,16 +151,9 @@
 												<option value="area_1">Form smallest size to biggest</option>
 												<option value="area_-1">From biggest size to smallest </option>
 											</select>
-										</div>										
-										<!-- <div class="col-md-3 form-group">
-											<label for="sale-range-price">Price (USD)</label>
-											<div class="range-box">
-												<input id="sale-range-price" readonly="">
-											</div>
-										</div> -->
+										</div>																				
 									</div>
-								</div>
-								<!-- Property for rent Submit Button -->
+								</div>								
 								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_rent')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
@@ -179,7 +162,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!-- ====== FEATURED PROPERTY SECTION ====== -->
 <section id="featured-property" class="page-section">

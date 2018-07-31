@@ -107,10 +107,10 @@
 
 		<!-- Main Menu Header -->
 		<nav class="navbar navbar-default" style="margin-bottom: 0px !important;">
-			<div class="container">
+			<div class="container-fluid" style="display: flex; justify-content: center;">
 				<!-- Navbar Brand -->
 				<div class="navbar-header">
-					<a href="#/" id="navbar-brand" class="navbar-brand"><img src="assets/images/header-logo-default.png" alt="Baufi Media"></a>
+					<a href="#/" class="navbar-brand"><img src="assets/images/header-logo-default.png" alt="Baufi Media"></a>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
@@ -124,7 +124,7 @@
 
 						<!-- Dropdown Menu -->
 						<li class="dropdown" *ngFor="let menuItem of menus">
-							<a>{{menuItem.main_menu}}</a>
+							<a href="javascript:void(0)">{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">
 									<a *ngIf="submenu.type != 'app_page'" [routerLink]="['/page',submenu.slug]"> {{submenu.title}}</a>

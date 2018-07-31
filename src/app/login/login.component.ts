@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private apiService: ApiHandlerService, private router: Router, private configurtorService: ConfiguratorService) {}
 
   ngOnInit() {
+    
   	this.regModal = new Registration({
   		full_name: '',  		
   		emai: '',

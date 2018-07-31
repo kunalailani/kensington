@@ -1,5 +1,5 @@
 <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
-<section class="page-header main-section" style="background-image: url(assets/images/bg_page_header_1.jpg)">
+<!-- <section class="page-header main-section" style="background-image: url(assets/images/bg_page_header_1.jpg)">
 	<div class="container">
 		<h1 class="page-header-title">Detail of property</h1>
 		<ul class="breadcrumb">
@@ -7,8 +7,8 @@
 			<li class="active">Property Detail</li>
 		</ul>
 	</div>
-</section>
-
+</section> -->
+<app-search></app-search>
 <!-- ====== SINGLE PROPERTY CONTENT ====== -->
 <section class="page-section" *ngIf="propertyDetails">
 	<div class="container">
@@ -200,11 +200,39 @@
 											$ {{ propertyDetails.brokerage_cost }}
 										</li>
 									</ul>
-									<hr />
+									<div>									
 									Total Property Price $ {{ propertyDetails.purchase_price  + propertyDetails.notary_fee + propertyDetails.brokerage_cost }}
+									</div>
 								</div>
 							</div>
-						</div>						
+						</div>
+						<hr />
+						<div class="row">
+							<div class="col-md-3">
+								<span style="font-size: 29px;">$ {{ propertyDetails.purchase_price }}</span>
+								purchage price
+							</div>
+							<div class="col-md-4">
+								<popover-content #myPopover
+							                	placement="bottom"
+							                	[animation]="true" 
+							                	[closeOnClickOutside]="true" >
+							                	purchase price $ {{ propertyDetails.purchase_price }}
+							                	<hr >
+							                	+ Purchase Cost 
+							    </popover-content>
+							<div [popover]="myPopover" class="emi-popover" style="border: 1px solid #e0e0e0; border-radius: 2px;">
+								<span>Estimated monthly</span>
+								<span>$ 400</span>
+							</div>							
+							
+
+							</div>
+							<div class="col-md-3">
+								<span style="font-size: 29px;">{{ propertyDetails.living_space }}</span> <br >
+								Living space.
+							</div>
+						</div>
 					</article>											
 
 					<!-- Files Attachment -->
@@ -269,7 +297,7 @@
 
 				<!-- Sidebar -->
 				<div id="sidebar">
-					<app-search></app-search>
+					
 					<!-- widget section Contact Our Agent -->
 					<div class="widget">
 						<!-- Panel Box -->

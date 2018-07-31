@@ -11,11 +11,12 @@ export class AppComponent implements OnInit {
   title = 'app';
   objLoaderStatus: boolean;
   public headerObj: any;
+  showSearchHeader: boolean = true;
 
   constructor(private loaderService: LoaderService, private apiHandlerService: ApiHandlerService) {
 
   }
-  ngOnInit() {
+  ngOnInit() {      
   	this.loaderService.loaderStatus.subscribe((val: boolean) => {
   		this.objLoaderStatus = val;
   	})
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
   fetchHeaderFooterSettings() {
     this.apiHandlerService.get('/api/v1/header-footer/settings').subscribe((res) => {
       this.headerObj = res.data;
-      //localStorage.setItem('search_image', res.data.search_img)
+      localStorage.setItem('search_image', res.data.search_img)
     })
   }
 

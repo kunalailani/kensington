@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit {
   public headerSetting: any = {};
   recommended_offers: string;
 
-  public baseUri: string = environment.api_url + '/property-details/';
-  //public search_image: string = localStorage.getItem('search_image');
+  public baseUri: string = environment.api_url + '/property-details/';  
 
   termsConditionData: string;
 
@@ -53,7 +52,10 @@ export class HomeComponent implements OnInit {
       }
     }
     if (!isPopupCookie) {
-      $("#loginReqMoal").modal();
+      $("#loginReqMoal").modal({
+        backdrop: 'static',
+        keyboard: false
+      });
         let date = new Date();
         date.setDate(date.getDate() + 1)
         let expires = "expires=" + date.toUTCString();

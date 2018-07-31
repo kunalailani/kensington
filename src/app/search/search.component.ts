@@ -10,25 +10,19 @@ import { getPropertyConfigurationData } from '../property/property.constant';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-
-  public searchFilterObj: any;
+export class SearchComponent implements OnInit {  
+  public searchFilterObj: any = {};  
+  recommended_offers: string;
+  search_img: string;
 
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private configuratorService: ConfiguratorService) { 
-  	this.searchFilterObj = {
-  		property_type: '',
-  		property_location: "",
-  		bathroom: '',
-  		bedroom: '',
-  		purchase_price: 0
-  	}
+  	this.search_img = localStorage.getItem('search_image');
   }
 
-  ngOnInit() {
-  	
+  ngOnInit() {  	
   }
 
-  searchProperty() {
+  /*searchProperty() {
   	console.log(this.searchFilterObj);
   	this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
   		console.log(res.data);
@@ -39,5 +33,39 @@ export class SearchComponent implements OnInit {
 
   getValues(propName) {
   	return getPropertyConfigurationData(propName)
+  }*/
+
+  areaSliderFinishEvent(event) {
+    console.log(event);
+    this.searchFilterObj["useable_area"] = event.from + ',' + event.to;
   }
+
+  priceSliderFinishEvent(event) {
+    console.log(event);
+    this.searchFilterObj["purchase_price"] = event.from + ',' + event.to;
+  }
+
+  searchProperty(recommended_offers, search_type) {
+    if (search_type == 'for_rent') {
+      this.searchFilterObj["is_for_rent"] = true;
+    }
+    /*if (recommended_offers) {
+      this.searchFilterObj["filter_column"] = recommended_offers.split("_")[0];
+      this.searchFilterObj["filter_order"] = recommended_offers.split("_")[1];
+    }*/    
+    this.searchFilterObj["choice"] = this.searchFilterObj["choice"] ? this.searchFilterObj["choice"].join() : undefined;
+    this.searchFilterObj['property_type'] = this.searchFilterObj["property_type"] ? this.searchFilterObj["property_type"].join() : undefined;
+
+    console.log('property filter data', this.searchFilterObj);
+    this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
+      console.log(res.data);
+      this.configuratorService.setSearchDataResult(res);
+      this.router.navigate(['/search-property']);
+    })
+  }
+
+   getValues(propName) {    
+    return getPropertyConfigurationData(propName);
+  }
+
 }

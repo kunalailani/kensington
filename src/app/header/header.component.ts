@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ConfiguratorService } from '../shared/configurator.service';
 import { Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -25,6 +25,17 @@ export class HeaderComponent implements OnInit {
   		this.isLoggedin = data.isLoggedin
   	})  
     this.fetchMenus();     
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      $('#navbar > .nav > .dropdown').each(function() {
+        $(this).on('click', function() {
+          $(this).toggleClass('expand-menu');
+          $('#navbar .nav .dropdown').not(this).removeClass('expand-menu');
+        });
+      });
+    }, 500)
   }
 
   getLoginData() {  

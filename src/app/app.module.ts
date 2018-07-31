@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickModule } from 'ngx-slick';
 import { IonRangeSliderModule } from "ng2-ion-range-slider";
-
+import { PopoverModule } from "ngx-popover";
 
 import { LandingModule } from './landing/landing.module';
 
@@ -99,7 +99,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     FormsModule,
     HttpClientModule,
     SlickModule.forRoot(),
-    IonRangeSliderModule
+    IonRangeSliderModule,
+    PopoverModule
   ],
   providers: [
     ApiHandlerService,
