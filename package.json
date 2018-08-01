@@ -23,6 +23,7 @@
     "core-js": "^2.5.4",
     "magnific-popup": "^1.1.0",
     "ng2-ion-range-slider": "^2.0.0",
+    "ngx-popover": "0.0.16",
     "ngx-slick": "^0.2.0",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
