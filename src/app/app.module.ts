@@ -29,6 +29,7 @@ import { GooglePlacesDirective } from './shared/googleplaces.directive';
 import { RecentPropertyComponent } from './recent-property/recent-property.component';
 import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -91,7 +92,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     EditPropertyComponent,
     GooglePlacesDirective,
     DynamicpageComponent,
-    ProfileComponent
+    ProfileComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

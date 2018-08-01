@@ -1,5 +1,5 @@
 <!-- ====== ABOUT PAGE HEADER ====== -->
-<section class="page-header main-section"  *ngIf="dynamicContent" style="background-image: url(assets/images/bg_page_header_1.jpg);">
+<!-- <section class="page-header main-section"  *ngIf="dynamicContent" style="background-image: url(assets/images/bg_page_header_1.jpg);">
 	<div class="container">
 		<h1 class="page-header-title">{{dynamicContent.title}}</h1>
 		<ul class="breadcrumb">
@@ -7,8 +7,8 @@
 			<li class="active">{{dynamicContent.title}}</li>
 		</ul>
 	</div>
-</section>
-
+</section> -->
+<app-search></app-search>
 <!-- ====== PAGE CONTENT ====== -->
 <section id="page-content" class="page-section" *ngIf="dynamicContent">
 	<div class="container">

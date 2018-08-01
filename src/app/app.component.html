@@ -2,6 +2,6 @@
 <router-outlet></router-outlet>
 <app-footer [footerData]="headerObj"></app-footer>
 <span *ngIf="objLoaderStatus" class="loading">
-	<img src="assets/images/ajax-loader.gif">
+	<img src="assets/images/app-loader.gif">
 </span>
-	
+<app-modal [modalData]="headerObj" *ngIf="objModalStatus"></app-modal>

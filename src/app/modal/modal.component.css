@@ -1,0 +1,29 @@
+.app-modal-overlay {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;	
+	background-color: rgba(0,0,0,0.4);
+	text-align: center;
+	z-index: 999;
+}
+
+.app-modal {
+	position: relative;
+	background-color: #fefefe;	
+	width: 600px;
+	height: 300px;
+	margin: 15% auto;
+    padding: 0;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 6px;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}

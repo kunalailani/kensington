@@ -69,6 +69,9 @@
     overflow: hidden;
     border-radius: 50%;
 }
+.emi-popover {
+    
+}
 .emi-popover:after {
     content: "";
     font-family: "FontAwesome";

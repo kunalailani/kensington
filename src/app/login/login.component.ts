@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   		full_name: '',  		
   		emai: '',
   		password: "",  		
-  		role: 'individual',
       phone_number: ''
   	});
     this.loginModal = new Login({
@@ -47,6 +46,7 @@ export class LoginComponent implements OnInit {
 
   register({ value, valid}: { value: Registration, valid: boolean}) {
   	this.regModal = value;
+    this.regModal['role'] = 'individual';
   	this.apiService.post('/api/v1/user/register', this.regModal).subscribe((res) => {
        if (res.success) {
          this.setAuthConfig(res.data.token, res.data.userDetails.full_name);

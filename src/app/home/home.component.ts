@@ -34,33 +34,7 @@ export class HomeComponent implements OnInit {
   	this.fetchLatestPropUser();
   }
 
-  ngAfterViewInit() {
-    let authData = this.configuratorService.getConfiguratorData();
-    setTimeout(() => {
-      if (!authData['isLoggedin']) {
-        this.showPopup();
-      }
-    }, 8000)
-  }
-
-  showPopup() {
-    var cookies = document.cookie.split(';');
-    var isPopupCookie = false;
-    for (let i = 0; i < cookies.length; i++) {
-      if (cookies[i].split('=')[0].trim() == "popup") {
-        isPopupCookie = true;
-      }
-    }
-    if (!isPopupCookie) {
-      $("#loginReqMoal").modal({
-        backdrop: 'static',
-        keyboard: false
-      });
-        let date = new Date();
-        date.setDate(date.getDate() + 1)
-        let expires = "expires=" + date.toUTCString();
-        document.cookie = "popup=1; " + expires + '; path=/';
-    }        
+  ngAfterViewInit() {    
   }
 
   fetchLatestPropUser() {

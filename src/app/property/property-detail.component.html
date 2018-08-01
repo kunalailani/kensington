@@ -219,17 +219,19 @@
 							                	[closeOnClickOutside]="true" >
 							                	purchase price $ {{ propertyDetails.purchase_price }}
 							                	<hr >
-							                	+ Purchase Cost 
+							                	<p>+ Kaufnebenkosten(10%) ${{ (propertyDetails.purchase_price * 10) / 100 }}</p>
+							                	<p>- Eigenkapital(20%) ${{ (propertyDetails.purchase_price * 20) / 100 }}</p>
+							                	= Nettodarlehen ${{ (propertyDetails.purchase_price + ((propertyDetails.purchase_price * 10) / 100)) -  ((propertyDetails.purchase_price * 20) / 100) }}
 							    </popover-content>
 							<div [popover]="myPopover" class="emi-popover" style="border: 1px solid #e0e0e0; border-radius: 2px;">
 								<span>Estimated monthly</span>
-								<span>$ 400</span>
+								<span>$ </span>
 							</div>							
 							
 
 							</div>
 							<div class="col-md-3">
-								<span style="font-size: 29px;">{{ propertyDetails.living_space }}</span> <br >
+								<span style="font-size: 29px;">{{ propertyDetails.living_space }} m<sup>2</sup></span> <br >
 								Living space.
 							</div>
 						</div>

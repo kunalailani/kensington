@@ -3,6 +3,8 @@ import { ConfiguratorService } from '../shared/configurator.service';
 import { Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -55,7 +57,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     let logoutDecision = confirm("Are you sure you want to logoout");
     if (logoutDecision) {
-      localStorage.clear();
+      //localStorage.clear();
+      localStorage.removeItem('username');
+      localStorage.removeItem('authorizedToken');
       this.configurtorService.setConfiguratorData({});
       this.router.navigate(['/']);
     }

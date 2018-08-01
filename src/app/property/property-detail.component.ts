@@ -29,7 +29,7 @@ export class PropertyDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
-  ngOnInit() {
+  ngOnInit() {   
   	this.activatedRoute.params.subscribe(params => {
   		console.log(params);
   		this.propertyId = params['id'];
@@ -38,9 +38,7 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    /*setTimeout(() => {
-      this.getLatLngFromZipCode(this.propertyDetails.post_code);
-    }, 2000);*/
+    
   }
 
   getLatLngFromZipCode(zipcode) {

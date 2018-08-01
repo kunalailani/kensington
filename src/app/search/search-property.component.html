@@ -1,9 +1,9 @@
 <!-- ====== PROPERTY ARCHIVE PAGE HEADER ====== -->
-<!-- <section class="page-header main-section" style="background-image: url(assets/images/bg_page_header_1.jpg)">
+<section class="page-header main-section" style="background-image: url(assets/images/bg_page_header_1.jpg)">
 	<div class="container">
 		<h1 class="page-header-title">Search Results</h1>
 	</div>
-</section> -->
+</section>
 <section id="property-search-result" class="archive-property">	
 	<!-- ====== PAGE CONTENT ====== -->
 	<div class="page-section">
@@ -11,25 +11,26 @@
 			
 			<div class="panel filter-panel">
 				<div class="panel-body">
-					<h4 class="filter-title pull-left">{{searchPropertyList.data ? searchPropertyList.data.length : 'No'}} Matches Found</h4>
-					<!-- <form action="#" class="form-inline pull-right">
+					<h4 class="filter-title pull-left">{{searchPropertyList.msg ? 'No' : searchPropertyList.data.length }} Matches Found</h4>
+					<form class="form-inline pull-right" *ngIf="searchPropertyList.data">
 						<div class="form-group">
-							<label>Sort By:</label>
-							<select class="form-control">
-								<option value="1">Lowest Price</option>
-								<option value="2">Highest Price</option>
-								<option value="3">Popular</option>
-								<option value="4">Newest</option>
+							<label for="sale-garage">Relevant</label>
+							<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
+								<option value="">Recommended Offers</option>
+								<option value="price_1">From cheapest to expensive</option>
+								<option value="price_-1">From expensivest tocheap</option>
+								<option value="area_1">Form smallest size to biggest</option>
+								<option value="area_-1">From biggest size to smallest </option>
 							</select>
 						</div>
-					</form> -->
+					</form>					
 				</div>
 			</div>
 
-			<div class="property-list archive-flex archive-with-footer">
+			<!-- <div class="property-list archive-flex archive-with-footer">
 				<div class="row">
 					<div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let property of searchPropertyList.data" [routerLink]="['/property-detail', property._id]">
-						<!-- Property Item -->
+						
 						<div class="property-item">
 							<div class="property-heading">
 								<span class="item-price">$ {{ property.purchase_price }}</span>
@@ -60,19 +61,47 @@
 						</div>
 					</div>					
 				</div>
-			</div>
-
-			<!-- <div class="pagination">
-				<a href="#" class="prev"></a>
-				<span class="current">1</span>
-				<a href="#" class="page">2</a>
-				<a href="#" class="page">3</a>
-				<a href="#" class="page">4</a>
-				<a href="#" class="page">5</a>
-				<a href="#" class="next"></a>
 			</div> -->
-
+			<div class="row">
+			<div class="col-md-8">				
+				<div id="content">
+					<div class="row">
+						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6"*ngFor="let property of searchPropertyList.data" [routerLink]="['/property-detail', property._id]">
+							<div class="row">
+								<div class="col-lg-5">
+									<a href="{{baseUri + property.property_images[0]}}" class="property-image">
+										<img src="{{baseUri + property.property_images[0]}}" alt="Post list 1">
+									</a>
+									<a [routerLink]="['/property-detail', property._id]" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								</div>
+								<div class="col-lg-7">
+									<div class="property-content">
+										<h3 class="property-title"><a [routerLink]="['/property-detail', property._id]">{{property.property_type}}</a></h3>
+										<p>
+											<span class="property-price">$ {{property.purchase_price}}</span>
+											<span class="property-label">
+												<a [routerLink]="['/property-detail', property._id]" class="property-label__type">Villa For Sale</a>
+												<a [routerLink]="['/property-detail', property._id]" class="property-label__status">Available</a>
+											</span>
+										</p>
+										<div class="property-address">
+											{{property.property_location}}
+										</div>
+										<p class="property-description">{{property.description}}</p>
+										<div class="property-footer">
+											<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+											<div class="item-room"><span class="fi flaticon-room"></span> {{property.room}}</div>
+											<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> {{property.bathroom}}</div>
+											<div class="item-garage"><span class="fi flaticon-garage"></span> {{property.garages}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>			
+		</div>
 		</div>
 	</div>
-
 </section>
