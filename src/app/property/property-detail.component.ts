@@ -25,6 +25,8 @@ export class PropertyDetailComponent implements OnInit {
 
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
+  showInquireNowModal: boolean = false;
+
   public activeImage: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
@@ -94,6 +96,10 @@ export class PropertyDetailComponent implements OnInit {
 
   changeImage(index) {
     this.activeImage = index;
+  }
+
+  submitInquiryForm() {
+    this.showInquireNowModal = false;
   }
 
 }
