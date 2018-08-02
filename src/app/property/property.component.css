@@ -113,3 +113,16 @@
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
 }
+.inquiryModalCloseBtn {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .app-modal {
+        width: 100%;
+    }
+}

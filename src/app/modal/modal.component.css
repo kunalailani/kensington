@@ -27,3 +27,9 @@
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
 }
+
+@media (max-width: 768px) {
+    .app-modal {
+        width: 100%;
+    }
+}

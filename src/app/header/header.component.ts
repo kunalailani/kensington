@@ -37,7 +37,17 @@ export class HeaderComponent implements OnInit {
           $('#navbar .nav .dropdown').not(this).removeClass('expand-menu');
         });
       });
-    }, 500)
+      $('.navbar-toggle').click(function(e) {
+        console.log('clicked');
+        e.preventDefault();
+        if ($('#navbar').hasClass('in')) {
+          $('#navbar').removeClass('in');
+        }
+        else {
+          $('#navbar').addClass('in');
+        }
+      })
+    }, 500);    
   }
 
   getLoginData() {  

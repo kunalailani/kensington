@@ -12,6 +12,7 @@ export class SearchPropertyComponent implements OnInit {
   public searchPropertyList: any;
 
   public baseUri: string = environment.api_url + '/property-details/';
+  recommended_offers: string = "";
 
   constructor(private configuratorService: ConfiguratorService) { }
 

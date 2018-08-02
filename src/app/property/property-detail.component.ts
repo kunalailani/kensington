@@ -29,6 +29,9 @@ export class PropertyDetailComponent implements OnInit {
 
   public activeImage: number = 0;
 
+  isLoggedIn: boolean = localStorage.getItem('username') ? true: false;
+  inquireFormData: any = {};
+
   constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
   ngOnInit() {   
@@ -99,6 +102,7 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   submitInquiryForm() {
+    console.log(this.inquireFormData);
     this.showInquireNowModal = false;
   }
 

@@ -112,21 +112,11 @@
 											<label for="sale-range-feet">Area (m2)</label>											
 											<ion-range-slider #sliderElement type="double" min="10" max="400" from="10" to="100" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
-										</div>
-										<!-- <div class="col-md-3 form-group">
-											<label for="sale-garage">Relevant</label>
-											<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
-												<option value="">Recommended Offers</option>
-												<option value="price_1">From cheapest to expensive</option>
-												<option value="price_-1">From expensivest tocheap</option>
-												<option value="area_1">Form smallest size to biggest</option>
-												<option value="area_-1">From biggest size to smallest </option>
-											</select>
-										</div>	 -->																			
+										</div>																												
 									</div>
 								</div>
 								<!-- Property for Sale Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_sale')"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_sale')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="for-rent">
@@ -184,7 +174,7 @@
 									</div>
 								</div>
 								<!-- Property for rent Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty(recommended_offers, 'for_rent')"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_rent')"><i class="fa fa-search"></i> Search</button>
 							</form>
 						</div>
 					</div>

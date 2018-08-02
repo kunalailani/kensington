@@ -212,7 +212,7 @@
 								<span style="font-size: 29px;">$ {{ propertyDetails.purchase_price }}</span>
 								purchage price
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" style="margin-top: 10px;">
 								<popover-content #myPopover
 							                	placement="bottom"
 							                	[animation]="true" 
@@ -221,14 +221,13 @@
 							                	<hr >
 							                	<p>+ Kaufnebenkosten(10%) ${{ (propertyDetails.purchase_price * 10) / 100 }}</p>
 							                	<p>- Eigenkapital(20%) ${{ (propertyDetails.purchase_price * 20) / 100 }}</p>
-							                	= Nettodarlehen ${{ (propertyDetails.purchase_price + ((propertyDetails.purchase_price * 10) / 100)) -  ((propertyDetails.purchase_price * 20) / 100) }}
+							                	= Nettodarlehen ${{ (propertyDetails.purchase_price + ((propertyDetails.purchase_price * 10) / 100)) -  ((propertyDetails.purchase_price * 20) / 100) }} 
+							                	<hr />
 							    </popover-content>
-							<div [popover]="myPopover" class="emi-popover" style="border: 1px solid #e0e0e0; border-radius: 2px;">
+							<div [popover]="myPopover" class="emi-popover" style="border: 1px solid #e0e0e0; border-radius: 2px; padding: 10px;">
 								<span>Estimated monthly</span>
-								<span>$ </span>
-							</div>							
-							
-
+								<span> $ </span>
+							</div>
 							</div>
 							<div class="col-md-3">
 								<span style="font-size: 29px;">{{ propertyDetails.living_space }} m<sup>2</sup></span> <br >
@@ -282,7 +281,7 @@
 							</ul>
 						</div>
 					</div>
-<!-- 					<section class="section-row">
+					<!-- <section class="section-row">
 						<div class="panel-box">
 							<div class="panel-header">
 								<h3 class="panel-title">Property Location</h3>
@@ -326,8 +325,98 @@
 							</div>
 						</div>
 					</div>
-					<div class="">
-						<button class="btn-submit btn-primary btn" (click)="showInquireNowModal = !showInquireNowModal">Inquire Now</button>
+					<div class="text-center" *ngIf="isLoggedIn">
+						<button class="btn-submit btn-primary btn" (click)="showInquireNowModal = !showInquireNowModal">Enquire Now</button>
+					</div>
+				</div>
+			</div>
+		</div>				
+	</div>
+	<div class="container" style="margin-top: 40px;">
+		<div class="property-list archive-flex archive-with-footer">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-6">						
+					<div class="property-item" style="margin-bottom: 24px;">
+						<div class="property-heading">
+							<span class="item-price">$ 550.000.000</span>
+							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+						</div>
+						<div class="img-box">
+							<div class="property-label">
+								<a href="#" class="property-label__type">House For Sale</a>
+								<a href="#" class="property-label__status">Sold</a>
+							</div>
+							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+						</div>
+						<div class="property-content">
+							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
+							<div class="property-address">
+								2096 Monroe Street, Houston, 77030 USA
+							</div>
+							<div class="property-footer">
+								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6">						
+					<div class="property-item">
+						<div class="property-heading">
+							<span class="item-price">$ 550.000.000</span>
+							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+						</div>
+						<div class="img-box">
+							<div class="property-label">
+								<a href="#" class="property-label__type">House For Sale</a>
+								<a href="#" class="property-label__status">Sold</a>
+							</div>
+							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+						</div>
+						<div class="property-content">
+							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
+							<div class="property-address">
+								2096 Monroe Street, Houston, 77030 USA
+							</div>
+							<div class="property-footer">
+								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-6">						
+					<div class="property-item">
+						<div class="property-heading">
+							<span class="item-price">$ 550.000.000</span>
+							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
+						</div>
+						<div class="img-box">
+							<div class="property-label">
+								<a href="#" class="property-label__type">House For Sale</a>
+								<a href="#" class="property-label__status">Sold</a>
+							</div>
+							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
+						</div>
+						<div class="property-content">
+							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
+							<div class="property-address">
+								2096 Monroe Street, Houston, 77030 USA
+							</div>
+							<div class="property-footer">
+								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
+								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
+								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -336,26 +425,34 @@
 </section>
 <div class="app-modal-overlay" *ngIf="showInquireNowModal">
 	<div class="app-modal">
-		<div class="app-modal-body">			
+		<div class="app-modal-body">
 			<div class="row">
 				<div class="col-md-12">
-					<form>
+					<span style="font-size: 29px;"> Fill the details</span>
+					<span class="inquiryModalCloseBtn" (click)="showInquireNowModal = !showInquireNowModal"><i class="fa fa-close"></i></span>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-md-12">
+					<form #inquireForm = "ngForm" novalidate>
 						<div class="form-group">
-							<input type="text" class="form-control" name="first_name" placeholder="First Name">
+							<input type="text" class="form-control" name="first_name" placeholder="First Name" autocomplete="off" [(ngModel)]="inquireFormData.first_name">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="last_name" placeholder="Last Name">
+							<input type="text" class="form-control" name="last_name" placeholder="Last Name" autocomplete="off" [(ngModel)]="inquireFormData.last_name">
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" placeholder="Email">
+							<input type="email" class="form-control" name="email" placeholder="Email" required autocomplete="off" [(ngModel)]="inquireFormData.email">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="mobile" placeholder="Phone">
+							<input type="tel" class="form-control" name="phone_number" placeholder="Phone" autocomplete="off" [(ngModel)]="inquireFormData.phone_number">
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" placeholder="comments" name="comments"></textarea>
+							<textarea class="form-control" placeholder="comments" name="comments" autocomplete="off" [(ngModel)]="inquireFormData.comments"></textarea>
 						</div>
-						<button class="btn-submit btn-primary btn" (click)="submitInquiryForm()"> Submit </button>
+						<!-- <button class="btn-submit btn-primary btn pull-left" (click)="showInquireNowModal = !showInquireNowModal">Close</button> -->
+						<button class="btn-submit btn-primary btn" [disabled]="!inquireForm.form.valid" (click)="submitInquiryForm()">Submit</button>
 					</form>
 				</div>
 			</div>			

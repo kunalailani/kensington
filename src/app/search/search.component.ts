@@ -45,16 +45,15 @@ export class SearchComponent implements OnInit {
     this.searchFilterObj["purchase_price"] = event.from + ',' + event.to;
   }
 
-  searchProperty(recommended_offers, search_type) {
+  searchProperty(search_type) {    
     if (search_type == 'for_rent') {
       this.searchFilterObj["is_for_rent"] = true;
     }
-    /*if (recommended_offers) {
-      this.searchFilterObj["filter_column"] = recommended_offers.split("_")[0];
-      this.searchFilterObj["filter_order"] = recommended_offers.split("_")[1];
-    }*/    
-    this.searchFilterObj["choice"] = this.searchFilterObj["choice"] ? this.searchFilterObj["choice"].join() : undefined;
-    this.searchFilterObj['property_type'] = this.searchFilterObj["property_type"] ? this.searchFilterObj["property_type"].join() : undefined;
+    if (this.searchFilterObj["choice"])
+      this.searchFilterObj["choice"] = this.searchFilterObj["choice"].join() || this.searchFilterObj["choice"];
+
+    if (this.searchFilterObj["property_type"])
+      this.searchFilterObj['property_type'] =  this.searchFilterObj["property_type"].join() || this.searchFilterObj["property_type"];
 
     console.log('property filter data', this.searchFilterObj);
     this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
