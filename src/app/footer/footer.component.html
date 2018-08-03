@@ -4,7 +4,7 @@
 			<div class="row footer-body">
 				<!-- Footer Brand Column -->
 				<div class="col-md-6 col-sm-12 footer-column">
-					<a href="javascript: void(0)" id="footer-brand" class="footer-brand"><img src="assets/images/footer-logo-default.png" alt="BAUFIMEDIA"></a>
+					<a href="javascript: void(0)" id="footer-brand" class="footer-brand" *ngIf="footerData"><img src="{{footerData.headerfooter_logo || 'assets/images/footer-logo-default.png'}}" alt="BAUFIMEDIA"></a>
 					<p>BAUFIMEDIA is dedicated to deliver a high level of expertise, customer service, and attention to detail to the market of accommodation booking.<br>We built the most featured WordPress theme for property. Test and convince yourself.</p>
 				</div>
 

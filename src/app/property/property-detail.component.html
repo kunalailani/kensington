@@ -331,94 +331,46 @@
 				</div>
 			</div>
 		</div>				
-	</div>
-	<div class="container" style="margin-top: 40px;">
-		<div class="property-list archive-flex archive-with-footer">
+	</div>	
+	<div class="container" style="margin-top: 40px;" *ngIf="relatedProperty.length > 0">
+		<div class="panel-box">
+			<div class="panel-header">
+				<h3 class="panel-title">View Related Property</h3>
+			</div>
+		</div>
+		<div class="property-list archive-flex archive-with-footer" style="margin-top: 20px;">
 			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-6">						
-					<div class="property-item" style="margin-bottom: 24px;">
-						<div class="property-heading">
-							<span class="item-price">$ 550.000.000</span>
-							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-						</div>
-						<div class="img-box">
-							<div class="property-label">
-								<a href="#" class="property-label__type">House For Sale</a>
-								<a href="#" class="property-label__status">Sold</a>
+				<div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let property of relatedProperty" [routerLink]="['/property-detail', property._id]">
+						
+						<div class="property-item" style="margin-bottom: 24px;">
+							<div class="property-heading">
+								<span class="item-price">$ {{ property.purchase_price }}</span>
+								<a [routerLink]="['/property-detail', property._id]" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
 							</div>
-							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
-						</div>
-						<div class="property-content">
-							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
-							<div class="property-address">
-								2096 Monroe Street, Houston, 77030 USA
+							<div class="img-box">
+								<div class="property-label">
+									<a href="#" class="property-label__type">House For Sale</a>
+									<a href="#" class="property-label__status">Sold</a>
+								</div>
+								<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
+								<a [routerLink]="['/property-detail', property._id]" class="img-box__image">
+									<img src="{{baseUri + property.property_images[0] }}" alt="Property" class="img-responsive" *ngIf="property.property_images.length > 0">
+								</a>
 							</div>
-							<div class="property-footer">
-								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
-								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6">						
-					<div class="property-item">
-						<div class="property-heading">
-							<span class="item-price">$ 550.000.000</span>
-							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-						</div>
-						<div class="img-box">
-							<div class="property-label">
-								<a href="#" class="property-label__type">House For Sale</a>
-								<a href="#" class="property-label__status">Sold</a>
-							</div>
-							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
-						</div>
-						<div class="property-content">
-							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
-							<div class="property-address">
-								2096 Monroe Street, Houston, 77030 USA
-							</div>
-							<div class="property-footer">
-								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
-								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+							<div class="property-content">
+								<a class="property-title">{{property.property_type}}</a>
+								<div class="property-address">
+									{{property.property_location}}
+								</div>
+								<div class="property-footer">
+									<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
+									<div class="item-room"><span class="fi flaticon-room"></span> {{property.room}}</div>
+									<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> {{property.bathroom}}</div>
+									<div class="item-garage"><span class="fi flaticon-garage"></span> {{property.garages}}</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-6">						
-					<div class="property-item">
-						<div class="property-heading">
-							<span class="item-price">$ 550.000.000</span>
-							<a href="single-property.html" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
-						</div>
-						<div class="img-box">
-							<div class="property-label">
-								<a href="#" class="property-label__type">House For Sale</a>
-								<a href="#" class="property-label__status">Sold</a>
-							</div>
-							<a href="#" class="btn-compare" title="Compare Property"><i class="fa fa-exchange"></i></a>
-							<a href="single-property.html" class="img-box__image"><img src="assets/images/property_item_default.jpg" alt="Property" class="img-responsive"></a>
-						</div>
-						<div class="property-content">
-							<a href="single-property.html" class="property-title">Eos laudantium dicta</a>
-							<div class="property-address">
-								2096 Monroe Street, Houston, 77030 USA
-							</div>
-							<div class="property-footer">
-								<div class="item-wide"><span class="fi flaticon-wide"></span> 530</div>
-								<div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-								<div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-								<div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					</div>	
 			</div>
 		</div>
 	</div>

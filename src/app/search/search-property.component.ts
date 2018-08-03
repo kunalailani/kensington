@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class SearchPropertyComponent implements OnInit {
 
-  public searchPropertyList: any;
+  public searchPropertyList: any = {};
 
   public baseUri: string = environment.api_url + '/property-details/';
   recommended_offers: string = "";
@@ -17,7 +17,12 @@ export class SearchPropertyComponent implements OnInit {
   constructor(private configuratorService: ConfiguratorService) { }
 
   ngOnInit() {
-  	this.searchPropertyList = this.configuratorService.getSearchDataResult();
+    /*this.configuratorService.searchDataChange().subscribe((data) => {
+      console.log(data);
+      this.searchPropertyList = data;
+    }) */ 	
+    this.searchPropertyList = this.configuratorService.getSearchDataResult();
+    console.log(this.searchPropertyList);
   }
 
 }

@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
     this.confirm_password = '';
   }
 
-  setAuthConfig(token, username) {
+  setAuthConfig(token, username, user_id) {
     localStorage.setItem('authorizedToken', token);
       localStorage.setItem('username', username);
+      localStorage.setItem('user_id', user_id);
       let authDataToSet = {
         username: username,
         isLoggedin: token ? true : false
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.regModal['role'] = 'individual';
   	this.apiService.post('/api/v1/user/register', this.regModal).subscribe((res) => {
        if (res.success) {
-         this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+         this.setAuthConfig(res.data.token, res.data.userDetails.full_name, res.data.userDetails._id);
        } else {
          alert(res.msg);
        }
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.loginModal = value;
     this.apiService.post('/api/v1/user/login', this.loginModal).subscribe((res) => {
       if (res.success)
-        this.setAuthConfig(res.data.token, res.data.userDetails.full_name);
+        this.setAuthConfig(res.data.token, res.data.userDetails.full_name, res.data.userDetails._id);
       else {
         alert(res.msg);
       }

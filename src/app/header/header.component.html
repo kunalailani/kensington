@@ -110,7 +110,7 @@
 			<div class="container">
 				<!-- Navbar Brand -->
 				<div class="navbar-header">
-					<a href="#/" class="navbar-brand"><img src="assets/images/header-logo-default.png" alt="Baufi Media"></a>
+					<a href="#/" class="navbar-brand" *ngIf="headerData"><img src="{{ headerData.headerfooter_logo || 'assets/images/header-logo-default.png'}}" alt="Baufi Media"></a>
 					<button type="button" class="navbar-toggle collapsed">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>

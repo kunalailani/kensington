@@ -70,6 +70,7 @@ export class HeaderComponent implements OnInit {
       //localStorage.clear();
       localStorage.removeItem('username');
       localStorage.removeItem('authorizedToken');
+      localStorage.removeItem('user_id');
       this.configurtorService.setConfiguratorData({});
       this.router.navigate(['/']);
     }

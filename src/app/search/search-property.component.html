@@ -4,15 +4,15 @@
 		<h1 class="page-header-title">Search Results</h1>
 	</div>
 </section>
-<section id="property-search-result" class="archive-property">	
+<section id="property-search-result" class="archive-property" *ngIf="searchPropertyList">	
 	<!-- ====== PAGE CONTENT ====== -->
 	<div class="page-section">
 		<div class="container">
 			
 			<div class="panel filter-panel">
 				<div class="panel-body">
-					<h4 class="filter-title pull-left">{{searchPropertyList.msg ? 'No' : searchPropertyList.data.length }} Matches Found</h4>
-					<form class="form-inline pull-right" *ngIf="searchPropertyList.data">
+					<h4 class="filter-title pull-left">{{ searchPropertyList.msg ? 'No' : searchPropertyList.data ?  searchPropertyList.data.length : '0'}} Matches Found</h4>
+					<form class="form-inline pull-right" *ngIf="searchPropertyList.success">
 						<div class="form-group">
 							<label for="sale-garage">Relevant</label>
 							<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
@@ -62,11 +62,11 @@
 					</div>					
 				</div>
 			</div> -->
-			<div class="row">
+			<div class="row" *ngIf="searchPropertyList.success">
 			<div class="col-md-8">				
 				<div id="content">
 					<div class="row">
-						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6"*ngFor="let property of searchPropertyList.data" [routerLink]="['/property-detail', property._id]">
+						<div class="property-item property-archive col-lg-12 col-md-6 col-sm-6" *ngFor="let property of searchPropertyList.data" [routerLink]="['/property-detail', property._id]">
 							<div class="row">
 								<div class="col-lg-5">
 									<a href="{{baseUri + property.property_images[0]}}" class="property-image">

@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit {
   fetchLatestPropUser() {
      this.loaderService.displayLoader(true);
   	this.apiHandlerService.get('/api/v1/property/latest-property-by-user').subscribe((res) => {  		
-  		this.userPropertyList = res.data;
-      this.headerSetting = res.headerSettings;
+  		this.userPropertyList = res.data;      
       this.fetchLatestPropAgent();
   	})
   }
@@ -49,6 +48,7 @@ export class HomeComponent implements OnInit {
   fetchLatestPropAgent() {
     this.apiHandlerService.get('/api/v1/property/latest-property-by-agent').subscribe((res) => {
       this.agentPropertyList = res.data;
+      this.headerSetting = res.headerSettings;
       this.fetchPropOnRent();
     })
   }

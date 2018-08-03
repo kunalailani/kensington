@@ -22,6 +22,7 @@ export class PropertyDetailComponent implements OnInit {
   public propertyPriceWidth: any;
   public notaryFeeWidht: any;
   public brokerageCostsWidth: any;
+  public relatedProperty: Array<any>;
 
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
@@ -60,7 +61,7 @@ export class PropertyDetailComponent implements OnInit {
 
     function drawMap(lat, lng, bounds) {
       var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
+          zoom: 15,
           scrollwheel: false,
           center: new google.maps.LatLng(lat, lng),
         });      
@@ -83,11 +84,12 @@ export class PropertyDetailComponent implements OnInit {
   fetchPropertyDetail(propertyId) {
     this.loaderService.displayLoader(true);
   	this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
-  		this.propertyDetails = res.data;
-      let totalPropertyPrice = res.data.purchase_price + res.data.notary_fee + res.data.brokerage_cost;
-      this.propertyPriceWidth = (res.data.purchase_price * 100 ) / totalPropertyPrice + '%';
-      this.notaryFeeWidht = (res.data.notary_fee * 100 ) / totalPropertyPrice + '%';
-      this.brokerageCostsWidth = (res.data.brokerage_cost * 100 ) / totalPropertyPrice + '%';
+  		this.propertyDetails = res.data.details;
+      this.relatedProperty = res.data.relavant_property || [];
+      let totalPropertyPrice = this.propertyDetails.purchase_price +this.propertyDetails.notary_fee + this.propertyDetails.brokerage_cost;
+      this.propertyPriceWidth = (this.propertyDetails.purchase_price * 100 ) / totalPropertyPrice + '%';
+      this.notaryFeeWidht = (this.propertyDetails.notary_fee * 100 ) / totalPropertyPrice + '%';
+      this.brokerageCostsWidth = (this.propertyDetails.brokerage_cost * 100 ) / totalPropertyPrice + '%';
       this.loaderService.displayLoader(false);
       this.getLatLngFromZipCode(this.propertyDetails.post_code);
   	});
@@ -103,7 +105,14 @@ export class PropertyDetailComponent implements OnInit {
 
   submitInquiryForm() {
     console.log(this.inquireFormData);
-    this.showInquireNowModal = false;
+    this.inquireFormData['user_id'] = localStorage.getItem('user_id');
+    this.apiHandlerService.post('/api/v1/userenquiry/enquiry', this.inquireFormData).subscribe((res) => {
+      console.log("userenquiry form response ", res);
+      if (res.success) {
+        this.showInquireNowModal = false;
+        alert("Your Enquiry is submitted");
+      }
+    })    
   }
 
 }
