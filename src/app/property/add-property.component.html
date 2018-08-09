@@ -30,7 +30,7 @@
 								<div class="row">
 									<div class="col-md-6">										
 										<div class="form-group">										
-											<select class="form-control" required autocomplete="off"  [(ngModel)]="propertyObj.property_type" name="property_type">
+											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.property_type" name="property_type">
 												<option value="">Selet Property Type</option>
 												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
 											</select>									

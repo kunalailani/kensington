@@ -15,7 +15,7 @@
 					<form class="form-inline pull-right" *ngIf="searchPropertyList.success">
 						<div class="form-group">
 							<label for="sale-garage">Relevant</label>
-							<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers">
+							<select class="form-control" id="sale-garage" [(ngModel)]="recommended_offers" name="recommended_offers" (change)="applyFilter(recommended_offers)">
 								<option value="">Recommended Offers</option>
 								<option value="price_1">From cheapest to expensive</option>
 								<option value="price_-1">From expensivest tocheap</option>

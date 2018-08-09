@@ -22,7 +22,7 @@ export class PropertyDetailComponent implements OnInit {
   public propertyPriceWidth: any;
   public notaryFeeWidht: any;
   public brokerageCostsWidth: any;
-  public relatedProperty: Array<any>;
+  public relatedProperty: Array<any> = [];
 
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 

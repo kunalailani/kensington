@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="row footer-body">
 				<!-- Footer Brand Column -->
-				<div class="col-md-6 col-sm-12 footer-column">
+				<div class="col-md-4 col-sm-12 footer-column">
 					<a href="javascript: void(0)" id="footer-brand" class="footer-brand" *ngIf="footerData"><img src="{{footerData.headerfooter_logo || 'assets/images/footer-logo-default.png'}}" alt="BAUFIMEDIA"></a>
 					<p>BAUFIMEDIA is dedicated to deliver a high level of expertise, customer service, and attention to detail to the market of accommodation booking.<br>We built the most featured WordPress theme for property. Test and convince yourself.</p>
 				</div>
 
 				<!-- Usefull Link Column -->
-				<div class="col-md-6 col-sm-6 footer-column">
+				<div class="col-md-4 col-sm-6 footer-column">
 					<h3 class="footer-title">Usefull link</h3>
 					<ul class="footer-menu">
 						<li><a href="javascript:void(0)">Über uns</a></li>
@@ -20,6 +20,9 @@
 						<li><a href="javascript:void(0)">Verbraucherinformationen</a></li>
 						<li><a href="javascript:void(0)">Datenschutz</a></li>
 					</ul>
+				</div>
+				<div class="col-md-4 footer-column" *ngIf="footerData">
+					<img src="{{ footerData.footer_ad_img }}" width="100%">
 				</div>
 				<!-- Information Column -->
 				<!-- <div class="col-md-2 col-sm-6 footer-column">

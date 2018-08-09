@@ -63,25 +63,7 @@ export class HomeComponent implements OnInit {
   areaSliderFinishEvent(event) {
     console.log(event);
     this.searchFilterObj["useable_area"] = event.from + ',' + event.to;
-  }
-
-  searchProperty(recommended_offers, search_type) {
-    if (search_type == 'for_rent') {
-      this.searchFilterObj["is_for_rent"] = true;
-    }
-    if (recommended_offers) {
-      this.searchFilterObj["filter_column"] = recommended_offers.split("_")[0];
-      this.searchFilterObj["filter_order"] = recommended_offers.split("_")[1];
-    }    
-    if (this.searchFilterObj["choice"])
-      this.searchFilterObj["choice"] = this.searchFilterObj["choice"] ? this.searchFilterObj["choice"]: null;
-    console.log('property filter data', this.searchFilterObj);
-    this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
-      console.log(res.data);
-      this.configuratorService.setSearchDataResult(res);
-      this.router.navigate(['/search-property']);
-    })
-  }
+  }  
 
   getValues(propName) {    
     return getPropertyConfigurationData(propName);
