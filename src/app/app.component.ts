@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
     this.apiHandlerService.get('/api/v1/header-footer/settings').subscribe((res) => {
       this.headerObj = res.data;
       localStorage.setItem('search_image', res.data.search_img)
+      localStorage.setItem('sidebar_add_img', res.data.sidebar_ad_img);
     })
   }
 

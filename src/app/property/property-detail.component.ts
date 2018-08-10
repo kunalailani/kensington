@@ -30,6 +30,8 @@ export class PropertyDetailComponent implements OnInit {
 
   public activeImage: number = 0;
 
+  sideBarAddImg = localStorage.getItem('sidebar_add_img');
+
   isLoggedIn: boolean = localStorage.getItem('username') ? true: false;
   inquireFormData: any = {};
 

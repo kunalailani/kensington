@@ -44,7 +44,7 @@ export class EditPropertyComponent implements OnInit {
 
   fetchPropertyDetail(propertyId) {
     this.apiHandlerService.get('/api/v1/property/details/' + propertyId).subscribe((res) => {
-      this.propertyDataObj = res.data;
+      this.propertyDataObj = res.data.details;
     });
   }
 
