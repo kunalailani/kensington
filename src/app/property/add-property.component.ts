@@ -29,6 +29,11 @@ export class AddPropertyComponent implements OnInit {
 
   public isLoggedin: boolean = false;
 
+  floor_plan_thumb_images: Array<any> = ['assets/images/thumbnail.png', 'assets/images/thumbnail.png', 'assets/images/thumbnail.png', 'assets/images/thumbnail.png',
+                                        'assets/images/thumbnail.png'];
+
+  floorPlanCounter: 0;
+
   constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router,
     private loaderService: LoaderService) { 
 
@@ -118,10 +123,11 @@ export class AddPropertyComponent implements OnInit {
     for (let i = 0; i < floorPlansFileList.length; i++) {
       let reader: FileReader = new FileReader();
       reader.readAsDataURL(floorPlansFileList[i]); 
-      floor_pan_images.push(floorPlansFileList[i]);
+      floor_pan_images.push(floorPlansFileList[i]);      
       this.formData.append('floor_pan_images', floorPlansFileList[i]);
       reader.onload = ((e) => {                  
-         this.floorPlansImagePreview.push(reader.result)        
+         this.floorPlansImagePreview.push(reader.result)
+         //this.floor_plan_thumb_images[this.floorPlanCounter] = reader.result;
       });
     }       
   }
@@ -169,5 +175,11 @@ export class AddPropertyComponent implements OnInit {
   	console.log(addressObj);  	
     this.propertyObj['property_location'] = addressObj.formatted_address;
     console.log(this.propertyObj['property_location'], addressObj.formatted_address);
+  }
+
+  uploadFloorPlanImage(index, floor_plan_files) {
+    console.log(index);
+    this.floorPlanCounter = index;
+    floor_plan_files.click();    
   }
 }

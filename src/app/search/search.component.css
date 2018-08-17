@@ -2,3 +2,12 @@
 	padding-top: 40px !important;
 	padding-bottom: 20px !important;
 }
+.search-tabmenu .nav-tabs>.active>a {
+	background-color: #009245 !important;
+	border-color: #009245 !important;
+}
+.search-tabmenu .nav-tabs>li>a {
+	background-color: #0071BC !important;
+	border-color: #0071BC !important;
+}
+

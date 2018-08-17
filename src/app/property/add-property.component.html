@@ -276,7 +276,13 @@
 													<div class="col" *ngFor="let images of floorPlansImagePreview">
 														<img [src]="images"  width="80px;" height="80px;">	
 													</div>													
-												</div>												
+												</div>
+												<!-- <div class="row" style="margin: 0; display: flex; flex-wrap: wrap;">
+													<div class="col" *ngFor="let images of floor_plan_thumb_images; let i = index;" (click)="uploadFloorPlanImage(i, floor_plan_file)">
+														<img [src]=images width="80px;" height="80px;">
+													</div>													
+													<input type="file" accept="image/*" #floor_plan_file style="display: none;" (change)="floorPlansImageLimit($event, floor_plans)">
+												</div> -->
 											</div>
 											<div class="form-group">
 												<input type="number" class="form-control" name="property" min="0" max="10" placeholder="Property" required autocomplete="off" [(ngModel)]="propertyObj.property" required>

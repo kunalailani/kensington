@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickModule } from 'ngx-slick';
@@ -98,6 +99,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   imports: [
     BrowserModule,
     rootRouting,
+    NgSelectModule,
     FormsModule,
     HttpClientModule,
     SlickModule.forRoot(),

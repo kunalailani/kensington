@@ -14,12 +14,16 @@ export class SearchComponent implements OnInit {
   public searchFilterObj: any = {};  
   recommended_offers: string;
   search_img: string;
+  property_type: Array<any>;
+  choice: Array<any>;
 
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private configuratorService: ConfiguratorService) { 
   	this.search_img = localStorage.getItem('search_image');
   }
 
   ngOnInit() {  	
+    this.property_type = this.getValues('property_type');
+    this.choice = ['Garden', 'Balcony', 'Garage'];
   }
 
   /*searchProperty() {

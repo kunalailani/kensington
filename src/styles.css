@@ -8,4 +8,38 @@
 .irs-bar-edge {
 	background: #ddd;
 }
-
+.btn-primary, .btn-primary.btn-submit:hover, .btn-primary.btn-submit:active {
+	background-color: #0071BC;
+	border-color: #0071BC;
+}
+.property-item .property-label__status, .btn-compare {
+	background-color: #0071BC !important;
+}
+.panel-box .panel-header .panel-title, .property-title, .property-price, .property-item .property-footer [class*="item-"] span, .profile-box .profile-contact li i, .attachment-icon {
+	color: #009245 !important;
+}
+.property-item .property-label__type, .item-detail.btn {
+	background-color: #009245 !important;
+	color: #fff;
+}
+a {
+	color: #0071BC;
+}
+body {
+	background-color: #fff !important;
+}
+.property-address:before {
+	color: #009245 !important;
+}
+.dropdown-menu li>a:hover,  li.dropdown a:hover{
+	color: #009245 !important;	
+}
+.social-accounts {
+	margin-top: 20px;
+	display: flex;
+    align-items: center;	
+}
+.social-accounts i {
+	font-size: 30px;
+	margin-left: 15px;
+}

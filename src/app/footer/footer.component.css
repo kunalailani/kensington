@@ -1,0 +1,6 @@
+#footer {
+	background-color: #0071BC;
+}
+.footer-menu li > a, .footer-title {
+	color: #fff !important;
+}
