@@ -12,7 +12,11 @@
 				<div class="col-md-4 col-sm-6 footer-column">
 					<h3 class="footer-title">Usefull link</h3>
 					<ul class="footer-menu">
-						<li><a href="javascript:void(0)">Über uns</a></li>
+						<li class="drop-down"><a href="javascript:void(0)">Über uns</a>
+							<ul class="dropdown-menu">
+								<li><a>ure ls </a></li>
+							</ul>
+						</li>
 						<li><a href="javascript:void(0)">Kontakt | Rückrufservice</a></li>
 						<li><a href="javascript:void(0)">Sitemap</a></li>
 						<li><a href="javascript:void(0)">Impressum</a></li>
@@ -25,9 +29,9 @@
 					<img src="{{ footerData.footer_ad_img }}" width="100%">
 					<div class="social-accounts">
 						<span style="font-size: 22px;"> Folgen Sie uns</span>
-						<i class="fa fa-facebook-official"></i>
-						<i class="fa fa-twitter"></i>
-						<i class="fa fa-google-plus"></i>
+						<a href="{{footerData.fb_link}}" target="_blank" title="{{footerData.fb_link}}"><i class="fa fa-facebook-official"></i></a>
+						<a href="{{footerData.gplus_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
+						<a href="{{footerData.twt_link}}" target="_blank"><i class="fa fa-google-plus"></i></a>
 					</div>
 				</div>
 				<!-- Information Column -->
@@ -48,9 +52,10 @@
 
 		<!-- Copyright -->
 		<div class="copyright">
-			<div class="container clearfix">
-				<p *ngIf="footerData">Copyright &copy; 2018 - <span [innerHtml]="footerData.footer_text"></span></p>
+			<div class="container clearfix" *ngIf="footerData">
+				<span clsas="footer-text" [innerHtml]="footerData.sub_footer_text"></span> - 
+				<span [innerHtml]="footerData.footer_text"></span>
 				<a href="http://tonjoostudio.com"></a>
 			</div>
-		</div>
+		</div>	
 	</footer>

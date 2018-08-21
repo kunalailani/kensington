@@ -4,3 +4,6 @@
 .footer-menu li > a, .footer-title {
 	color: #fff !important;
 }
+.footer-text p {
+	margin: 0px !important;
+}

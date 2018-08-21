@@ -19,6 +19,7 @@ export class MyPropertyListComponent implements OnInit {
   offsetCounter: number = -5;
   resMsg: string;
   hideLoadMore: boolean = true;
+  sideBarAddImg = localStorage.getItem('sidebar_add_img');
 
   constructor(private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 

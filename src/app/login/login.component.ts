@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         isLoggedin: token ? true : false
       }
       this.configurtorService.setConfiguratorData(authDataToSet);
-      this.router.navigate(['/add-property']);
+      this.router.navigate(['/']);
   }
 
   register({ value, valid}: { value: Registration, valid: boolean}) {

@@ -67,7 +67,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
       component: EditPropertyComponent
     },
     {
-      path: 'page/:slug',
+      path: 'page/:parent/:slug',
       component: DynamicpageComponent
     },
     {

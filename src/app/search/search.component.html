@@ -87,9 +87,9 @@
 											</ng-select>
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="sale-bedroom">Bed Room</label>
+											<label for="sale-bedroom">Rooms</label>
 											<select class="form-control" id="sale-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
-												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('room'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">
@@ -162,9 +162,9 @@
 											</ng-select>
 										</div>
 										<div class="col-md-3 form-group">
-											<label for="rent-bedroom">Bed Room</label>
+											<label for="rent-bedroom">Rooms</label>
 											<select class="form-control" id="rent-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
-												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
+												<option value="{{ i + 1 }}" *ngFor="let item of getValues('room'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div class="col-md-3 form-group">

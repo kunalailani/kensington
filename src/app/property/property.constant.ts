@@ -11,14 +11,11 @@ export function getPropertyConfigurationData(propName) {
 			basementCellar: ['Lower cellar level 25%','Lower cellar level 50%','Lower cellar level 75%','Lower cellar level 100%'],
 			without_basement_storey: new Array(10),
 			property_type: [
-				'One-family house(Freestanding)',
-				'Semi-detached house',
-				'Reihenmittelhause',
-				'Reihenendhaus',
-				'Two family house',
-				'Appartment house(at least 3 residential units)',
-				'least 3 residenal(units)',
-				'condominium'
+				'Wohnung',
+				'Haus',
+				'Gewerbeimmobilie',
+				'Ferienhaus',
+				'Sonstiges'				
 			],
 			undeveloped_property: ["Residential land", "Land for mixed use"],
 			residential_and_commercial: ["Commercial larger 33% of the living space", "Commercial smaller 33% of the living space"],

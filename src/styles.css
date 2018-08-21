@@ -39,7 +39,12 @@ body {
 	display: flex;
     align-items: center;	
 }
-.social-accounts i {
+.social-accounts a i {
 	font-size: 30px;
 	margin-left: 15px;
+	color: #fff;
+}
+.icon-text {
+	color: #0071BC;
+	font-size:  14px !important;
 }

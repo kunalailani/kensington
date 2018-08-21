@@ -8,6 +8,8 @@ import { LoaderService } from '../shared/loader.service';
 
 import { getPropertyConfigurationData } from '../property/property.constant';
 
+import { forkJoin } from "rxjs/observable/forkJoin";
+
 declare var $: any;
 
 @Component({
@@ -31,10 +33,22 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService, private configuratorService: ConfiguratorService) { }
 
   ngOnInit() {    
-  	this.fetchLatestPropUser();
+  	this.fetchLatestPropUser();       
+    //this.forkJoinApis();
   }
 
   ngAfterViewInit() {    
+  }
+
+  forkJoinApis() {
+    this.loaderService.displayLoader(true);
+    forkJoin([      
+      this.apiHandlerService.get('/api/v1/property/latest-property-by-user')
+      ]).subscribe(res => {
+        this.userPropertyList = res[0].data;
+        //this.propertyOnRentList = res[0].data;
+        this.loaderService.displayLoader(false);
+    })
   }
 
   fetchLatestPropUser() {
@@ -48,7 +62,7 @@ export class HomeComponent implements OnInit {
   fetchLatestPropAgent() {
     this.apiHandlerService.get('/api/v1/property/latest-property-by-agent').subscribe((res) => {
       this.agentPropertyList = res.data;
-      this.headerSetting = res.headerSettings;
+      this.headerSetting = res.headerSettings; 
       this.fetchPropOnRent();
     })
   }
