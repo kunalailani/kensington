@@ -59,8 +59,7 @@ export class HeaderComponent implements OnInit {
     this.apiHandlerService.get('/api/v1/menus/header-menus').subscribe((res) => {      
       for (let key in res.data) {
         this.menus.push({'main_menu': key, 'sub_menu': res.data[key]});
-      }
-      console.log(this.menus);
+      }      
     });
   }
 
@@ -76,7 +75,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  redirectToAppPage(slug, menu_type, parent_menu) {
+  redirectToAppPage(slug, menu_type, parent_menu, featured_image) {
+    if (featured_image) {
+      localStorage.setItem('search_image', featured_image);
+    }
     if (menu_type != 'app_page') {
       this.router.navigate(['page', parent_menu, slug])
     } else {

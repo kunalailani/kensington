@@ -127,7 +127,7 @@
 							<a href="javascript:void(0)">{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">									
-									<a (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu)"> {{submenu.title}}</a>
+									<a (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu, submenu.featured_image)"> {{submenu.title}}</a>
 								</li>
 							</ul>
 						</li>												

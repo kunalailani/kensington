@@ -15,11 +15,12 @@ export class LoginComponent implements OnInit {
   public regModal: Registration;
   public loginModal: Login;
   public confirm_password: string;
+  public showLoginForm: boolean = true;
+  public forgotPasswordObj: any = {};
 
   constructor(private apiService: ApiHandlerService, private router: Router, private configurtorService: ConfiguratorService) {}
 
-  ngOnInit() {
-    
+  ngOnInit() {    
   	this.regModal = new Registration({
   		full_name: '',  		
   		emai: '',
@@ -64,6 +65,18 @@ export class LoginComponent implements OnInit {
         this.setAuthConfig(res.data.token, res.data.userDetails.full_name, res.data.userDetails._id);
       else {
         alert(res.msg);
+      }
+    })
+  }
+
+  requestForPassChange() {
+    console.log(this.forgotPasswordObj);
+    this.apiService.post('/api/v1/user/forgot-password', this.forgotPasswordObj).subscribe((res) => {
+      if (!res.success) {
+        alert(res.msg)
+      } else {
+        alert('Mail has been send to your mail id');
+        this.showLoginForm = true;
       }
     })
   }

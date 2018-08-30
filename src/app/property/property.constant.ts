@@ -13,9 +13,10 @@ export function getPropertyConfigurationData(propName) {
 			property_type: [
 				'Wohnung',
 				'Haus',
+				'Gewerbe & Wohnen',
 				'Gewerbeimmobilie',
 				'Ferienhaus',
-				'Sonstiges'				
+				'Baugrundstück'
 			],
 			undeveloped_property: ["Residential land", "Land for mixed use"],
 			residential_and_commercial: ["Commercial larger 33% of the living space", "Commercial smaller 33% of the living space"],

@@ -31,6 +31,7 @@ import { RecentPropertyComponent } from './recent-property/recent-property.compo
 import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ModalComponent } from './modal/modal.component';
+import { ResetPasswordComponent } from './login/reset-password.component';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -73,6 +74,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
       path: 'my-profile',
       component: ProfileComponent      
+    },
+    {
+      path: 'reset-password/:id',
+      component: ResetPasswordComponent
     }
   ], { useHash: true });
 
@@ -94,7 +99,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     GooglePlacesDirective,
     DynamicpageComponent,
     ProfileComponent,
-    ModalComponent
+    ModalComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

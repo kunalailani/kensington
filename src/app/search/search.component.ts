@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   recommended_offers: string;
   search_img: string;
   property_type: Array<any>;
+  property_type_rent: Array<any>;
   choice: Array<any>;
 
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private configuratorService: ConfiguratorService) { 
@@ -23,6 +24,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {  	
     this.property_type = this.getValues('property_type');
+    this.property_type_rent = ['Wohnung', 'Haus', 'Gewerbe & Wohnen', 'Gewerbeimmobilie', 'Ferienhaus'];
     this.choice = ['Garden', 'Balcony', 'Garage'];
   }
 
