@@ -156,6 +156,14 @@
 											</ion-range-slider>
 										</div>										
 									</div>
+									<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<input type="checkbox" [checked]="all_property" (change)="all_property = !all_property"> All
+												<input type="checkbox" [checked]="private_property" (change)="private_property = !private_property"> Private
+											</div>
+										</div>
+									</div>
 								</div>
 								<!-- Property for rent Submit Button -->
 								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_rent')"><i class="fa fa-search"></i> Search</button>
