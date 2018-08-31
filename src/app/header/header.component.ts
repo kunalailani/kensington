@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   public isLoggedin: boolean;
   public username: string;
-  public menus: Array<any> = [];  
+  public menus: Array<any> = [];
+  isSearchBarHidden: boolean = false;  
 
   constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService) { 
   	this.getLoginData(); 
@@ -76,9 +77,13 @@ export class HeaderComponent implements OnInit {
   }
 
   redirectToAppPage(slug, menu_type, parent_menu, featured_image) {
+    this.isSearchBarHidden = false;
     if (featured_image) {
       localStorage.setItem('search_image', featured_image);
     }
+    if (parent_menu == 'Finanzierungsservice') {
+        this.isSearchBarHidden = true;
+      }
     if (menu_type != 'app_page') {
       this.router.navigate(['page', parent_menu, slug])
     } else {

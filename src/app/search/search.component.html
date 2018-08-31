@@ -1,52 +1,3 @@
-<!-- widget section Search Property -->
-					<!-- <div class="widget">						
-						<div class="search-tabmenu">							
-							<div class="text-center" style="background-color: #43D3B1; border-color: #43D3B1; padding: 9px 15px; font-size: 16px; color: #fff;">
-							Search
-							</div>
-							<div class="tab-content">								
-								<div role="tabpanel" class="tab-pane active" id="for-sale">
-									<form>
-										<div class="form-body">											
-											<div class="form-group">
-												<label>Property Type</label>
-												<select class="form-control" [(ngModel)]="searchFilterObj.property_type" name="property_type">
-													<option value="">Select Property Type</option>
-													<option value="{{ item }}" *ngFor="let item of getValues('property_type')"> {{ item }} </option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Property Location</label>
-												<input type="text" class="form-control" name="property_location" placeholder="Property Location" [(ngModel)]="searchFilterObj.property_location">
-											</div>
-											<div class="form-group">
-												<label>Bath Room</label>
-												<select class="form-control" name="bathroom" [(ngModel)]="searchFilterObj.bathroom">
-													<option value="">Select Bathroom</option>
-													<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Bed Room</label>
-												<select class="form-control" name="bedroom" [(ngModel)]="searchFilterObj.bedroom">
-													<option value="">Select Bedroom</option>
-													<option value="{{ i + 1 }}" *ngFor="let item of getValues('bedroom'); let i = index;"> {{ i + 1 }} </option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Purchase Price</label>
-												<input type="text" class="form-control" name="purchase_price" placeholder="Purchase Price" [(ngModel)]="searchFilterObj.purchase_price">
-											</div>											
-											<div class="form-group">
-												<button class="btn btn-primary btn-submit" (click)="searchProperty()"><i class="fa fa-search"></i> Search</button>
-											</div>
-										</div>
-									</form>
-								</div>								
-							</div>
-						</div>
-					</div> -->
-
 <section id="page-builder" class="page-section main-section">
 	<!-- HERO IMAGE WITH SEARCH FORM -->
 	<div class="row tpb-row search-tool" [style.backgroundImage]="'url(' + search_img + ')'" style="padding-top: 144px; padding-bottom: 168px; margin: 0; background-size: cover; background-position: center;">
@@ -67,11 +18,16 @@
 								<div class="form-body">
 									<!-- Property for Sale Content Row 1 -->
 									<div class="row">
-										<div class="col-md-4 form-group">
+										<div class="col-md-3 form-group">
 											<label for="postcode">Postcode</label>
 											<input type="text" class="form-control" id="postcode" placeholder="4440404" name="postcode" [(ngModel)]="searchFilterObj.post_code">
-										</div>										
-										<div class="col-md-4 form-group">
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-range-feet">Distance</label>
+											<ion-range-slider #sliderElement type="double" min="0" max="50" from="0" to="30" (onFinish)="distanceSliderFinishEvent($event)">
+											</ion-range-slider>
+										</div>
+										<div class="col-md-3 form-group">
 											<label for="sale-type">Property Type</label>
 											<!-- <select class="form-control" id="sale-type" multiple [(ngModel)]="searchFilterObj.property_type" name="property_type">
 												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
@@ -83,32 +39,29 @@
 											bindLabel="name"
 											placeholder="Select Property Type"
 											name="property_type"
-											[(ngModel)]="searchFilterObj.property_type">
+											[(ngModel)]="searchFilterObj.property_type"
+											class="custom-ng-select">
 											</ng-select>
 										</div>
-										<div class="col-md-4 form-group">
+										<div class="col-md-3 form-group">
 											<label for="sale-bedroom">Rooms</label>
 											<select class="form-control" id="sale-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('room'); let i = index;"> {{ i + 1 }} </option>
 											</select>
-										</div>										
+										</div>
 									</div>									
 									<div class="row">
-										<div class="col-md-3 form-group">																						
-											<label for="sale-garage">Choice</label>
-											<!-- <select class="form-control" name="choice" [(ngModel)]="searchFilterObj.choice" multiple>
-												<option value="garder">Garder</option>
-												<option value="balcony">Balcony</option>
-												<option value="garage">Garage</option>
-											</select> -->
+										<div class="col-md-3 form-group">	
+											<label for="sale-garage">Choice</label>											
 											<ng-select 
 											[items]="choice"
 											[multiple]="true"
 											[closeOnSelect]="false"
 											bindLabel="name"
-											placeholder="Select Property Type"
+											placeholder="Select Your Choice"
 											name="property_type"
-											[(ngModel)]="searchFilterObj.choice">
+											[(ngModel)]="searchFilterObj.choice"
+											class="custom-ng-select">
 											</ng-select>
 										</div>
 										<div class="col-md-3 form-group">
@@ -122,9 +75,17 @@
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>											
-											<ion-range-slider #sliderElement type="double" min="0" max="50" from="0" to="30" (onFinish)="areaSliderFinishEvent($event)">
+											<ion-range-slider #sliderElement type="double" min="0" max="300" from="0" to="200" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
 										</div>																												
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<input type="checkbox" [checked]="all_property" (change)="all_property = !all_property"> All
+												<input type="checkbox" [checked]="private_property" (change)="private_property = !private_property"> Private
+											</div>
+										</div>
 									</div>
 								</div>
 								<!-- Property for Sale Submit Button -->
@@ -136,15 +97,17 @@
 								<div class="form-body">
 									<!-- Property for Sale Content Row 1 -->
 									<div class="row">
-										<div class="col-md-4 form-group">
+										<div class="col-md-3 form-group">
 											<label for="postcode_rent">Postcode</label>
 											<input type="text" class="form-control" id="postcode_rent" placeholder="4440404" name="postcode" [(ngModel)]="searchFilterObj.post_code">
-										</div>										
-										<div class="col-md-4 form-group">
-											<label for="rent-property_type">Property Type</label>
-											<!-- <select class="form-control" id="rent-property_type" multiple [(ngModel)]="searchFilterObj.property_type" name="property_type">
-												<option value="{{property_type}}" *ngFor="let property_type of getValues('property_type')">{{ property_type }}</option>
-											</select> -->
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="sale-range-feet">Distance</label>
+											<ion-range-slider #sliderElement type="double" min="0" max="50" from="0" to="30" (onFinish)="distanceSliderFinishEvent($event)">
+											</ion-range-slider>
+										</div>
+										<div class="col-md-3 form-group">
+											<label for="rent-property_type">Property Type</label>											
 											<ng-select 
 											[items]="property_type_rent"
 											[multiple]="true"
@@ -152,39 +115,30 @@
 											bindLabel="name"
 											placeholder="Select Property Type"
 											name="property_type"
-											[(ngModel)]="searchFilterObj.property_type">
+											[(ngModel)]="searchFilterObj.property_type"
+											class="custom-ng-select">
 											</ng-select>
 										</div>
-										<div class="col-md-4 form-group">
+										<div class="col-md-3 form-group">
 											<label for="rent-bedroom">Rooms</label>
 											<select class="form-control" id="rent-bedroom" [(ngModel)]="searchFilterObj.bedroom" name="bedroom">
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('room'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
-										<!-- <div class="col-md-3 form-group">
-											<label for="rent-bathroom">Bath Room</label>
-											<select class="form-control" id="rent-bathroom" [(ngModel)]="searchFilterObj.bathroom" name="bathroom">
-												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
-											</select>
-										</div>	 -->									
 									</div>
 									<!-- Property for rent Content Row 2 -->
 									<div class="row">
 										<div class="col-md-3 form-group">											
-											<label for="sale-garage">Choice</label>
-											<!-- <select class="form-control" name="choice" [(ngModel)]="searchFilterObj.choice" multiple>
-												<option value="garder">Garder</option>
-												<option value="balcony">Balcony</option>
-												<option value="garage">Garage</option>
-											</select> -->
+											<label for="sale-garage">Choice</label>											
 											<ng-select 
 											[items]="choice"
 											[multiple]="true"
 											[closeOnSelect]="false"
 											bindLabel="name"
-											placeholder="Select Property Type"
+											placeholder="Select Your Choice"
 											name="property_type"
-											[(ngModel)]="searchFilterObj.choice">
+											[(ngModel)]="searchFilterObj.choice"
+											class="custom-ng-select">
 											</ng-select>
 										</div>
 										<div class="col-md-3 form-group">
@@ -198,7 +152,7 @@
 										</div>
 										<div class="col-md-3 form-group">
 											<label for="sale-range-feet">Area (m2)</label>											
-											<ion-range-slider #rentSliderElement type="double" min="0" max="50" from="0" to="30" (onFinish)="areaSliderFinishEvent($event)">
+											<ion-range-slider #rentSliderElement type="double" min="0" max="300" from="0" to="200" (onFinish)="areaSliderFinishEvent($event)">
 											</ion-range-slider>
 										</div>										
 									</div>

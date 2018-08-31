@@ -34,8 +34,7 @@ body {
 .dropdown-menu li>a:hover,  li.dropdown a:hover{
 	color: #009245 !important;	
 }
-.social-accounts {
-	margin-top: 20px;
+.social-accounts {	
 	display: flex;
     align-items: center;	
 }
@@ -50,4 +49,10 @@ body {
 }
 .redirectionLink {
 	color: #0071BC !important;
+}
+.custom-ng-select .ng-select-container {
+	height: 48px;
+}
+.custom-ng-select .ng-select-container .ng-placeholder {
+	top: 10px !important;
 }

@@ -1,11 +1,11 @@
 <!-- ====== FOOTER ====== -->
 	<footer id="footer">
-		<div class="container">
+		<div class="container" [hidden]="isHidden">
 			<div class="row footer-body">
 				<!-- Footer Brand Column -->
-				<div class="col-md-4 col-sm-12 footer-column">
-					<a href="javascript: void(0)" id="footer-brand" class="footer-brand" *ngIf="footerData"><img src="{{footerData.headerfooter_logo || 'assets/images/footer-logo-default.png'}}" alt="BAUFIMEDIA"></a>
-					<p>BAUFIMEDIA is dedicated to deliver a high level of expertise, customer service, and attention to detail to the market of accommodation booking.<br>We built the most featured WordPress theme for property. Test and convince yourself.</p>
+				<div class="col-md-4 col-sm-12 footer-column" *ngIf="footerData">
+					<a href="javascript: void(0)" id="footer-brand" class="footer-brand" ><img src="{{footerData.headerfooter_logo || 'assets/images/footer-logo-default.png'}}" alt="BAUFIMEDIA"></a>
+					<span [innerHtml]="footerData.sub_footer_text"></span>
 				</div>
 
 				<!-- Usefull Link Column -->
@@ -26,9 +26,8 @@
 					</ul>
 				</div>
 				<div class="col-md-4 footer-column" *ngIf="footerData">
-					<img src="{{ footerData.footer_ad_img }}" width="100%">
-					<div class="social-accounts">
-						<span style="font-size: 22px;"> Folgen Sie uns</span>
+					<h3 class="footer-title">Folgen Sie uns</h3>			
+					<div class="social-accounts">						
 						<a href="{{footerData.fb_link}}" target="_blank" title="{{footerData.fb_link}}"><i class="fa fa-facebook-official"></i></a>
 						<a href="{{footerData.gplus_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
 						<a href="{{footerData.twt_link}}" target="_blank"><i class="fa fa-google-plus"></i></a>
@@ -52,10 +51,8 @@
 
 		<!-- Copyright -->
 		<div class="copyright">
-			<div class="container clearfix" *ngIf="footerData">
-				<span clsas="footer-text" [innerHtml]="footerData.sub_footer_text"></span> - 
-				<span [innerHtml]="footerData.footer_text"></span>
-				<a href="http://tonjoostudio.com"></a>
+			<div class="container clearfix" *ngIf="footerData">				
+				{{ footerData.footer_text }}
 			</div>
 		</div>	
 	</footer>

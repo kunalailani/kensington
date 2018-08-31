@@ -19,11 +19,7 @@ export class DynamicpageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.slugName = this.activatedRoute.snapshot.paramMap.get('slug');
-      var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');
-      console.log(parent_menu);
-      if (parent_menu == 'Finanzierungsservice') {
-        this.hideSearchBar = false;
-      }
+      var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');            
       this.fetchDynamicContent(this.slugName);
     });    
   }

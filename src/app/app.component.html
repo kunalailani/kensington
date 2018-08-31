@@ -1,6 +1,20 @@
 <app-header [headerData]="headerObj"></app-header>
+<div class="container" *ngIf="headerObj">
+	<div class="row">
+		<div class="col-md-4" style="float: none; margin: 0 auto;" [style.marginTop] = "hideFooter ? '165px' : '0px'">
+			<img src="{{ headerObj.footer_ad_img }}" width="100%">
+		</div>	
+	</div>
+</div>
 <router-outlet></router-outlet>
-<app-footer [footerData]="headerObj" [hidden]="hideFooter"></app-footer>
+<div class="container" *ngIf="headerObj">
+	<div class="row">
+		<div class="col-md-4" style="float: none; margin: 0 auto; margin-bottom: 20px;">
+			<img src="{{ headerObj.footer_ad_img }}" width="100%">
+		</div>	
+	</div>
+</div>
+<app-footer [footerData]="headerObj" [isHidden]="hideFooter"></app-footer>
 <span *ngIf="objLoaderStatus" class="loading">
 	<img src="assets/images/app-loader.gif">
 </span>
