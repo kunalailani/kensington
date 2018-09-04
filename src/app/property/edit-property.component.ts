@@ -8,6 +8,12 @@ import { LoaderService } from '../shared/loader.service';
 import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
 
+declare var google: any;
+
+var lat = '';
+var lng = '';
+
+
 @Component({
   selector: 'edit-property',
   templateUrl: './edit-property.component.html',
@@ -33,7 +39,7 @@ export class EditPropertyComponent implements OnInit {
   }
 
   public propertyDataObj: any;
-  propertyId: string;
+  propertyId: string;  
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -48,14 +54,25 @@ export class EditPropertyComponent implements OnInit {
     });
   }
 
-  
+  getLatLng (zipcode) {
+    var geocoder = new google.maps.Geocoder();    
+    geocoder.geocode( { 'address': zipcode}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {        
+        lat = results[0].geometry.location.lat();
+        lng = results[0].geometry.location.lng();
+      }
+    })
+  }
 
-  editProperty({value, valid}: {value: AddProperty, valid: boolean}) {      	
-  	console.log(this.propertyDataObj);
+  editProperty({value, valid}: {value: AddProperty, valid: boolean}) {
     this.loaderService.displayLoader(true);
+      if (this.propertyDataObj.location.coordinates[0] == 0) {
+        console.log(lat, lng)
+        this.propertyDataObj['lat'] = lat;
+        this.propertyDataObj['lng'] = lng;
+      }      
     this.apiHandlerService.put('/api/v1/property/update/' + this.propertyId, this.propertyDataObj, true).subscribe((res) => {
-        if (res.data) {
-          console.log(res);
+        if (res.data) {          
           this.loaderService.displayLoader(false);
           this.router.navigate(['/my-property']);
         }
@@ -78,7 +95,7 @@ export class EditPropertyComponent implements OnInit {
       reader.readAsDataURL(propertyFileList[i]);
       propertyImageList.push(propertyFileList[i]);
       this.formData.append('property_images', propertyFileList[i]);
-      reader.onload = ((e) => {                  
+      reader.onload = ((e) => {
          this.propertyImagePreview.push(reader.result)          
       });
     }
@@ -128,8 +145,6 @@ export class EditPropertyComponent implements OnInit {
     })
   }*/
 
-  getAddressOnChange(addressObj, LocationCtrl) {
-  	console.log(JSON.stringify(addressObj));
-  	console.log(addressObj.address_components[0].long_name);
+  getAddressOnChange(addressObj, LocationCtrl) {  	
   }
 }

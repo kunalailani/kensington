@@ -69,8 +69,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  requestForPassChange() {
-    console.log(this.forgotPasswordObj);
+  requestForPassChange() {    
     this.apiService.post('/api/v1/user/forgot-password', this.forgotPasswordObj).subscribe((res) => {
       if (!res.success) {
         alert(res.msg)

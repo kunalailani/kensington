@@ -23,16 +23,14 @@ export class SearchPropertyComponent implements OnInit {
       console.log(data);
       this.searchPropertyList = data;
     }) */ 	
-    this.searchPropertyList = this.configuratorService.getSearchDataResult();
-    console.log(this.searchPropertyList);
+    this.searchPropertyList = this.configuratorService.getSearchDataResult();    
   }
 
   applyFilter(recommended_offers) {
     let filter_column = recommended_offers.split("_")[0];
     let filter_order = recommended_offers.split("_")[1];
 
-    this.apiHandlerService.get('/api/v1/property/list-property?filter_column=' + filter_column + '&filter_order=' + filter_order).subscribe((res) => {
-      console.log(res);
+    this.apiHandlerService.get('/api/v1/property/list-property?filter_column=' + filter_column + '&filter_order=' + filter_order).subscribe((res) => {      
       this.searchPropertyList = res;
     });
   }

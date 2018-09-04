@@ -74,8 +74,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  areaSliderFinishEvent(event) {
-    console.log(event);
+  areaSliderFinishEvent(event) {    
     this.searchFilterObj["useable_area"] = event.from + ',' + event.to;
   }  
 

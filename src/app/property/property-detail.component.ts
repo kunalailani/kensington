@@ -27,6 +27,7 @@ export class PropertyDetailComponent implements OnInit {
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
   showInquireNowModal: boolean = false;
+  emiAmount: any;
 
   public activeImage: number = 0;
 
@@ -38,8 +39,7 @@ export class PropertyDetailComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
 
   ngOnInit() {   
-  	this.activatedRoute.params.subscribe(params => {
-  		console.log(params);
+  	this.activatedRoute.params.subscribe(params => {  		
   		this.propertyId = params['id'];
   		this.fetchPropertyDetail(this.propertyId);
   	})
@@ -50,11 +50,9 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   getLatLngFromZipCode(zipcode) {
-    var geocoder = new google.maps.Geocoder();
-    console.log(zipcode);
+    var geocoder = new google.maps.Geocoder();    
     geocoder.geocode( { 'address': zipcode}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results[0]);
+      if (status == google.maps.GeocoderStatus.OK) {        
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
         drawMap(lat, lng, results[0].geometry.bounds);
@@ -92,24 +90,23 @@ export class PropertyDetailComponent implements OnInit {
       this.propertyPriceWidth = (this.propertyDetails.purchase_price * 100 ) / totalPropertyPrice + '%';
       this.notaryFeeWidht = (this.propertyDetails.notary_fee * 100 ) / totalPropertyPrice + '%';
       this.brokerageCostsWidth = (this.propertyDetails.brokerage_cost * 100 ) / totalPropertyPrice + '%';
+      var totalEmi = (this.propertyDetails.purchase_price + (this.propertyDetails.purchase_price * 10) / 100)  - (this.propertyDetails.purchase_price * 20) / 100;
+      this.emiAmount = ( (totalEmi * 4) / 100) / 12;
       this.loaderService.displayLoader(false);
       this.getLatLngFromZipCode(this.propertyDetails.post_code);
   	});
   }
 
-  afterChange(e) {
-    console.log('afterChange');
+  afterChange(e) {    
   }
 
   changeImage(index) {
     this.activeImage = index;
   }
 
-  submitInquiryForm() {
-    console.log(this.inquireFormData);
+  submitInquiryForm() {    
     this.inquireFormData['user_id'] = localStorage.getItem('user_id');
-    this.apiHandlerService.post('/api/v1/userenquiry/enquiry', this.inquireFormData).subscribe((res) => {
-      console.log("userenquiry form response ", res);
+    this.apiHandlerService.post('/api/v1/userenquiry/enquiry', this.inquireFormData).subscribe((res) => {      
       if (res.success) {
         this.showInquireNowModal = false;
         alert("Your Enquiry is submitted");

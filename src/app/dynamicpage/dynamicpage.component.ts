@@ -24,11 +24,8 @@ export class DynamicpageComponent implements OnInit {
     });    
   }
 
-  fetchDynamicContent(slugName) {
-    console.log(slugName);
+  fetchDynamicContent(slugName) {    
   	this.apiHandlerService.get('/api/v1/page/get-page-by-slug/' + slugName).subscribe((res) => {
-       console.log('dynamicContent', res);
-
        this.dynamicContent = res.data;
      })
   }  

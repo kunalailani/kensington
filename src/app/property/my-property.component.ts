@@ -37,8 +37,7 @@ export class MyPropertyListComponent implements OnInit {
   fetchMyProperty() {
     this.loaderService.displayLoader(true);
     this.offsetCounter += 5;
-  	this.apiHandlerService.get('/api/v1/property/list-my-property?offset=' + this.offsetCounter + '&limit=5').subscribe((res) => {
-  		console.log(res);
+  	this.apiHandlerService.get('/api/v1/property/list-my-property?offset=' + this.offsetCounter + '&limit=5').subscribe((res) => {  		
       if (res.success) {
         if (this.offsetCounter >= 5) {
           this.hideLoadMore = res.data.length == 5 ? true : false;

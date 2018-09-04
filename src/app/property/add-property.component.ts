@@ -8,6 +8,11 @@ import { LoaderService } from '../shared/loader.service';
 import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
 
+declare var google: any;
+
+var lat = '';
+var lng = '';
+
 @Component({
   selector: 'add-property',
   templateUrl: './add-property.component.html',
@@ -69,8 +74,7 @@ export class AddPropertyComponent implements OnInit {
   	});
 
     let loginData = this.configurtorService.getConfiguratorData();
-    if (loginData['isLoggedin']) {
-      console.log("user is logged in");
+    if (loginData['isLoggedin']) {      
       this.isLoggedin = true;
     }
   }
@@ -80,17 +84,28 @@ export class AddPropertyComponent implements OnInit {
 
   
 
+  getLatLng (zipcode) {
+    var geocoder = new google.maps.Geocoder();    
+    geocoder.geocode( { 'address': zipcode}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {        
+        lat = results[0].geometry.location.lat();
+        lng = results[0].geometry.location.lng();        
+      }
+    })
+  }
+
   addProperty({value, valid}: {value: AddProperty, valid: boolean}) {    
   	this.propertyObj = value;  	
-    this.propertyObj['assign_to_agent'] = this.assign_to_agent;
-    console.log(this.propertyObj);
+    this.propertyObj['assign_to_agent'] = this.assign_to_agent;    
+    this.propertyObj['lat'] = lat;
+    this.propertyObj['lng'] = lng;
     this.loaderService.displayLoader(true);
     this.apiHandlerService.post('/api/v1/property/add', this.propertyObj).subscribe((res) => {
         if (res.data)
           this.uploadPropertyImages(res.data._id);
         else
           this.loaderService.displayLoader(false);
-    })     
+    })
   }
 
   getValues(propName) {  	
@@ -140,8 +155,7 @@ export class AddPropertyComponent implements OnInit {
     }
   }
 
-  additionalCertificateChange(event, additional_certyRef) {
-    console.log(event.target.files[0]);    
+  additionalCertificateChange(event, additional_certyRef) {    
     let additionalFileList: FileList = event.target.files;
     for (let i = 0; i < additionalFileList.length; i++) {      
       /*if (event.target.files[i].type != 'application/pdf') {
@@ -171,14 +185,11 @@ export class AddPropertyComponent implements OnInit {
     })
   }
 
-  getAddressOnChange(addressObj) {
-  	console.log(addressObj);  	
-    this.propertyObj['property_location'] = addressObj.formatted_address;
-    console.log(this.propertyObj['property_location'], addressObj.formatted_address);
+  getAddressOnChange(addressObj) {  	
+    this.propertyObj['property_location'] = addressObj.formatted_address;    
   }
 
-  uploadFloorPlanImage(index, floor_plan_files) {
-    console.log(index);
+  uploadFloorPlanImage(index, floor_plan_files) {    
     this.floorPlanCounter = index;
     floor_plan_files.click();    
   }

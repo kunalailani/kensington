@@ -21,8 +21,7 @@ export class ProfileComponent implements OnInit {
   }
 
   fetchProfileData() {
-  	this.apiHandlerService.get('/api/v1/user/my-profile').subscribe((res) => {
-  		console.log('profile data ', res);
+  	this.apiHandlerService.get('/api/v1/user/my-profile').subscribe((res) => {  		
   		this.userData = res.data;      
   	});
   }
@@ -45,8 +44,7 @@ export class ProfileComponent implements OnInit {
     this.editedData = profileData.value;
     delete this.editedData.new_password;
     this.editedData['logo'] = this.userData.logo;
-    this.editedData['password'] = this.userData.new_password;
-    console.log(this.editedData);
+    this.editedData['password'] = this.userData.new_password;    
     this.apiHandlerService.put('/api/v1/user/update-profile', this.editedData, true).subscribe((res) => {
       if (res.success) {
         let userDataToSet = {

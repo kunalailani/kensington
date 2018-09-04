@@ -23,8 +23,7 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
-  resetPassword() {
-    console.log(this.resetPassObj);
+  resetPassword() {    
     if (this.resetPassObj.password !== this.resetPassObj.cnf_password) {
       alert("Password do not match");
       return false;
