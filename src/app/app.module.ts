@@ -32,6 +32,7 @@ import { DynamicpageComponent } from './dynamicpage/dynamicpage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ModalComponent } from './modal/modal.component';
 import { ResetPasswordComponent } from './login/reset-password.component';
+import { AddOwnerPropertyComponent } from './property/add-owner-property.component';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -78,6 +79,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     {
       path: 'reset-password/:id',
       component: ResetPasswordComponent
+    },
+    {
+      path: 'add-owner-property',
+      component: AddOwnerPropertyComponent
     }
   ], { useHash: true });
 
@@ -100,7 +105,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     DynamicpageComponent,
     ProfileComponent,
     ModalComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AddOwnerPropertyComponent
   ],
   imports: [
     BrowserModule,

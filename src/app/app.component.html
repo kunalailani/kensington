@@ -1,7 +1,7 @@
 <app-header [headerData]="headerObj"></app-header>
 <div class="container" *ngIf="headerObj">
 	<div class="row">
-		<div class="col-md-4" style="float: none; margin: 0 auto;" [style.marginTop] = "hideFooter ? '165px' : '0px'">
+		<div class="col-md-4 add-image" style="float: none; margin: 0 auto;" [style.marginTop] = "hideFooter ? '165px' : '0px'">
 			<img src="{{ headerObj.footer_ad_img }}" width="100%">
 		</div>	
 	</div>
@@ -9,7 +9,7 @@
 <router-outlet></router-outlet>
 <div class="container" *ngIf="headerObj">
 	<div class="row">
-		<div class="col-md-4" style="float: none; margin: 0 auto; margin-bottom: 20px;">
+		<div class="col-md-4 add-image" style="float: none; margin: 0 auto; margin-bottom: 20px;">
 			<img src="{{ headerObj.footer_ad_img }}" width="100%">
 		</div>	
 	</div>

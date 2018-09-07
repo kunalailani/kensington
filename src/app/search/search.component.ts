@@ -75,7 +75,7 @@ export class SearchComponent implements OnInit {
     this.searchFilterObj['all_property'] = this.all_property;
     this.searchFilterObj['private_property'] = this.private_property;
     this.searchFilterObj['latitude'] = lat;
-    this.searchFilterObj['longitude'] =lng;
+    this.searchFilterObj['longitude'] = lng;
     console.log('property filter data', this.searchFilterObj);
     this.apiHandlerService.get('/api/v1/property/list-property/', this.searchFilterObj).subscribe((res) => {
       console.log(res.data);

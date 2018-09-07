@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ApiHandlerService } from '../shared/api-handler.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { LoaderService } from '../shared/loader.service';
 
@@ -15,6 +15,7 @@ import 'magnific-popup';
 export class PropertyComponent implements OnInit {
 
   public propertyList: Array<any> = [];
+  enableAddPropertyOfOwnerBtn: boolean = false;
 
   public baseUri: string = environment.api_url + '/property-details/';
   offsetCounter: number = -5;
@@ -23,7 +24,7 @@ export class PropertyComponent implements OnInit {
   sideBarAddImg = localStorage.getItem('sidebar_add_img');
 
   constructor(private apiHandlerService: ApiHandlerService, private loaderService: LoaderService,
-   private activatedRoute: ActivatedRoute) { }
+   private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -79,6 +80,13 @@ export class PropertyComponent implements OnInit {
       this.loaderService.displayLoader(false);
 
   	})
+    if (property_type == 'apartment' && property_by_role == 'individual' && is_onRent) {      
+      this.enableAddPropertyOfOwnerBtn = true;
+    }
+  }
+
+  redirectToOwnerProperty() {
+    this.router.navigate(['/add-owner-property']);
   }
 
 }

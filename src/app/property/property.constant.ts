@@ -2,11 +2,11 @@ export function getPropertyConfigurationData(propName) {
 		let propertyName =  {
 			bedroom: new Array(10),
 			kitchens: new Array(10),
-			room: new Array(50),
+			room: new Array(10),
 			basement: new Array(10),
 			bathroom: new Array(10),
-			garages: new Array(30),
-			plot: new Array(30),
+			garages: new Array(7),
+			plot: new Array(10),
 			attic: ['Expansion level 25%','Expansion level 50%','Expansion level 75%','Expansion level 100%'],
 			basementCellar: ['Lower cellar level 25%','Lower cellar level 50%','Lower cellar level 75%','Lower cellar level 100%'],
 			without_basement_storey: new Array(10),
@@ -84,7 +84,14 @@ export function getPropertyConfigurationData(propName) {
 					state_name: 'Thuringia',
 					tax: '06.05.0%'
 				}				
-			]
+			],
+			domestic_equipments: ['bed', 'medium', 'sophisticated', 'very sophisticated'],
+			heating_type: ['Central Heating', 'Floors Heating'],
+			essential_energy_sources: ['Oil', 'gas heating', 'wood heating', 'Pelletheizung', 'electric heating', 'heat pump',
+			'Fuel cell heating','Block heating power plant','solar technology', 'Hybridtechnik'],
+			object_condition: ['Very good', 'Good', 'Medium', 'Moderate', 'Bad', 'catastrophic'],
+			floor: ['Souterrain', 'Basement Floor', 'Ground Floor', '1st Floor', '2nd Floor', '3rd Florr', '4th Floor'],
+			floor_type: ['Floor Apartment', 'Duplex Apartment', 'Basement Apartment', 'Granny Flat', 'Loft', 'Penthouse']
 		}
 		return propertyName[propName];
 	}
