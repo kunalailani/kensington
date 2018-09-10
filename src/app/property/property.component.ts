@@ -86,7 +86,6 @@ export class PropertyComponent implements OnInit {
   }
 
   redirectToOwnerProperty() {
-    this.router.navigate(['/add-owner-property']);
+    this.router.navigate(['/rent-an-apartment']);
   }
-
 }

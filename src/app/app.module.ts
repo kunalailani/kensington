@@ -81,7 +81,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
       component: ResetPasswordComponent
     },
     {
-      path: 'add-owner-property',
+      path: 'rent-an-apartment',
       component: AddOwnerPropertyComponent
     }
   ], { useHash: true });

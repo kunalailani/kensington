@@ -31,7 +31,8 @@ body {
 	color: #009245 !important;
 }
 .dropdown-menu li>a:hover,  li.dropdown a:hover{
-	color: #009245 !important;	
+	color: #009245 !important;
+	cursor: pointer;	
 }
 .social-accounts {	
 	display: flex;
@@ -64,4 +65,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;    
+}
+.search-tabmenu .tab-pane .form-body .row {
+	margin-bottom: 0px;
 }

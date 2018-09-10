@@ -5,6 +5,7 @@ import { ApiHandlerService } from '../shared/api-handler.service';
 import { LoaderService } from '../shared/loader.service';
 import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
+import {Location} from '@angular/common';
 
 declare var google: any;
 
@@ -52,9 +53,10 @@ export class AddOwnerPropertyComponent implements OnInit {
   floorPlanCounter: 0;
   floor: Array<string> = this.getValues('floor');
   domestice_equipements: Array<string> = this.getValues('domestic_equipments');
+  otherCosts: any = {};
 
   constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router,
-    private loaderService: LoaderService) { 
+    private loaderService: LoaderService, private _location: Location) { 
 
   	
   }
@@ -84,9 +86,29 @@ export class AddOwnerPropertyComponent implements OnInit {
     }    
   }
 
-  addProperty() {  	
-    console.log(this.propertyObj);
-    /*this.propertyObj['assign_to_agent'] = this.assign_to_agent;    
+  addProperty() {
+    var counter = -1;
+    this.propertyObj['other_costs'] = {};
+    
+    /*for (let key in this.otherCosts) {
+        counter ++;      
+      if (this.otherCosts['key_' + counter] != undefined) {
+         this.propertyObj['other_costs'].push({
+           'key': this.otherCosts['key_' + counter],
+           'value': this.otherCosts['value_' + counter]
+        });
+      }
+    }*/
+    for (let i = 0; i < Object.keys(this.otherCosts).length - 1; i++) {
+      if (this.otherCosts['key_' + i] != undefined) {
+        let other_costs = {
+          [this.otherCosts['key_' + i]]: this.otherCosts['value_' + i]
+        }      
+        Object.assign(this.propertyObj['other_costs'], other_costs)
+      }      
+    }
+    
+    console.log(this.propertyObj['other_costs'])
     this.propertyObj['lat'] = lat;
     this.propertyObj['lng'] = lng;
     this.loaderService.displayLoader(true);
@@ -95,7 +117,7 @@ export class AddOwnerPropertyComponent implements OnInit {
           this.uploadPropertyImages(res.data._id);
         else
           this.loaderService.displayLoader(false);
-    })*/
+    })
   }
 
   getValues(propName) {  	
@@ -168,7 +190,7 @@ export class AddOwnerPropertyComponent implements OnInit {
       this.loaderService.displayLoader(false);
       if (res.success) {
         alert("Property Added Successfully, Your Property is under review and will be listed once admin review it");
-        this.router.navigate(['/my-property']);
+        this._location.back();
       } else {
         alert(res.reason);
       }      
