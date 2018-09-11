@@ -65,6 +65,6 @@ export class AppComponent implements OnInit {
   }
 
   onActivate(event) {
-    window.scroll(0,200);
+    window.scroll(0,550);
   }
 }

@@ -30,9 +30,12 @@ body {
 .property-address:before {
 	color: #009245 !important;
 }
-.dropdown-menu li>a:hover,  li.dropdown a:hover{
+.dropdown-menu li>a:hover,  li.dropdown a:hover, li.dropdown a:focus {
 	color: #009245 !important;
 	cursor: pointer;	
+}
+.dropdown-menu:hover ~ a{
+	color: #009245 !important;
 }
 .social-accounts {	
 	display: flex;
@@ -57,7 +60,7 @@ body {
 	top: 10px !important;
 }
 .add-image img {
-	height: 90px;
+	height: 100px;
 }
 .other-costs {
 	display: flex;
@@ -68,4 +71,13 @@ body {
 }
 .search-tabmenu .tab-pane .form-body .row {
 	margin-bottom: 0px;
+}
+.custom-search-tab {
+	display: flex; 
+	justify-content: center;
+	margin-bottom: 1px;
+}
+.custom-search-tab li a{
+	padding: 4px 15px !important;
+    border-radius: 5px !important;
 }

@@ -6,7 +6,7 @@
 				<!-- Tabmenu Container / Default Bootstrap Structure -->
 				<div class="search-tabmenu">
 					<!-- Tabmenu Navigation -->
-					<ul class="nav nav-tabs" role="tablist">
+					<ul class="nav nav-tabs custom-search-tab" role="tablist">
 						<li class="active"><a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> For Sale</a></li>
 						<li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> For Rent</a></li>
 					</ul>
@@ -82,14 +82,14 @@
 									<div class="row">
 										<div class="col-md-3">
 											<div class="form-group">
-												<input type="checkbox" [checked]="all_property" (change)="all_property = !all_property"> All
-												<input type="checkbox" [checked]="private_property" (change)="private_property = !private_property"> Private
+												<input type="radio" name="property_choice" [value]="true" [(ngModel)]="property_choice"> All
+												<input type="radio" name="property_choice" [value]="false" [(ngModel)]="property_choice"> Private
 											</div>
 										</div>
 									</div>
 								</div>
 								<!-- Property for Sale Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_sale')"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_sale')"><i class="fa fa-search"></i></button>
 							</form>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="for-rent">
@@ -159,14 +159,14 @@
 									<div class="row">
 										<div class="col-md-3">
 											<div class="form-group">
-												<input type="checkbox" [checked]="all_property" (change)="all_property = !all_property"> All
-												<input type="checkbox" [checked]="private_property" (change)="private_property = !private_property"> Private
+												<input type="radio" name="property_choice" [value]="true" [(ngModel)]="property_choice"> All
+												<input type="radio" name="property_choice" [value]="false" [(ngModel)]="property_choice"> Private
 											</div>
 										</div>
 									</div>
 								</div>
 								<!-- Property for rent Submit Button -->
-								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_rent')"><i class="fa fa-search"></i> Search</button>
+								<button class="btn btn-primary pull-right btn-submit" (click)="searchProperty('for_rent')"><i class="fa fa-search"></i></button>
 							</form>
 						</div>
 					</div>

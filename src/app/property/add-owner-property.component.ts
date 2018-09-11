@@ -86,19 +86,8 @@ export class AddOwnerPropertyComponent implements OnInit {
     }    
   }
 
-  addProperty() {
-    var counter = -1;
-    this.propertyObj['other_costs'] = {};
-    
-    /*for (let key in this.otherCosts) {
-        counter ++;      
-      if (this.otherCosts['key_' + counter] != undefined) {
-         this.propertyObj['other_costs'].push({
-           'key': this.otherCosts['key_' + counter],
-           'value': this.otherCosts['value_' + counter]
-        });
-      }
-    }*/
+  addProperty() {    
+    this.propertyObj['other_costs'] = {};    
     for (let i = 0; i < Object.keys(this.otherCosts).length - 1; i++) {
       if (this.otherCosts['key_' + i] != undefined) {
         let other_costs = {
@@ -107,8 +96,7 @@ export class AddOwnerPropertyComponent implements OnInit {
         Object.assign(this.propertyObj['other_costs'], other_costs)
       }      
     }
-    
-    console.log(this.propertyObj['other_costs'])
+    this.propertyObj['is_OnRent'] = true;
     this.propertyObj['lat'] = lat;
     this.propertyObj['lng'] = lng;
     this.loaderService.displayLoader(true);

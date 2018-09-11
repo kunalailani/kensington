@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   	this.getLoginData(); 
   }
 
-  ngOnInit() {  	 
+  ngOnInit() {
   	this.configurtorService.dataChange().subscribe((data) => {
   		this.username = data.username;
   		this.isLoggedin = data.isLoggedin
@@ -46,6 +46,11 @@ export class HeaderComponent implements OnInit {
         else {
           $('#navbar').addClass('in');
         }
+      });
+      $('.dropdown-menu li').hover(function() {
+        $(this).parent().parent().find('> a').css('color', '#009245');
+      }, function() {
+        $(this).parent().parent().find('> a').css('color', '#333');
       })
     }, 500);    
   }

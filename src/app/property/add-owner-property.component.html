@@ -172,11 +172,11 @@
 										<div class="form-group">
 											<input type="number" name="additional_costs" class="form-control" placeholder="Additional Costs" [(ngModel)]="propertyObj.additional_costs">
 										</div>
-										<div class="form-group">
-											<label>Other Costs</label>
+										<div class="form-group">											
 											<div *ngFor="let divs of otherCostsContainer; let i = index;" class="other-costs">
-												<input id="other_costs_key{{i}}" type="text" name="other_costs_key{{i}}" [(ngModel)]="otherCosts['key_' + i]">
-												<input type="text" id="other_costs_value{{i}}" name="other_costs_value{{i}}" [(ngModel)]="otherCosts['value_' + i]">
+												<label>Other Costs</label>
+												<input id="other_costs_key{{i}}" type="text" name="other_costs_key{{i}}" placeholder="Costs Name" [(ngModel)]="otherCosts['key_' + i]">
+												<input type="text" id="other_costs_value{{i}}" placeholder="Costs Value" name="other_costs_value{{i}}" [(ngModel)]="otherCosts['value_' + i]">
 												<i class="fa fa-plus" (click)="addOtherCostsContainer()"></i>
 												<i class="fa fa-minus" (click)="removeOtherCostsContainer(i)" [style.color]="i == 0 ? '#fff' : '#000'"></i>
 											</div>
@@ -205,22 +205,11 @@
 											</select>
 										</div>
 										<div class="form-group">
-											<input type="text" name="object_description" placeholder="Object Description" [(ngModel)]="propertyObj.object_description" class="form-control">
+										<textarea class="form-control" name="object_description" placeholder="Object Description" [(ngModel)]="propertyObj.object_description"></textarea>											
 										</div>
 										<div class="form-group">
-												<input type="text" class="form-control" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required>
-										</div>
-										<div class="form-group">
-											<label class="form-control" style="height: 60px;">
-												Upload Pic Inside
-												<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" multiple="true" accept=".jpg, .png" required>
-											</label>
-											<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
-												<div class="col" *ngFor="let images of propertyImagePreview">
-													<img [src]="images" width="80px;" height="80px;">
-												</div>													
-											</div>
-										</div>
+											<textarea class="form-control" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required></textarea>
+										</div>										
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">										
@@ -237,8 +226,23 @@
 											</select>
 										</div>
 										<div class="form-group">
-											<input type="text" name="equipements_feature" placeholder="Equipements Feature" [(ngModel)]="propertyObj.equipements_feature" class="form-control">
+											<textarea class="form-control" name="equipements_feature" placeholder="Equipements Feature" [(ngModel)]="propertyObj.equipements_feature"></textarea>											
+										</div>										
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="form-control" style="height: 60px;">
+												Upload Pic Inside
+												<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" multiple="true" accept=".jpg, .png" required>
+											</label>
+											<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
+												<div class="col" *ngFor="let images of propertyImagePreview">
+													<img [src]="images" width="80px;" height="80px;">
+												</div>													
+											</div>
 										</div>
+									</div>
+									<div class="col-md-12">
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Upload Pic Outside
@@ -250,6 +254,8 @@
 												</div>													
 											</div>												
 										</div>
+									</div>
+									<div class="col-md-12">
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Additional Certificate

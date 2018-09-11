@@ -11,26 +11,18 @@
 				<!-- Usefull Link Column -->
 				<div class="col-md-4 col-sm-6 footer-column">
 					<h3 class="footer-title">Usefull link</h3>
-					<ul class="footer-menu">
-						<li class="drop-down"><a href="javascript:void(0)">Über uns</a>
-							<ul class="dropdown-menu">
-								<li><a>ure ls </a></li>
-							</ul>
+					<ul class="footer-menu" *ngIf="footerMenus">						
+						<li *ngFor="let menus of footerMenus.pages">
+							<a [routerLink]="['/page', '', menus.slug]"> {{menus.title }}</a>
 						</li>
-						<li><a href="javascript:void(0)">Kontakt | Rückrufservice</a></li>
-						<li><a href="javascript:void(0)">Sitemap</a></li>
-						<li><a href="javascript:void(0)">Impressum</a></li>
-						<li><a href="javascript:void(0)">AGB | Rechtliche Hinweise</a></li>
-						<li><a href="javascript:void(0)">Verbraucherinformationen</a></li>
-						<li><a href="javascript:void(0)">Datenschutz</a></li>
 					</ul>
 				</div>
 				<div class="col-md-4 footer-column" *ngIf="footerData">
 					<h3 class="footer-title">Folgen Sie uns</h3>			
 					<div class="social-accounts">						
-						<a href="{{footerData.fb_link}}" target="_blank" title="{{footerData.fb_link}}"><i class="fa fa-facebook-official"></i></a>
-						<a href="{{footerData.gplus_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
-						<a href="{{footerData.twt_link}}" target="_blank"><i class="fa fa-google-plus"></i></a>
+						<a href="{{footerData.fb_link}}" target="_blank" title="{{footerData.fb_title}}"><i class="fa fa-facebook-official"></i></a>
+						<a href="{{footerData.gplus_link}}" target="_blank" title="{{footerData.twt_title}}"><i class="fa fa-twitter"></i></a>
+						<a href="{{footerData.twt_link}}" target="_blank" title="{{footerData.gplus_title}}"><i class="fa fa-google-plus"></i></a>
 					</div>
 				</div>
 				<!-- Information Column -->

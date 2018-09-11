@@ -12,14 +12,20 @@ export class DynamicpageComponent implements OnInit {
   public dynamicContent: string;
   public slugName: string;
   public variousPropertyList: Array<any> = [];
-  public hideSearchBar: boolean = true;
+  public hideSearchBar: boolean = false;
+  search_img: string = localStorage.getItem('search_image');
 
   constructor(private apiHandlerService: ApiHandlerService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.slugName = this.activatedRoute.snapshot.paramMap.get('slug');
-      var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');            
+      var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');
+      if (parent_menu == 'Finanzierungsservice') {
+        this.hideSearchBar = true;
+      } else {
+        this.hideSearchBar = false;
+      }
       this.fetchDynamicContent(this.slugName);
     });    
   }

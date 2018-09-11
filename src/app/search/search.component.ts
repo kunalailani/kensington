@@ -21,8 +21,7 @@ export class SearchComponent implements OnInit {
   property_type: Array<any>;
   property_type_rent: Array<any>;
   choice: Array<any>;
-  all_property: boolean = true;
-  private_property: boolean = false;  
+  property_choice: boolean = true;
 
   constructor(private router: Router, private apiHandlerService: ApiHandlerService, private configuratorService: ConfiguratorService) { 
   	this.search_img = localStorage.getItem('search_image');
@@ -72,8 +71,7 @@ export class SearchComponent implements OnInit {
     if (this.searchFilterObj["property_type"])
       this.searchFilterObj['property_type'] =  this.searchFilterObj["property_type"].join() || this.searchFilterObj["property_type"];
 
-    this.searchFilterObj['all_property'] = this.all_property;
-    this.searchFilterObj['private_property'] = this.private_property;
+    this.searchFilterObj['property_choice'] = this.property_choice;    
     this.searchFilterObj['latitude'] = lat;
     this.searchFilterObj['longitude'] = lng;
     console.log('property filter data', this.searchFilterObj);
