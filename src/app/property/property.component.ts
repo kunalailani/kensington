@@ -45,6 +45,7 @@ export class PropertyComponent implements OnInit {
 
   fetchProperty(property_type, property_by_role, is_onRent, residential) {
     this.loaderService.displayLoader(true);
+    this.enableAddPropertyOfOwnerBtn = false;
     this.offsetCounter += 5;
     var url = '/api/v1/property/list-property?offset=' + this.offsetCounter + 
       '&limit=5&property_type=' + property_type + '&property_by_role=' + property_by_role + 

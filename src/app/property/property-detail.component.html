@@ -23,7 +23,7 @@
 									<h3 class="post-title"><a href="#">{{propertyDetails.property_nickname}}</a></h3>
 								</div>
 								<div class="col-md-4 col-sm-4 text-right">
-									<span class="property-price">USD {{propertyDetails.purchase_price}} </span>
+									<span class="property-price">Euro {{propertyDetails.purchase_price}} </span>
 								</div>
 							</div>
 							<div class="property-address">
@@ -59,78 +59,11 @@
 							<div class="item-garage"><span class="icon-text">Garage</span> {{propertyDetails.garages}}</div>
 							<div class="item-comment"><span class="fa fa-comments-o"></span> No Comments</div>
 						</div>
-						<p>{{propertyDetails.description}}</p>
+						<!-- <p>{{propertyDetails.description}}</p> -->
 						<!-- The Space Section -->
-						<hr>
 						<div class="row">
 							<div class="col-md-12">
-								<h3 class="heading-title">Costs</h3>
-							</div>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-md-12">								
-								<table class="detail-table" style="width: 100%">
-									<tr>
-										<td>Purchase price</td>
-										<td>$ {{propertyDetails.purchase_price}}</td>
-										<td>Estimated Rate</td>
-										<td>$ {{propertyDetails.estimated_rate}}</td>
-									</tr>
-									<tr>
-										<td>Notary Fee</td>
-										<td>$ {{propertyDetails.notary_fee}}</td>
-										<td>Brokerage Costs</td>
-										<td>$ {{ propertyDetails.brokerage_cost }}</td>
-									</tr>
-									<tr>
-										<td>Land Transfer Tax by rate</td>
-										<td>{{propertyDetails.land_rate || '-'}}</td>
-									</tr>
-								</table>
-							</div>							
-						</div>
-						<!-- Facilities Section -->
-						<hr>
-						<div class="row">
-							<div class="col-md-12">
-								<h3 class="heading-title">Building and Energy Pass</h3>
-							</div>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-md-12">
-								<table class="detail-table" style="width: 100%">
-									<tr>
-										<td>Construction Year</td>
-										<td>{{propertyDetails.construction_year}}</td>
-										<td>Heating</td>
-										<td>{{propertyDetails.heating}}</td>
-									</tr>
-									<tr>
-										<td>Repair</td>
-										<td>{{propertyDetails.repair}}</td>
-										<td>Essential Enery Source</td>
-										<td>{{propertyDetails.essential_enery_source || '-'}}</td>
-									</tr>
-									<tr>
-										<td>Basement</td>
-										<td>{{propertyDetails.basement}}</td>
-										<td>Attic</td>
-										<td>{{propertyDetails.attic}}</td>
-									</tr>
-									<tr>
-										<td>Cellar</td>
-										<td>{{propertyDetails.cellar}}</td>										
-									</tr>
-								</table>
-							</div>
-						</div>
-
-						<hr>
-						<div class="row">
-							<div class="col-md-12">
-								<h3 class="heading-title">Property Details</h3>
+								<h3 class="heading-title">Cellar</h3>
 							</div>
 						</div>
 						<hr>
@@ -177,38 +110,105 @@
 										<td>Residential and Commercial</td>
 										<td>{{propertyDetails.residential_and_commercial}}</td>																				
 									</tr>
+								</table>																
+							</div>
+						</div>
+						<hr />						
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="heading-title">Costs</h3>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">								
+								<table class="detail-table" style="width: 100%">
+									<tr>
+										<td>Purchase price</td>
+										<td>€ {{propertyDetails.purchase_price}}</td>
+										<td>Estimated Rate</td>
+										<td>€ {{propertyDetails.estimated_rate}}</td>
+									</tr>
+									<tr>
+										<td>Land Transfer Tax by rate</td>
+										<td>{{propertyDetails.land_rate || '-'}}</td>
+										<td>Notary Fee</td>
+										<td>€ {{propertyDetails.notary_fee}}</td>
+									</tr>
+									<tr>										
+										<td>Brokerage Costs</td>
+										<td>€ {{ propertyDetails.brokerage_cost }}</td>
+									</tr>
+									
 								</table>
-								<hr />
-								<div class="col-md-8">
-									<div class="custom-graph">
-										<div class="property-price-div" [ngStyle]="{'width': propertyPriceWidth }"></div>
-										<div class="notary-fee-div" [ngStyle]="{'width': notaryFeeWidht }"></div>
-										<div class="brokerage-costs-div" [ngStyle]="{'width': brokerageCostsWidth }"></div>
-									</div>
-									<ul class="custom-graph-indicators">
-										<li id="property-price-div">
-											Property Price<br>
-											$ {{ propertyDetails.purchase_price }}
-										</li>
-										<li id="notary-fee-div">
-											Notary fee<br>
-											$ {{ propertyDetails.notary_fee }}
-										</li>
-										<li id="brokerage-costs-div">
-											Brokerage Costs<br>
-											$ {{ propertyDetails.brokerage_cost }}
-										</li>
-									</ul>
-									<div>									
-									Total Property Price $ {{ propertyDetails.purchase_price  + propertyDetails.notary_fee + propertyDetails.brokerage_cost }}
-									</div>
+							</div>							
+						</div>
+						<!-- Facilities Section -->
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="heading-title">Building and Energy Pass</h3>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<table class="detail-table" style="width: 100%">
+									<tr>
+										<td>Construction Year</td>
+										<td>{{propertyDetails.construction_year}}</td>
+										<td>Heating</td>
+										<td>{{propertyDetails.heating}}</td>
+									</tr>
+									<tr>
+										<td>Repair</td>
+										<td>{{propertyDetails.repair}}</td>
+										<td>Essential Enery Source</td>
+										<td>{{propertyDetails.essential_enery_source || '-'}}</td>
+									</tr>
+									<tr>
+										<td>Basement</td>
+										<td>{{propertyDetails.basement}}</td>
+										<td>Attic</td>
+										<td>{{propertyDetails.attic}}</td>
+									</tr>
+									<tr>
+										<td>Cellar</td>
+										<td>{{propertyDetails.cellar}}</td>										
+									</tr>
+								</table>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-8">
+								<div class="custom-graph">
+									<div class="property-price-div" [ngStyle]="{'width': propertyPriceWidth }"></div>
+									<div class="notary-fee-div" [ngStyle]="{'width': notaryFeeWidht }"></div>
+									<div class="brokerage-costs-div" [ngStyle]="{'width': brokerageCostsWidth }"></div>
+								</div>
+								<ul class="custom-graph-indicators">
+									<li id="property-price-div">
+										Property Price<br>
+										€ {{ propertyDetails.purchase_price }}
+									</li>
+									<li id="notary-fee-div">
+										Notary fee<br>
+										€ {{ propertyDetails.notary_fee }}
+									</li>
+									<li id="brokerage-costs-div">
+										Brokerage Costs<br>
+										€ {{ propertyDetails.brokerage_cost }}
+									</li>
+								</ul>
+								<div>
+									Total Property Price € {{ propertyDetails.purchase_price  + propertyDetails.notary_fee + propertyDetails.brokerage_cost }}
 								</div>
 							</div>
 						</div>
-						<hr />
 						<div class="row">
 							<div class="col-md-3">
-								<span style="font-size: 29px;">$ {{ propertyDetails.purchase_price }}</span>
+								<span style="font-size: 29px;">€ {{ propertyDetails.purchase_price }}</span>
 								purchage price
 							</div>
 							<div class="col-md-4" style="margin-top: 10px;">
@@ -216,21 +216,45 @@
 							                	placement="bottom"
 							                	[animation]="true" 
 							                	[closeOnClickOutside]="true" >
-							                	purchase price $ {{ propertyDetails.purchase_price }}
+							                	purchase price € {{ propertyDetails.purchase_price }}
 							                	<hr >
-							                	<p>+ Kaufnebenkosten(10%) ${{ (propertyDetails.purchase_price * 10) / 100 }}</p>
-							                	<p>- Eigenkapital(20%) ${{ (propertyDetails.purchase_price * 20) / 100 }}</p>
-							                	= Nettodarlehen ${{ (propertyDetails.purchase_price + ((propertyDetails.purchase_price * 10) / 100)) -  ((propertyDetails.purchase_price * 20) / 100) }} 
+							                	<p>+ Kaufnebenkosten(10%) €{{ (propertyDetails.purchase_price * 10) / 100 }}</p>
+							                	<p>- Eigenkapital(20%) €{{ (propertyDetails.purchase_price * 20) / 100 }}</p>
+							                	= Nettodarlehen €{{ (propertyDetails.purchase_price + ((propertyDetails.purchase_price * 10) / 100)) -  ((propertyDetails.purchase_price * 20) / 100) }} 
 							                	<hr />
 							    </popover-content>
 							<div [popover]="myPopover" class="emi-popover" style="border: 1px solid #e0e0e0; border-radius: 2px; padding: 10px;">
 								<span>Estimated monthly</span>
-								<span> $ {{ emiAmount }}</span>
+								<span> € {{ emiAmount }}</span>
 							</div>
 							</div>
 							<div class="col-md-3">
 								<span style="font-size: 29px;">{{ propertyDetails.living_space }} m<sup>2</sup></span> <br >
 								Living space.
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="heading-title">Property Details</h3>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<table class="detail-table" style="width: 100%">
+									<tr>
+										<td>Property Name</td>
+										<td>{{propertyDetails.name}}</td>
+										<td>Property</td>
+										<td>{{propertyDetails.property}}</td>
+									</tr>
+									<tr>
+										<td>Location</td>
+										<td>{{propertyDetails.property_location}}</td>
+										<td>Post Code</td>
+										<td>{{propertyDetails.post_code || '-'}}</td>
+									</tr>									
+								</table>
 							</div>
 						</div>
 					</article>											
@@ -346,7 +370,7 @@
 						
 						<div class="property-item" style="margin-bottom: 24px;">
 							<div class="property-heading">
-								<span class="item-price">$ {{ property.purchase_price }}</span>
+								<span class="item-price">€ {{ property.purchase_price }}</span>
 								<a [routerLink]="['/property-detail', property._id]" class="item-detail btn">Detail <i class="fi flaticon-detail"></i></a>
 							</div>
 							<div class="img-box">
@@ -400,7 +424,7 @@
 							<input type="email" class="form-control" name="email" placeholder="Email" required autocomplete="off" [(ngModel)]="inquireFormData.email">
 						</div>
 						<div class="form-group">
-							<input type="tel" class="form-control" name="phone_number" placeholder="Phone" autocomplete="off" [(ngModel)]="inquireFormData.phone_number">
+							<input type="tel" class="form-control" name="phone_number" placeholder="Phone" autocomplete="off" [(ngModel)]="inquireFormData.phone_number" pattern="[0-9]">
 						</div>
 						<div class="form-group">
 							<textarea class="form-control" placeholder="comments" name="comments" autocomplete="off" [(ngModel)]="inquireFormData.comments"></textarea>

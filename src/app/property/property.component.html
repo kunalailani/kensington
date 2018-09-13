@@ -11,7 +11,7 @@
 <!-- ====== PROPERTY LIST CONTENT ====== -->
 <section class="page-section">
 	<div class="container">
-		<div class="row">
+		<div class="row" *ngIf="!enableAddPropertyOfOwnerBtn">
 			<div class="col-md-8">
 				<!-- Content -->
 				<div id="content">
@@ -28,7 +28,7 @@
 									<div class="property-content">
 										<h3 class="property-title"><a [routerLink]="['/property-detail', property._id]">{{property.property_type}}</a></h3>
 										<p>
-											<span class="property-price">$ {{property.purchase_price}}</span>
+											<span class="property-price">€ {{property.purchase_price}}</span>
 											<span class="property-label">
 												<a [routerLink]="['/property-detail', property._id]" class="property-label__type">Villa For Sale</a>
 												<a [routerLink]="['/property-detail', property._id]" class="property-label__status">Available</a>
@@ -74,9 +74,12 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3">
-				<button class="btn-submit btn-primary btn" *ngIf="enableAddPropertyOfOwnerBtn" (click)="redirectToOwnerProperty()">Add Property</button>
+			<div class="col-md-12"  *ngIf="enableAddPropertyOfOwnerBtn">
+			<add-owner-property></add-owner-property>
 			</div>
+			<!-- <div class="col-md-3">
+				<button class="btn-submit btn-primary btn" *ngIf="enableAddPropertyOfOwnerBtn" (click)="redirectToOwnerProperty()">Add Property</button>
+			</div> -->
 		</div>
 	</div>
 </section>

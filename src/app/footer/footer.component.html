@@ -12,8 +12,8 @@
 				<div class="col-md-4 col-sm-6 footer-column">
 					<h3 class="footer-title">Usefull link</h3>
 					<ul class="footer-menu" *ngIf="footerMenus">						
-						<li *ngFor="let menus of footerMenus.pages">
-							<a [routerLink]="['/page', '', menus.slug]"> {{menus.title }}</a>
+						<li *ngFor="let menus of footerMenus.pages" (click)="openInternalOrExternalLink(menus.slug)">
+							<a href="javascript:void(0)"> {{menus.title }}</a>
 						</li>
 					</ul>
 				</div>
