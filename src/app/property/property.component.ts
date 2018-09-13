@@ -14,8 +14,7 @@ import 'magnific-popup';
 })
 export class PropertyComponent implements OnInit {
 
-  public propertyList: Array<any> = [];
-  enableAddPropertyOfOwnerBtn: boolean = false;
+  public propertyList: Array<any> = [];  
 
   public baseUri: string = environment.api_url + '/property-details/';
   offsetCounter: number = -5;
@@ -44,8 +43,7 @@ export class PropertyComponent implements OnInit {
   }
 
   fetchProperty(property_type, property_by_role, is_onRent, residential) {
-    this.loaderService.displayLoader(true);
-    this.enableAddPropertyOfOwnerBtn = false;
+    this.loaderService.displayLoader(true);    
     this.offsetCounter += 5;
     var url = '/api/v1/property/list-property?offset=' + this.offsetCounter + 
       '&limit=5&property_type=' + property_type + '&property_by_role=' + property_by_role + 
@@ -80,10 +78,7 @@ export class PropertyComponent implements OnInit {
       }
       this.loaderService.displayLoader(false);
 
-  	})
-    if (property_type == 'apartment' && property_by_role == 'individual' && is_onRent) {      
-      this.enableAddPropertyOfOwnerBtn = true;
-    }
+  	})    
   }
 
   redirectToOwnerProperty() {

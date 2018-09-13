@@ -32,8 +32,10 @@ export class AppComponent implements OnInit {
       ).subscribe((val) => {
         if (val['url'].split('/')[1] == 'page' && val['url'].split('/')[2] == 'Finanzierungsservice') {
           this.hideFooter = true;
+          this.showSearchHeader = false;
         } else {
           this.hideFooter = false;
+          this.showSearchHeader = true;
         }
       })
       this.fetchHeaderFooterSettings();

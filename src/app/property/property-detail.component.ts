@@ -23,6 +23,8 @@ export class PropertyDetailComponent implements OnInit {
   public notaryFeeWidht: any;
   public brokerageCostsWidth: any;
   public relatedProperty: Array<any> = [];
+  
+  otherCostsArray: Array<any> = [];
 
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
@@ -93,6 +95,14 @@ export class PropertyDetailComponent implements OnInit {
       var totalEmi = (this.propertyDetails.purchase_price + (this.propertyDetails.purchase_price * 10) / 100)  - (this.propertyDetails.purchase_price * 20) / 100;
       this.emiAmount = ( (totalEmi * 4) / 100) / 12;
       this.loaderService.displayLoader(false);
+      if (this.propertyDetails.other_costs) {
+        var other_costs = Object.keys(this.propertyDetails.other_costs);
+        console.log(other_costs);
+        for (let key of other_costs) {
+          console.log(key)
+          this.otherCostsArray.push(key)
+        }
+      }
       this.getLatLngFromZipCode(this.propertyDetails.post_code);
   	});
   }

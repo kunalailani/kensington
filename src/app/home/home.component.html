@@ -14,7 +14,7 @@
 					<div class="property-header">
 						<a [routerLink]="['/property-detail', property._id]" class="item-category">{{property.name}}</a>
 						<a [routerLink]="['/property-detail', property._id]" class="item-title">{{property.property_type}} in {{property.property_location}} </a>
-						<div class="item-price">€ {{ property.purchase_price }} </div>
+						<div class="item-price">€ {{ property.purchase_price ||  property.rent_price}} </div>
 					</div>
 					<figure class="item-img" [style.backgroundImage]="'url(' + baseUri + property.property_images[0] + ')' || 'url(' + property.property_images[0] + ')'">
 						<a [routerLink]="['/property-detail', property._id]"></a>

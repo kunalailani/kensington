@@ -11,7 +11,7 @@
 <!-- ====== PROPERTY LIST CONTENT ====== -->
 <section class="page-section">
 	<div class="container">
-		<div class="row" *ngIf="!enableAddPropertyOfOwnerBtn">
+		<div class="row">
 			<div class="col-md-8">
 				<!-- Content -->
 				<div id="content">
@@ -72,14 +72,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12"  *ngIf="enableAddPropertyOfOwnerBtn">
-			<add-owner-property></add-owner-property>
-			</div>
-			<!-- <div class="col-md-3">
-				<button class="btn-submit btn-primary btn" *ngIf="enableAddPropertyOfOwnerBtn" (click)="redirectToOwnerProperty()">Add Property</button>
-			</div> -->
-		</div>
+		</div>		
 	</div>
 </section>

@@ -12,43 +12,45 @@
 							</div>
 							<div class="panel-body">
 								<form #profileForm = "ngForm" novalidate (ngSubmit)="editProfile(profileForm)" *ngIf="userData">
-										<div class="form-group text-center" *ngIf="userData.logo">
-											<img src="{{userData.logo}}" style="width: 200px; height: 200px; border-radius: 50%; cursor: pointer;" (click)="avatar.click()">
-										</div>										
+									<div class="form-group text-center" *ngIf="userData.logo">
+										<img src="{{userData.logo}}" style="width: 200px; height: 200px; border-radius: 50%; cursor: pointer;" (click)="avatar.click()">
+									</div>
+									<div class="row">
+										<div class="col-md-6">
 											<div class="form-group">
 												<input type="text" class="form-control" [(ngModel)]="userData.full_name" name="full_name" placeholder="Full Name" required autocomplete="off">
-											</div>										
-										<div class="form-group">
+											</div>											
+											<div class="form-group">
+												<input type="text" class="form-control" [(ngModel)]="userData.phone_number" name="	phone_number" placeholder="Phone Number" required autocomplete="off">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" autocomplete="off">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
 												<input type="email" class="form-control" [(ngModel)]="userData.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required autocomplete="off">
 											</div>
-										<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-											<div *ngIf = "email.errors?.required">
-												Email field can't be blank
+											<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+												<div *ngIf = "email.errors?.required">
+													Email field can't be blank
+												</div>
+												<div *ngIf = "email.errors?.pattern && email.touched">
+													The email id doesn't seem right
+												</div>
 											</div>
-											<div *ngIf = "email.errors?.pattern && email.touched">
-												The email id doesn't seem right
+											<div class="form-group">
+												<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" autocomplete="off">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" [(ngModel)]="userData.cnf_password" name="cnf_password" placeholder="Confirm New Password" autocomplete="off">
 											</div>
 										</div>
-										<!-- <div class="form-group">
-											<input type="radio" name="role" value="individual" [(ngModel)]="userData.role"> User
-											<input type="radio" name="role" value="agent" [(ngModel)]="userData.role"> Agent
-										</div> -->
-										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" autocomplete="off">
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" autocomplete="off">
-										</div>
-										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="userData.cnf_password" name="cnf_password" placeholder="Confirm New Password" autocomplete="off">
-										</div>
-										<div class="form-group">
-											<input type="text" class="form-control" [(ngModel)]="userData.phone_number" name="phone_number" placeholder="Phone Number" required autocomplete="off">
-										</div>										
+									</div>
 										<input type="file" style="display: none;" class="form-control" name="logo" #avatar (change)="logoChangeEvent($event)" accept=".jpg, .png">
-										<div class="form-group">
-											<input type="submit" class="btn-submit btn-primary btn" [disabled]="!profileForm.form.valid" value="Edit Profile">
-										</div>							
+									<div class="form-group">
+										<input type="submit" class="btn-submit btn-primary btn" [disabled]="!profileForm.form.valid" value="Edit Profile">
+									</div>							
 								</form>
 							</div>
 						</div>

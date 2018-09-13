@@ -18,7 +18,7 @@ export class DynamicpageComponent implements OnInit {
   constructor(private apiHandlerService: ApiHandlerService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {      
       this.slugName = this.activatedRoute.snapshot.paramMap.get('slug');
       var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');
       if (parent_menu == 'Finanzierungsservice') {
@@ -27,7 +27,7 @@ export class DynamicpageComponent implements OnInit {
         this.hideSearchBar = false;
       }
       this.fetchDynamicContent(this.slugName);
-    });    
+    });
   }
 
   fetchDynamicContent(slugName) {    

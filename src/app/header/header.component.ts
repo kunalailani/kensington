@@ -12,6 +12,7 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
   @Input () headerData: any;
+  @Input () isHidden: boolean;
 
   public isLoggedin: boolean;
   public username: string;
@@ -80,16 +81,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  redirectToAppPage(slug, menu_type, parent_menu, featured_image) {
-    this.isSearchBarHidden = false;
+  redirectToAppPage(slug, menu_type, parent_menu, featured_image) {    
     if (featured_image) {
       localStorage.setItem('search_image', featured_image);
-    }
-    if (parent_menu == 'Finanzierungsservice') {
-        this.isSearchBarHidden = true;
-      }
-    if (menu_type != 'app_page') {
+    }    
+    if (menu_type == 'page') {
       this.router.navigate(['page', parent_menu, slug])
+    } else if (menu_type == 'form_page') {      
+      this.router.navigate(['', slug]);
     } else {
       let quertyString = slug.split('?')[1];
       let splitQuertyString = quertyString.split('&');
