@@ -127,7 +127,7 @@
 							<a href="javascript:void(0)">{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">									
-									<a (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu, submenu.featured_image)"> {{submenu.title}}</a>
+									<a (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu, submenu.featured_image, submenu.title)"> {{submenu.title}}</a>
 								</li>
 							</ul>
 						</li>												
@@ -174,3 +174,11 @@
 	<!-- ====== END HEADER ====== -->
 
 	<app-search [hidden]="!isHidden"></app-search>
+	<section class="page-header main-section"  *ngIf="!isHidden" [style.backgroundImage]="'url(' + search_img + ')'">
+		<div class="container">
+			<h1 class="page-header-title">{{section_title}}</h1>
+			<ul class="breadcrumb">
+				<li class="active">{{section_title}}</li>
+			</ul>
+		</div>
+	</section>

@@ -96,10 +96,8 @@ export class PropertyDetailComponent implements OnInit {
       this.emiAmount = ( (totalEmi * 4) / 100) / 12;
       this.loaderService.displayLoader(false);
       if (this.propertyDetails.other_costs) {
-        var other_costs = Object.keys(this.propertyDetails.other_costs);
-        console.log(other_costs);
-        for (let key of other_costs) {
-          console.log(key)
+        var other_costs = Object.keys(this.propertyDetails.other_costs);        
+        for (let key of other_costs) {          
           this.otherCostsArray.push(key)
         }
       }
@@ -120,6 +118,10 @@ export class PropertyDetailComponent implements OnInit {
       if (res.success) {
         this.showInquireNowModal = false;
         alert("Your Enquiry is submitted");
+      } else {
+        if (res.errorCode = 999999) {
+          alert('You have already placed an inquiry');
+        }
       }
     })    
   }

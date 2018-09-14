@@ -17,13 +17,15 @@ export class HeaderComponent implements OnInit {
   public isLoggedin: boolean;
   public username: string;
   public menus: Array<any> = [];
-  isSearchBarHidden: boolean = false;  
+  isSearchBarHidden: boolean = false;
+  search_img = localStorage.getItem('search_image');
+  section_title: string;
 
   constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService) { 
   	this.getLoginData(); 
   }
 
-  ngOnInit() {
+  ngOnInit() {    
   	this.configurtorService.dataChange().subscribe((data) => {
   		this.username = data.username;
   		this.isLoggedin = data.isLoggedin
@@ -53,6 +55,9 @@ export class HeaderComponent implements OnInit {
       }, function() {
         $(this).parent().parent().find('> a').css('color', '#333');
       })
+      $('.dropdown-menu li').click(function() {
+        $('.navbar-collapse').removeClass('in');
+      })
     }, 500);    
   }
 
@@ -81,10 +86,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  redirectToAppPage(slug, menu_type, parent_menu, featured_image) {    
+  redirectToAppPage(slug, menu_type, parent_menu, featured_image, title) {    
     if (featured_image) {
       localStorage.setItem('search_image', featured_image);
-    }    
+    }
+    this.section_title = title;
     if (menu_type == 'page') {
       this.router.navigate(['page', parent_menu, slug])
     } else if (menu_type == 'form_page') {      

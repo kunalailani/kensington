@@ -68,5 +68,8 @@ export class AppComponent implements OnInit {
 
   onActivate(event) {
     window.scroll(0,550);
+    if (window.innerWidth < 768) {
+      window.scroll(0,850);
+    }
   }
 }

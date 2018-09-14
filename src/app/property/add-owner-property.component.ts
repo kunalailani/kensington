@@ -6,6 +6,8 @@ import { LoaderService } from '../shared/loader.service';
 import { getPropertyConfigurationData } from './property.constant';
 import { ConfiguratorService } from '../shared/configurator.service';
 import {Location} from '@angular/common';
+import { getPropertyWiseFields } from './property-type.constant';
+
 
 declare var google: any;
 
@@ -54,6 +56,7 @@ export class AddOwnerPropertyComponent implements OnInit {
   floor: Array<string> = this.getValues('floor');
   domestice_equipements: Array<string> = this.getValues('domestic_equipments');
   otherCosts: any = {};
+  propertyTypeForm: any = {};
 
   constructor(private configurtorService: ConfiguratorService, private apiHandlerService: ApiHandlerService, private router: Router,
     private loaderService: LoaderService, private _location: Location) { 
@@ -62,6 +65,11 @@ export class AddOwnerPropertyComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.getPropertyTypeForm('rent-apartment');
+  }
+
+  getPropertyTypeForm (propertyType) {
+    this.propertyTypeForm = getPropertyWiseFields(propertyType);
   }
 
   
@@ -96,6 +104,7 @@ export class AddOwnerPropertyComponent implements OnInit {
         Object.assign(this.propertyObj['other_costs'], other_costs)
       }      
     }
+    this.propertyObj['propery_type'] ="rent apartment";
     this.propertyObj['is_OnRent'] = true;
     this.propertyObj['lat'] = lat;
     this.propertyObj['lng'] = lng;
