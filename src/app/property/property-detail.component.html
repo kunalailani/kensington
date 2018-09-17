@@ -471,7 +471,7 @@
 							<textarea class="form-control" placeholder="comments" name="comments" autocomplete="off" [(ngModel)]="inquireFormData.comments"></textarea>
 						</div>
 						<!-- <button class="btn-submit btn-primary btn pull-left" (click)="showInquireNowModal = !showInquireNowModal">Close</button> -->
-						<button class="btn-submit btn-primary btn" [disabled]="!inquireForm.form.valid" (click)="submitInquiryForm()">Submit</button>
+						<button class="btn-submit btn-primary btn" [disabled]="!inquireForm.form.valid" (click)="submitInquiryForm(inquireForm)">Submit</button>
 					</form>
 				</div>
 			</div>			

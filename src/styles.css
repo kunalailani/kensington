@@ -81,6 +81,15 @@ body {
 	padding: 4px 15px !important;
     border-radius: 5px !important;
 }
+.info-field {
+	display: flex; 
+	align-items: center; 
+	justify-content: space-between;
+}
+.info-field:first-child, .info-field select {
+	width: 95% !important;
+}
+
 /*.location-input {
 	height: 120px;
 }

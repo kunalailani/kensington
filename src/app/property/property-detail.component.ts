@@ -112,11 +112,12 @@ export class PropertyDetailComponent implements OnInit {
     this.activeImage = index;
   }
 
-  submitInquiryForm() {    
+  submitInquiryForm(inquireForm) {    
     this.inquireFormData['user_id'] = localStorage.getItem('user_id');
     this.apiHandlerService.post('/api/v1/userenquiry/enquiry', this.inquireFormData).subscribe((res) => {      
       if (res.success) {
         this.showInquireNowModal = false;
+        inquireForm.reset();
         alert("Your Enquiry is submitted");
       } else {
         if (res.errorCode = 999999) {

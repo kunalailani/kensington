@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ConfiguratorService } from '../shared/configurator.service';
 import { Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
   search_img = localStorage.getItem('search_image');
   section_title: string;
 
-  constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService) { 
+  constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService,
+    private titleService: Title) { 
   	this.getLoginData(); 
   }
 
@@ -34,13 +36,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      $('#navbar > .nav > .dropdown').each(function() {
-        $(this).on('click', function() {
-          $(this).toggleClass('expand-menu');
-          $('#navbar .nav .dropdown').not(this).removeClass('expand-menu');
-        });
-      });
+    setTimeout(() => {      
       $('.navbar-toggle').click(function(e) {        
         e.preventDefault();
         if ($('#navbar').hasClass('in')) {
@@ -54,10 +50,7 @@ export class HeaderComponent implements OnInit {
         $(this).parent().parent().find('> a').css('color', '#009245');
       }, function() {
         $(this).parent().parent().find('> a').css('color', '#333');
-      })
-      $('.dropdown-menu li').click(function() {
-        $('.navbar-collapse').removeClass('in');
-      })
+      })      
     }, 500);    
   }
 
@@ -70,7 +63,18 @@ export class HeaderComponent implements OnInit {
     this.apiHandlerService.get('/api/v1/menus/header-menus').subscribe((res) => {      
       for (let key in res.data) {
         this.menus.push({'main_menu': key, 'sub_menu': res.data[key]});
-      }      
+      }
+      setTimeout(() => {
+        $('#navbar > .nav > .dropdown').each(function() {
+          $(this).on('click', function() {         
+            $(this).toggleClass('expand-menu');
+            $('#navbar .nav .dropdown').not(this).removeClass('expand-menu');
+          });
+        });
+        $('.dropdown-menu li').click(function() {
+          $('.navbar-collapse').removeClass('in');
+        })
+      }, 500)
     });
   }
 
@@ -91,6 +95,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('search_image', featured_image);
     }
     this.section_title = title;
+    this.titleService.setTitle(title);
     if (menu_type == 'page') {
       this.router.navigate(['page', parent_menu, slug])
     } else if (menu_type == 'form_page') {      

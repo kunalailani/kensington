@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -121,7 +121,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   providers: [
     ApiHandlerService,
     ConfiguratorService,
-    LoaderService
+    LoaderService,
+    Title
   ],
   bootstrap: [AppComponent]
 })
