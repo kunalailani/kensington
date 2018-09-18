@@ -18,18 +18,18 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="text" class="form-control" [(ngModel)]="userData.full_name" name="full_name" placeholder="Full Name" required autocomplete="off">
+												<input type="text" class="form-control" [(ngModel)]="userData.full_name" name="full_name" placeholder="Full Name" required autocomplete="off" tabindex="1">
 											</div>											
 											<div class="form-group">
-												<input type="text" class="form-control" [(ngModel)]="userData.phone_number" name="	phone_number" placeholder="Phone Number" required autocomplete="off">
+												<input type="text" class="form-control" [(ngModel)]="userData.phone_number" name="	phone_number" placeholder="Phone Number" required autocomplete="off" tabindex="3">
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" autocomplete="off">
+												<input type="password" class="form-control" [(ngModel)]="userData.new_password" name="new_password" placeholder="New Password" autocomplete="off" tabindex="5">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<input type="email" class="form-control" [(ngModel)]="userData.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required autocomplete="off">
+												<input type="email" class="form-control" [(ngModel)]="userData.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required autocomplete="off" tabindex="2">
 											</div>
 											<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
 												<div *ngIf = "email.errors?.required">
@@ -40,16 +40,16 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" autocomplete="off">
+												<input type="password" class="form-control" [(ngModel)]="userData.old_password" name="old_password" placeholder="Old Password" autocomplete="off" tabindex="4">
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" [(ngModel)]="userData.cnf_password" name="cnf_password" placeholder="Confirm New Password" autocomplete="off">
+												<input type="password" class="form-control" [(ngModel)]="userData.cnf_password" name="cnf_password" placeholder="Confirm New Password" autocomplete="off" tabindex="6">
 											</div>
 										</div>
 									</div>
 										<input type="file" style="display: none;" class="form-control" name="logo" #avatar (change)="logoChangeEvent($event)" accept=".jpg, .png">
 									<div class="form-group">
-										<input type="submit" class="btn-submit btn-primary btn" [disabled]="!profileForm.form.valid" value="Edit Profile">
+										<input type="submit" class="btn-submit btn-primary btn" [disabled]="!profileForm.form.valid" value="Edit Profile" tabindex="7">
 									</div>							
 								</form>
 							</div>

@@ -28,11 +28,11 @@ export class AppComponent implements OnInit {
       }      
     })
     this.router.events.pipe(filter((event) => event instanceof NavigationStart),
-      debounceTime(500)
+      debounceTime(50)
       ).subscribe((val) => {
         if (val['url'].split('/')[1] == 'page' && val['url'].split('/')[2] == 'Finanzierungsservice') {
-          this.hideFooter = true;
           this.showSearchHeader = false;
+          this.hideFooter = true;          
         } else {
           this.hideFooter = false;
           this.showSearchHeader = true;

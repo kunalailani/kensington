@@ -7,7 +7,7 @@
 .irs-bar-edge {
 	background: #ddd;
 }
-.btn-primary, .btn-primary.btn-submit:hover, .btn-primary.btn-submit:active {
+.btn-primary, .btn-primary.btn-submit:hover, .btn-primary.btn-submit:active, .btn-primary.btn-submit:focus {
 	background-color: #0071BC;
 	border-color: #0071BC;
 }
@@ -95,4 +95,22 @@ body {
 }
 .location-input[placeholder] {
 	line-height: 120px;
+}*/
+/*.dropdown-menu li:hover > ul {
+	display: inline;
+}
+.child-dropdown-menu {
+	position: absolute;
+    top: 30px;
+    left: 100%;
+    min-width: 230px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+.child-dropdown-menu li {
+	position: relative;
+    height: 30px;
+    background: #0071BC;
 }*/

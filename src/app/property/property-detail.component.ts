@@ -29,7 +29,7 @@ export class PropertyDetailComponent implements OnInit {
   slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
 
   showInquireNowModal: boolean = false;
-  emiAmount: any;
+  emiAmount: any;  
 
   public activeImage: number = 0;
 
@@ -49,6 +49,12 @@ export class PropertyDetailComponent implements OnInit {
 
   ngAfterViewInit() {
     
+  }
+
+  breakPoint(i) {
+    if (i > 0 && i % 2 == 1) {
+      return '<br />';
+    }
   }
 
   getLatLngFromZipCode(zipcode) {

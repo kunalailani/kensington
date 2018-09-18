@@ -172,29 +172,29 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="form-control">
-												Vaccant From
-												<input type="date"  name="vacant_from" required autocomplete="off" [(ngModel)]="propertyObj.vacant_from">
+												Vacant From
+												<input type="date"  name="vacant_from" required autocomplete="off" [(ngModel)]="propertyObj.vacant_from" tabindex="31">
 											</label>											
 										</div>
 										<div class="form-group">
-											<input type="number" name="deposite" class="form-control" placeholder="Deposite" [(ngModel)]="propertyObj.deposite">
+											<input type="number" name="deposite" class="form-control" placeholder="Deposite" [(ngModel)]="propertyObj.deposite" tabindex="33">
 										</div>
 										<div class="form-group">
-											<input type="number" class="form-control" placeholder="Heating Costs" name="heating_costs" [(ngModel)]="propertyObj.heating_costs">
+											<input type="number" class="form-control" placeholder="Heating Costs" name="heating_costs" [(ngModel)]="propertyObj.heating_costs" tabindex="35">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="number" name="rent_price" class="form-control" placeholder="Monthly Rent" [(ngModel)]="propertyObj.rent_price">
+											<input type="number" name="rent_price" class="form-control" placeholder="Monthly Rent" [(ngModel)]="propertyObj.rent_price" tabindex="32">
 										</div>
 										<div class="form-group">
-											<input type="number" name="additional_costs" class="form-control" placeholder="Additional Costs" [(ngModel)]="propertyObj.additional_costs">
+											<input type="number" name="additional_costs" class="form-control" placeholder="Additional Costs" [(ngModel)]="propertyObj.additional_costs" tabindex="34">
 										</div>
 										<div class="form-group">											
 											<div *ngFor="let divs of otherCostsContainer; let i = index;" class="other-costs">
 												<label>Other Costs</label>
-												<input id="other_costs_key{{i}}" type="text" name="other_costs_key{{i}}" placeholder="Costs Name" [(ngModel)]="otherCosts['key_' + i]">
-												<input type="text" id="other_costs_value{{i}}" placeholder="Costs Value" name="other_costs_value{{i}}" [(ngModel)]="otherCosts['value_' + i]">
+												<input id="other_costs_key{{i}}" type="text" name="other_costs_key{{i}}" placeholder="Costs Name" [(ngModel)]="otherCosts['key_' + i]" tabindex="36">
+												<input type="text" id="other_costs_value{{i}}" placeholder="Costs Value" name="other_costs_value{{i}}" [(ngModel)]="otherCosts['value_' + i]" tabindex="37">
 												<i class="fa fa-plus" (click)="addOtherCostsContainer()"></i>
 												<i class="fa fa-minus" (click)="removeOtherCostsContainer(i)" [style.color]="i == 0 ? '#fff' : '#000'"></i>
 											</div>
@@ -213,10 +213,10 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="number" name="building_substance" class="form-control" placeholder="Building Substance" [(ngModel)]="propertyObj.building_substance">
+											<input type="number" name="building_substance" class="form-control" placeholder="Building Substance" [(ngModel)]="propertyObj.building_substance" tabindex="38">
 										</div>
 										<div class="form-group info-field">
-											<select class="form-control" name="rent_apartment_heating" [(ngModel)]="propertyObj.rent_apartment_heating">
+											<select class="form-control" name="rent_apartment_heating" [(ngModel)]="propertyObj.rent_apartment_heating" tabindex="40">
 												<option value="">Select Heating Type</option>
 												<option value="{{ heating_type }}" *ngFor="let heating_type of getValues('heating_type')">{{ heating_type }}
 												</option>
@@ -224,39 +224,39 @@
 											<img src="assets/images/tooltip.png" title="Geschosswohnung	Wohnung liegt auf einer Etage im Gebäude" height="20px" width="20px">
 										</div>
 										<div class="form-group">
-										<textarea class="form-control" name="object_description" placeholder="Object Description" [(ngModel)]="propertyObj.object_description" rows="5"></textarea>											
+										<textarea class="form-control" name="object_description" placeholder="Object Description" [(ngModel)]="propertyObj.object_description" rows="5" tabindex="42"></textarea>											
 										</div>
 										
 									</div>
 									<div class="col-md-6">
 										<div class="form-group info-field">										
-											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.object_condition" name="object_condition">
+											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.object_condition" name="object_condition" tabindex="39">
 												<option value="">Selet Object Condition</option>
 												<option value="{{ object_condition }}" *ngFor="let object_condition of getValues('object_condition')">{{ object_condition }}</option>
 											</select>
 											<img src="assets/images/tooltip.png" title="das gesamte Haus wird mit einer Heizungsanlage versorgt" height="20px" width="20px">
 										</div>
 										<div class="form-group">
-											<select class="form-control" name="essential_energy_sources" [(ngModel)]="propertyObj.essential_energy_source">
+											<select class="form-control" name="essential_energy_sources" [(ngModel)]="propertyObj.essential_energy_source" tabindex="41">
 												<option value="">Essential Energy Sources</option>
 												<option value="{{ items }}" *ngFor="let items of getValues('essential_energy_sources')">{{ items }}
 												</option>
 											</select>
 										</div>
 										<div class="form-group">
-											<textarea class="form-control" name="equipements_feature" placeholder="Equipements Feature" [(ngModel)]="propertyObj.equipements_feature" rows="5"></textarea>											
+											<textarea class="form-control" name="equipements_feature" placeholder="Equipements Feature" [(ngModel)]="propertyObj.equipements_feature" rows="5" tabindex="43"></textarea>											
 										</div>										
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control location-input" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required />
+											<input type="text" class="form-control location-input" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required tabindex="44" />
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Upload pictures from inside the apartment
-												<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" multiple="true" accept=".jpg, .png" required>
+												<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" multiple="true" accept=".jpg, .png" required tabindex="45">
 											</label>
 											<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
 												<div class="col" *ngFor="let images of propertyImagePreview">
@@ -269,7 +269,7 @@
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Upload pictures from outside the apartment
-												<input type="file" (change)="floorPlansImageLimit($event, floor_plans)" #floor_plans name="floor_plans" multiple="true" accept=".jpg, .png">	
+												<input type="file" (change)="floorPlansImageLimit($event, floor_plans)" #floor_plans name="floor_plans" multiple="true" accept=".jpg, .png" tabindex="46">	
 											</label>
 											<div class="row" *ngIf="floorPlansImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
 												<div class="col" *ngFor="let images of floorPlansImagePreview">
@@ -282,7 +282,7 @@
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
 												Upload Additional Certificates
-												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event, additional_certy)" #additional_certy multiple>
+												<input type="file" name="add_certificate" (change)="additionalCertificateChange($event, additional_certy)" #additional_certy multiple tabindex="47">
 											</label>											
 										</div>
 									</div>
@@ -292,7 +292,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<input type="submit" class="btn-submit btn-primary btn pull-right" [disabled]="!ownerPropertyForm.form.valid" value="Add">
+							<input type="submit" class="btn-submit btn-primary btn pull-right" [disabled]="!ownerPropertyForm.form.valid" value="Add" tabindex="48">
 						</div>
 					</div>
 

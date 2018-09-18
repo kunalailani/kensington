@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,12 +16,13 @@ export class DynamicpageComponent implements OnInit {
   public hideSearchBar: boolean = false;
   search_img: string = localStorage.getItem('search_image');
 
-  constructor(private apiHandlerService: ApiHandlerService, private activatedRoute: ActivatedRoute) { }
+  constructor(private apiHandlerService: ApiHandlerService, private activatedRoute: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {      
       this.slugName = this.activatedRoute.snapshot.paramMap.get('slug');
       var parent_menu = this.activatedRoute.snapshot.paramMap.get('parent');
+      this.titleService.setTitle(this.slugName);
       if (parent_menu == 'Finanzierungsservice') {
         this.hideSearchBar = true;
       } else {

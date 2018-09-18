@@ -46,7 +46,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
   }
 
-  register({ value, valid}: { value: Registration, valid: boolean}) {
+  register({ value, valid}: { value: Registration, valid: boolean}) {    
+    if (value['password'] != value['confirmpwd']) {
+      alert("Password do not match");
+      return false;
+    }
   	this.regModal = value;
     this.regModal['role'] = 'individual';
   	this.apiService.post('/api/v1/user/register', this.regModal).subscribe((res) => {
@@ -56,6 +60,15 @@ export class LoginComponent implements OnInit {
          alert(res.msg);
        }
     })
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 
   login({value, valid}: {value: any, valid: boolean}) {

@@ -127,7 +127,14 @@
 							<a href="javascript:void(0)">{{menuItem.main_menu}}</a>
 							<ul class="dropdown-menu">
 								<li *ngFor="let submenu of menuItem.sub_menu[0].pages">									
-									<a href="javascript:void(0);" (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu, submenu.featured_image, submenu.title)"> {{submenu.title}}</a>
+									<a href="javascript:void(0);" (click)="redirectToAppPage(submenu.slug, submenu.type, menuItem.main_menu, submenu.featured_image, submenu.title, submenu.meta_description, submenu.meta_keyword)"> {{submenu.title}}</a>
+									<!-- <ul class="child-dropdown-menu">
+										<li><a href="#">Echeneis</a></li>
+										<li><a href="#">Phtheirichthys</a></li>
+										<li><a href="#">Remora</a></li>
+										<li><a href="#">Remorina</a></li>
+										<li><a href="#">Rhombochirus</a></li>
+									</ul> -->
 								</li>
 							</ul>
 						</li>												

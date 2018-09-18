@@ -46,7 +46,7 @@
 							<div class="item-room"><span class="icon-text">Zimmer</span> {{propertyDetails.room}} </div>
 							<div class="item-bathroom"><span class="icon-text">Bathroom</span> {{propertyDetails.bathroom}}</div>
 							<div class="item-garage"><span class="icon-text">Garage</span> {{propertyDetails.garages}}</div>
-							<div class="item-comment"><span class="fa fa-comments-o"></span> No Comments</div>
+							<!-- <div class="item-comment"><span class="fa fa-comments-o"></span> No Comments</div> -->
 						</div>
 						<!-- <p>{{propertyDetails.description}}</p> -->
 						<!-- The Space Section -->
@@ -126,7 +126,7 @@
 						<hr>
 						<div class="row">
 							<div class="col-md-12">
-								<h3 class="heading-title">Property Information</h3>
+								<h3 class="heading-title">Vacant Information</h3>
 							</div>
 						</div>
 						<hr>
@@ -134,7 +134,7 @@
 							<div class="col-md-12">
 								<table class="detail-table" style="width: 100%">
 									<tr>
-										<td>Vaccant From</td>
+										<td>Vacant From</td>
 										<td>{{propertyDetails.vacant_from}}</td>
 										<td>Monthly Rent</td>
 										<td>{{propertyDetails.rent_price}}</td>
@@ -150,9 +150,10 @@
 										<td>{{propertyDetails.heating_costs}}</td>
 										<td>Other Costs</td>
 										<td>
-											<span *ngFor="let costs of otherCostsArray">
-											{{costs + '-' +  propertyDetails.other_costs[costs]}}
-											</span><br />											
+											<span *ngFor="let costs of otherCostsArray; let i = index;">
+												{{ costs + '-' +  propertyDetails.other_costs[costs] }} 
+												<!-- {{ breakPoint(i) }} -->
+											</span>
 										</td>
 									</tr>
 									<!-- <tr>
@@ -183,7 +184,7 @@
 						<hr />
 						<div class="row">
 							<div class="col-md-12">
-								<h3 class="heading-title">Property Information</h3>
+								<h3 class="heading-title">Building Information</h3>
 							</div>
 						</div>
 						<hr />

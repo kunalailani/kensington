@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ConfiguratorService } from '../shared/configurator.service';
 import { Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   section_title: string;
 
   constructor(private configurtorService: ConfiguratorService, private router: Router, private apiHandlerService: ApiHandlerService,
-    private titleService: Title) { 
+    private titleService: Title, private meta: Meta) { 
   	this.getLoginData(); 
   }
 
@@ -45,12 +45,7 @@ export class HeaderComponent implements OnInit {
         else {
           $('#navbar').addClass('in');
         }
-      });
-      $('.dropdown-menu li').hover(function() {
-        $(this).parent().parent().find('> a').css('color', '#009245');
-      }, function() {
-        $(this).parent().parent().find('> a').css('color', '#333');
-      })      
+      });           
     }, 500);    
   }
 
@@ -66,14 +61,26 @@ export class HeaderComponent implements OnInit {
       }
       setTimeout(() => {
         $('#navbar > .nav > .dropdown').each(function() {
-          $(this).on('click', function() {         
+          $(this).on('click', function() {            
             $(this).toggleClass('expand-menu');
             $('#navbar .nav .dropdown').not(this).removeClass('expand-menu');
+            if (!$(this).children().hasClass('dropdown-menu')) {
+              $('.navbar-collapse').removeClass('in');
+              window.location.href = '#/login';
+            }
           });
         });
-        $('.dropdown-menu li').click(function() {
-          $('.navbar-collapse').removeClass('in');
-        })
+
+        $('.dropdown-menu li').click(function() {          
+          $('.navbar-collapse').removeClass('in');          
+        });
+
+        $('.dropdown-menu li').hover(function() {
+          $(this).parent().parent().find('> a').css('color', '#009245');
+        }, function() {
+          $(this).parent().parent().find('> a').css('color', '#333');
+        });
+
       }, 500)
     });
   }
@@ -90,12 +97,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  redirectToAppPage(slug, menu_type, parent_menu, featured_image, title) {    
+  redirectToAppPage(slug, menu_type, parent_menu, featured_image, title, meta_description, meta_keyword) {
     if (featured_image) {
       localStorage.setItem('search_image', featured_image);
     }
     this.section_title = title;
     this.titleService.setTitle(title);
+    this.meta.updateTag({name: 'keywords', content: meta_keyword});
+    this.meta.updateTag({name: 'description', content: meta_description});
     if (menu_type == 'page') {
       this.router.navigate(['page', parent_menu, slug])
     } else if (menu_type == 'form_page') {      
