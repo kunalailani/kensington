@@ -26,7 +26,12 @@
 												<input type="text" class="form-control" name="owner_postcode" placeholder="Post Code" autocomplete="off" [(ngModel)]="propertyObj.owner_postcode" tabindex="5">
 										</div>
 										<div class="form-group">
-												<input type="number" class="form-control" name="owner_phone_number" placeholder="Phone Number" autocomplete="off" [(ngModel)]="propertyObj.owner_phone_number" tabindex="7">
+												<input type="text" class="form-control" name="owner_phone_number" placeholder="Phone Number" autocomplete="off" [(ngModel)]="propertyObj.owner_phone_number" tabindex="7" minlength="8" maxlength="13" (keypress)="mobValidation($event)" #phone_number = "ngModel">
+										</div>
+										<div *ngIf="phone_number.invalid && (phone_number.dirty || phone_number.touched)" class="alert alert-danger">
+											<div *ngIf = "phone_number.errors?.pattern && phone_number.touched">
+												Please Enter minimum 8 digits and maximum 13 digits
+											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -43,9 +48,6 @@
 												<input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" [(ngModel)]="propertyObj.owner_email"  #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" tabindex="8">
 										</div>
 										<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-											<!-- <div *ngIf = "email.errors?.required">
-												Email field can't be blank
-											</div> -->
 											<div *ngIf = "email.errors?.pattern && email.touched">
 												The email id doesn't seem right, Make sure capital letters are not allowed.
 											</div>
@@ -82,16 +84,26 @@
 											tabindex="13"
 											style="width: 95%;">
 											</ng-select>
-											<img src="assets/images/tooltip.png" title="Lage der Wohnung im Gebäude" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" height="20px" title="Lage der Wohnung im Gebäude" width="20px">
 										</div>
 										<div class="form-group">
-											<input type="number" class="form-control" name="living_space" placeholder="Living Space" required autocomplete="off" [(ngModel)]="propertyObj.living_space" tabindex="15">
+											<input type="number" class="form-control" name="living_space" placeholder="Living Space" required autocomplete="off" [(ngModel)]="propertyObj.living_space" tabindex="15" #living_space = "ngModel">
+										</div>
+										<div *ngIf="living_space.invalid && (living_space.dirty || living_space.touched)" class="alert alert-danger">
+											<div *ngIf = "living_space.errors?.required">
+												This field is required.
+											</div>											
 										</div>
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.bathroom" name="bathroom" tabindex="17">
+											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.bathroom" name="bathroom" tabindex="17" #bathroom = "ngModel">
 												<option value="0">Select Bathroom</option>
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
+										</div>
+										<div *ngIf="bathroom.invalid && (bathroom.dirty || bathroom.touched)" class="alert alert-danger">
+											<div *ngIf = "bathroom.errors?.required">
+												This field is required.
+											</div>											
 										</div>
 										<div class="form-group">
 											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.garages" name="garages" tabindex="19">
@@ -120,7 +132,7 @@
 												<option value="">Selet Floor Type</option>
 												<option value="{{ floors }}" *ngFor="let floors of getValues('floor_type')">{{ floors }}</option>
 											</select>
-											<img src="assets/images/tooltip.png" title="Geschosswohnung	Wohnung liegt auf einer Etage im Gebäude" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" title="Geschosswohnung Wohnung liegt auf einer Etage im Gebäude &#013; Maisonettewohnung Wohnung auf zwei Etagen die innerhalb der Wohnung verbunden sind &#013; Souterrainwohnung Wohnung im Kellergeschoss, die einen Ausgang ebenerdig hat (z.B. Terrasse) &#013; Einliegerwohnung zusätzliche Wohnung in einem Ein- oder Zweifamilienhaus. &#013; Loft Zum Wohnraum umgebaute Lager- oder Industrieflächen &#013; Penthouse auf ein Dach gebaute luxuriöse Wohnung" height="20px" width="20px">
 										</div>
 										<div class="form-group">
 											<select class="form-control" name="room" autocomplete="off" [(ngModel)]="propertyObj.room" tabindex="16">
@@ -137,9 +149,14 @@
 											placeholder="Select Domestice Equipements"
 											name="domestice_equipements"
 											[(ngModel)]="propertyObj.domestice_equipements"
-											class="custom-ng-select" style="width: 95%;" tabindex="18">
+											class="custom-ng-select" style="width: 95%;" tabindex="18" #domestic = "ngModel" required>
 											</ng-select>
-											<img src="assets/images/tooltip.png" title="Ausstattung sehr gehoben, nicht Marktüblich aus den Baujahren 2010 - 2018" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" title="sehr gehoben Ausstattung sehr gehoben, nicht Marktüblich aus den Baujahren 2010 - 2018 &#013;gehoben Ausstattung ca. aus den Jahren 2000 - 2018 ohne große Modernisierungsmaßnahmen &#013;mittel Ausstattung ca. aus den Baujahren 1985 - 2000 ohne große Modernisierungsmaßnahmen &#013;schlecht Ausstattung ca. aus den Baujahren 1960 - 1980 ohne große Modernisierungsmaßnahmen" height="20px" width="20px">
+										</div>
+										<div *ngIf="domestic.invalid && (domestic.dirty || domestic.touched)" class="alert alert-danger">
+											<div *ngIf = "domestic.errors?.required">
+												This field is required
+											</div>											
 										</div>
 										<div class="form-group">
 											<select class="form-control" autocomplete="off" [(ngModel)]="propertyObj.parking" name="parking" tabindex="20">
@@ -173,8 +190,13 @@
 										<div class="form-group">
 											<label class="form-control">
 												Vacant From
-												<input type="date"  name="vacant_from" required autocomplete="off" [(ngModel)]="propertyObj.vacant_from" tabindex="31">
-											</label>											
+												<input type="date"  name="vacant_from" required autocomplete="off" [(ngModel)]="propertyObj.vacant_from" tabindex="31" #vacant_from = "ngModel">
+											</label>
+										</div>
+										<div *ngIf="vacant_from.invalid && (vacant_from.dirty || vacant_from.touched)" class="alert alert-danger">
+											<div *ngIf = "vacant_from.errors?.required">
+												This field is required
+											</div>											
 										</div>
 										<div class="form-group">
 											<input type="number" name="deposite" class="form-control" placeholder="Deposite" [(ngModel)]="propertyObj.deposite" tabindex="33">
@@ -221,7 +243,7 @@
 												<option value="{{ heating_type }}" *ngFor="let heating_type of getValues('heating_type')">{{ heating_type }}
 												</option>
 											</select>
-											<img src="assets/images/tooltip.png" title="Geschosswohnung	Wohnung liegt auf einer Etage im Gebäude" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" title="Zentralheizung das gesamte Haus wird mit einer Heizungsanlage versorgt &#013;Etagenheizung jede Etage wird einzeln versorgt" height="20px" width="20px">
 										</div>
 										<div class="form-group">
 										<textarea class="form-control" name="object_description" placeholder="Object Description" [(ngModel)]="propertyObj.object_description" rows="5" tabindex="42"></textarea>											
@@ -234,7 +256,7 @@
 												<option value="">Selet Object Condition</option>
 												<option value="{{ object_condition }}" *ngFor="let object_condition of getValues('object_condition')">{{ object_condition }}</option>
 											</select>
-											<img src="assets/images/tooltip.png" title="das gesamte Haus wird mit einer Heizungsanlage versorgt" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" title="sehr gut Neubau bzw. Neubauzustand (z.B. hochwertig sanierter Altbau) &#013;gut Entspricht etwa 10 Jahre altem Objekt und kann noch als neuwertig eingestuft werden. &#013;mittel Baujahrestypisch, maximal dem Baujahr entsprechende Mängel, Kein wesentlicher Reparatur-, Instandhaltungs-, oder Modernisierungsstau &#013;mäßig Baujahrestypisch, z.B Bäder, Fußböden, Außenanstrich, Heizung müssten erneuert werden. Reparatur-, Instandhaltungs-, oder Modernisierungsmaßnahmen sind kurz-bis mittelfristig erforderlich um einer Verschlechterung entgegenzuwirken. &#013;schlecht nicht mehr Baujahrestypisch, das Bauwerk, seine Ausstattung sowie die Außenanlage befinden sich in einem schlechten Zustand. Eine Sanierung ist kurzfristig erforderlich. &#013;katastrophal nicht mehr bewohnbar" height="20px" width="20px">
 										</div>
 										<div class="form-group">
 											<select class="form-control" name="essential_energy_sources" [(ngModel)]="propertyObj.essential_energy_source" tabindex="41">
@@ -249,32 +271,40 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control location-input" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required tabindex="44" />
+											<input type="text" class="form-control location-input" placeholder="Address/Location" name="property_location" Googleplace [(ngModel)]="propertyObj.property_location" (setAddress)="getAddressOnChange($event)" required tabindex="44" #property_address = "ngModel" />
+										</div>
+										<div *ngIf="property_address.invalid && (property_address.dirty || property_address.touched)" class="alert alert-danger">
+											<div *ngIf = "property_address.errors?.required">
+												This field is required
+											</div>											
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
-												Upload pictures from inside the apartment
+												Upload pictures from inside the apartment (*Note: Standard size for image is 1280X850)
 												<input type="file" (change)="propertyImageLimit($event, property_image)" #property_image name="property_image" multiple="true" accept=".jpg, .png" required tabindex="45">
 											</label>
-											<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
+											<div class="row" *ngIf="propertyImagePreview" style="margin: 0; display: flex; flex-wrap: wrap; position: relative;">
 												<div class="col" *ngFor="let images of propertyImagePreview">
 													<img [src]="images" width="80px;" height="80px;">
-												</div>													
+												</div>
+												<a class="pull-right" (click)="clearPropertyImages(property_image, true)" *ngIf="propertyImagePreview.length > 0" style="position: absolute; right: 0; align-self: center;">Clear all</a>
 											</div>
 										</div>
+
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="form-control" style="height: 60px;">
-												Upload pictures from outside the apartment
+												Upload pictures from outside the apartment (*Note: Standard size for image is 1280X850)
 												<input type="file" (change)="floorPlansImageLimit($event, floor_plans)" #floor_plans name="floor_plans" multiple="true" accept=".jpg, .png" tabindex="46">	
 											</label>
 											<div class="row" *ngIf="floorPlansImagePreview" style="margin: 0; display: flex; flex-wrap: wrap;">
 												<div class="col" *ngFor="let images of floorPlansImagePreview">
 													<img [src]="images"  width="80px;" height="80px;">	
-												</div>													
+												</div>
+												<a class="pull-right" (click)="clearPropertyImages(floor_plans)" *ngIf="floorPlansImagePreview.length > 0" style="position: absolute; right: 0; align-self: center;" >Clear all</a>
 											</div>												
 										</div>
 									</div>

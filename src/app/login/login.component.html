@@ -12,8 +12,16 @@
 							<div class="panel-body">
 								<form #loginForm = "ngForm" novalidate (ngSubmit)="login(loginForm)">																		
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="loginModal.email" required autocomplete="off">
-									</div>																		
+										<input type="email" class="form-control" placeholder="Email" name="email" #email = "ngModel" [(ngModel)]="loginModal.email" required autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50">
+									</div>
+									<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+											<div *ngIf = "email.errors?.required">
+												Email field can't be blank
+											</div>
+											<div *ngIf = "email.errors?.pattern && email.touched">
+												The email id doesn't seem right, Make sure capital letters are not allowed.
+											</div>
+										</div>
 									<div class="form-group">
 										<input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="loginModal.password" required autocomplete="off">
 									</div>
@@ -33,8 +41,16 @@
 							<div class="panel-body">
 								<form #forgotPassForm = "ngForm" novalidate (ngSubmit)="requestForPassChange()">																		
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="forgotPasswordObj.email" required autocomplete="off">
-									</div>									
+										<input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="forgotPasswordObj.email" required autocomplete="off" #forgotEmail = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50">
+									</div>
+									<div *ngIf="forgotEmail.invalid && (forgotEmail.dirty || forgotEmail.touched)" class="alert alert-danger">
+											<div *ngIf = "forgotEmail.errors?.required">
+												Email field can't be blank
+											</div>
+											<div *ngIf = "forgotEmail.errors?.pattern && forgotEmail.touched">
+												The email id doesn't seem right, Make sure capital letters are not allowed.
+											</div>
+										</div>
 									<div class="form-group">
 										<input type="submit" [disabled]="!forgotPassForm.form.valid" class="btn-submit btn-primary btn" value="Request">
 									</div>

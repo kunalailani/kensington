@@ -57,6 +57,15 @@ export class PropertyDetailComponent implements OnInit {
     }
   }
 
+  mobValidation(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
   getLatLngFromZipCode(zipcode) {
     var geocoder = new google.maps.Geocoder();    
     geocoder.geocode( { 'address': zipcode}, function(results, status) {

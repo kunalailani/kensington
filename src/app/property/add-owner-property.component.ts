@@ -36,8 +36,8 @@ export class AddOwnerPropertyComponent implements OnInit {
     essential_energy_source: ''
   };
 
-  public propertyImagePreview: Array<any>;
-  public floorPlansImagePreview: Array<any>;
+  public propertyImagePreview: Array<any> = [];
+  public floorPlansImagePreview: Array<any> = [];
   public energy_certificate: any;
   public additional_certificate: any;
   public assign_to_agent: boolean = false;
@@ -49,8 +49,6 @@ export class AddOwnerPropertyComponent implements OnInit {
   public isLoggedin: boolean = false;
   otherCostsContainer: Array<any> = [0];
 
-  floor_plan_thumb_images: Array<any> = ['assets/images/thumbnail.png', 'assets/images/thumbnail.png', 'assets/images/thumbnail.png', 'assets/images/thumbnail.png',
-                                        'assets/images/thumbnail.png'];
 
   floorPlanCounter: 0;
   floor: Array<string> = this.getValues('floor');
@@ -72,16 +70,27 @@ export class AddOwnerPropertyComponent implements OnInit {
     this.propertyTypeForm = getPropertyWiseFields(propertyType);
   }
 
-  
+  mobValidation(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 
   getLatLng (zipcode) {
-    var geocoder = new google.maps.Geocoder();    
-    geocoder.geocode( { 'address': zipcode}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {        
-        lat = results[0].geometry.location.lat();
-        lng = results[0].geometry.location.lng();        
-      }
-    })
+    if (zipcode) {
+      var geocoder = new google.maps.Geocoder();    
+      geocoder.geocode( { 'address': zipcode}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {        
+          lat = results[0].geometry.location.lat();
+          lng = results[0].geometry.location.lng();        
+        } else {
+          alert("Not able to find your pincode, Please check your pincode");
+        }
+      })
+    }    
   }
 
   addOtherCostsContainer() {
@@ -94,7 +103,11 @@ export class AddOwnerPropertyComponent implements OnInit {
     }    
   }
 
-  addProperty() {    
+  addProperty() {
+    if (this.propertyImagePreview.length < 3 || this.floorPlansImagePreview.length < 3) {
+      alert("Please Upload pic inside or outside more than 3 and less than 5");
+      return false;
+    }
     this.propertyObj['other_costs'] = {};    
     for (let i = 0; i < Object.keys(this.otherCosts).length - 1; i++) {
       if (this.otherCosts['key_' + i] != undefined) {
@@ -121,9 +134,14 @@ export class AddOwnerPropertyComponent implements OnInit {
   	return getPropertyConfigurationData(propName);
   }
 
+  
+
   propertyImageLimit(event, property_image) {
-    this.fileSelectionLimitValidations(event, property_image);
-    this.propertyImagePreview = [];
+    let returnValue = this.fileSelectionLimitValidations(event, property_image, this.propertyImagePreview);
+    if (!returnValue) {
+        return false;
+    }
+    //this.propertyImagePreview = [];
     let propertyFileList: FileList = event.target.files;
     let propertyImageList: Array<any> = [];
     for (let i = 0; i < propertyFileList.length; i++) {
@@ -139,9 +157,11 @@ export class AddOwnerPropertyComponent implements OnInit {
   }
 
   floorPlansImageLimit(event, floor_plans) {
-    this.fileSelectionLimitValidations(event, floor_plans);
-
-    this.floorPlansImagePreview = [];
+    let returnValue = this.fileSelectionLimitValidations(event, floor_plans, this.floorPlansImagePreview);
+    if (!returnValue) {
+        return false;
+    }
+    //this.floorPlansImagePreview = [];
     let floorPlansFileList: FileList = event.target.files;
     let floor_pan_images = [];
     for (let i = 0; i < floorPlansFileList.length; i++) {
@@ -156,12 +176,28 @@ export class AddOwnerPropertyComponent implements OnInit {
     }       
   }
 
-  fileSelectionLimitValidations(file, fileRef) {
-    let fileList: FileList = file.target.files;    
+  clearPropertyImages(fileRef, imagePreview) {
+    fileRef.value = '';
+    if (imagePreview) {
+      this.propertyImagePreview = [];
+    } else {
+      this.floorPlansImagePreview = [];
+    }
+  }
+
+  fileSelectionLimitValidations(file, fileRef, imagePreview) {
+    let fileList: FileList = file.target.files;
+    if ((imagePreview.length + fileList.length) > 5) {
+      alert("Please Upload more than 3 and maximum 5 files");
+      return false;
+    } else {
+       return true;
+    }
+    /*let fileList: FileList = file.target.files;    
     if (fileList.length < 3 || fileList.length > 5) {
       fileRef.value = '';
       alert("Please Upload more than 3 and maximum 5 files");
-    }
+    }*/
   }
 
   additionalCertificateChange(event, additional_certyRef) {    
