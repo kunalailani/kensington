@@ -48,6 +48,7 @@ export class AddOwnerPropertyComponent implements OnInit {
 
   public isLoggedin: boolean = false;
   otherCostsContainer: Array<any> = [0];
+  setUndefined:any;
 
 
   floorPlanCounter: 0;
@@ -113,9 +114,9 @@ export class AddOwnerPropertyComponent implements OnInit {
       if (this.otherCosts['key_' + i] != undefined) {
         let other_costs = {
           [this.otherCosts['key_' + i]]: this.otherCosts['value_' + i]
-        }      
+        }
         Object.assign(this.propertyObj['other_costs'], other_costs)
-      }      
+      }
     }
     this.propertyObj['propery_type'] ="rent apartment";
     this.propertyObj['is_OnRent'] = true;
@@ -188,6 +189,7 @@ export class AddOwnerPropertyComponent implements OnInit {
   fileSelectionLimitValidations(file, fileRef, imagePreview) {
     let fileList: FileList = file.target.files;
     if ((imagePreview.length + fileList.length) > 5) {
+      fileRef.value = '';
       alert("Please Upload more than 3 and maximum 5 files");
       return false;
     } else {

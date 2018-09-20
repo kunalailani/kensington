@@ -460,13 +460,18 @@
 						<div class="form-group">
 							<input type="email" class="form-control" name="email" placeholder="Email" required autocomplete="off" [(ngModel)]="inquireFormData.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 						</div>
-						<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">											
-							<p *ngIf = "email.errors?.pattern && email.touched">
+						<div *ngIf="email.invalid && (email.dirty || email.touched)">
+							<div *ngIf = "email.errors?.pattern && email.touched" class="alert alert-danger">
 								The email id doesn't seem right, Make sure capital letters are not allowed.
-							</p>
+							</div>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="phone_number" placeholder="Phone" autocomplete="off" [(ngModel)]="inquireFormData.phone_number" (keypress)="mobValidation($event)" minlength="8" maxlength="13">
+							<input type="text" class="form-control" name="phone_number" placeholder="Phone" autocomplete="off" [(ngModel)]="inquireFormData.phone_number" (keypress)="mobValidation($event)" minlength="8" maxlength="13" #phone_number = "ngModel">
+						</div>
+						<div *ngIf="phone_number.invalid && (phone_number.dirty || phone_number.touched)">
+							<div *ngIf="phone_number.errors.minlength && phone_number.touched" class="alert alert-danger">
+								Please enter atleast 8 Digits
+							</div>
 						</div>
 						<div class="form-group">
 							<textarea class="form-control" placeholder="comments" name="comments" autocomplete="off" [(ngModel)]="inquireFormData.comments"></textarea>

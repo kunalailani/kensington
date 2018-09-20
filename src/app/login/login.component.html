@@ -10,7 +10,7 @@
 								<h3 class="panel-title">Log In</h3>
 							</div>
 							<div class="panel-body">
-								<form #loginForm = "ngForm" novalidate (ngSubmit)="login(loginForm)">																		
+								<form #loginForm = "ngForm" novalidate (ngSubmit)="login(loginForm)">
 									<div class="form-group">
 										<input type="email" class="form-control" placeholder="Email" name="email" #email = "ngModel" [(ngModel)]="loginModal.email" required autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50">
 									</div>
@@ -39,7 +39,7 @@
 								<h3 class="panel-title">Forgot Password</h3>
 							</div>
 							<div class="panel-body">
-								<form #forgotPassForm = "ngForm" novalidate (ngSubmit)="requestForPassChange()">																		
+								<form #forgotPassForm = "ngForm" novalidate (ngSubmit)="requestForPassChange()">
 									<div class="form-group">
 										<input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="forgotPasswordObj.email" required autocomplete="off" #forgotEmail = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50">
 									</div>
@@ -67,16 +67,21 @@
 							<div class="panel-body">
 								<form #registrationForm = "ngForm" novalidate (ngSubmit)="register(registrationForm)">
 											<div class="form-group">
-												<input type="text" class="form-control" [(ngModel)]="regModal.full_name" name="full_name" placeholder="Full Name" required autocomplete="off" minlength="8" maxlength="35">
-											</div>										
+												<input type="text" class="form-control" [(ngModel)]="regModal.full_name" name="full_name" placeholder="Full Name" required autocomplete="off" minlength="3" maxlength="35" #full_name = "ngModel">
+											</div>
+											<div *ngIf="full_name.invalid && (full_name.dirty || full_name.touched)">
+												<div *ngIf="full_name.errors.minlength && full_name.touched" class="alert alert-danger">
+													Please enter atleast 8 characters
+												</div>
+											</div>
 										<div class="form-group">
 												<input type="email" class="form-control" [(ngModel)]="regModal.email" #email = "ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" placeholder="Email" required autocomplete="off" maxlength="50">
 											</div>
-										<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-											<div *ngIf = "email.errors?.required">
+										<div *ngIf="email.invalid && (email.dirty || email.touched)">
+											<div *ngIf = "email.errors?.required" class="alert alert-danger">
 												Email field can't be blank
 											</div>
-											<div *ngIf = "email.errors?.pattern && email.touched">
+											<div *ngIf = "email.errors?.pattern && email.touched" class="alert alert-danger">
 												The email id doesn't seem right, Make sure capital letters are not allowed.
 											</div>
 										</div>
@@ -85,17 +90,33 @@
 											<input type="radio" name="role" value="agent" [(ngModel)]="regModal.role"> Agent
 										</div> -->
 										<div class="form-group">
-											<input type="password" class="form-control" [(ngModel)]="regModal.password" name="password" placeholder="Password" required autocomplete="off" minlength="4">
+											<input type="password" class="form-control" [(ngModel)]="regModal.password" name="password" placeholder="Password" required autocomplete="off" minlength="4" #password = "ngModel" required>
+										</div>
+										<div *ngIf="password.invalid && (password.dirty || password.touched)">
+											<div *ngIf="password.errors?.required" class="alert alert-danger">
+												Password is required.
+											</div>
+											<div *ngIf="password.errors.minlength && password.touched" class="alert alert-danger">
+												Please enter atleast 4 characters
+											</div>
 										</div>
 										<div class="form-group">
 											<input type="password" class="form-control" [(ngModel)]="confirm_password" name="confirmpwd" placeholder="Confirm Password" required autocomplete="off" minlength="4">
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control" [(ngModel)]="regModal.phone_number" name="phone_number" placeholder="Phone Number" required autocomplete="off" (keypress)="keyPress($event)" minlength="8" maxlength="13">
+											<input type="text" class="form-control" [(ngModel)]="regModal.phone_number" name="phone_number" placeholder="Phone Number" required autocomplete="off" (keypress)="keyPress($event)" minlength="8" maxlength="13" #phone_number = "ngModel" required>
+										</div>
+										<div *ngIf="phone_number.invalid && (phone_number.dirty || phone_number.touched)">
+											<div *ngIf="phone_number.errors?.required" class="alert alert-danger">
+												Phone Number is required.
+											</div>
+											<div *ngIf="phone_number.errors.minlength && phone_number.touched" class="alert alert-danger">
+												Please enter atleast 8 Digits
+											</div>
 										</div>
 										<div class="form-group">
 											<input type="submit" class="btn-submit btn-primary btn" [disabled]="!registrationForm.form.valid" value="Register">
-										</div>							
+										</div>
 								</form>
 							</div>
 						</div>

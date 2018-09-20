@@ -95,13 +95,13 @@
 											</div>											
 										</div>
 										<div class="form-group">
-											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.bathroom" name="bathroom" tabindex="17" #bathroom = "ngModel">
+											<select class="form-control" required autocomplete="off" [(ngModel)]="propertyObj.bathroom" name="bathroom" tabindex="17" #bathroom = "ngModel" pattern="[1-9]">
 												<option value="0">Select Bathroom</option>
 												<option value="{{ i + 1 }}" *ngFor="let item of getValues('bathroom'); let i = index;"> {{ i + 1 }} </option>
 											</select>
 										</div>
 										<div *ngIf="bathroom.invalid && (bathroom.dirty || bathroom.touched)" class="alert alert-danger">
-											<div *ngIf = "bathroom.errors?.required">
+											<div *ngIf = "bathroom.errors">
 												This field is required.
 											</div>											
 										</div>
@@ -132,7 +132,7 @@
 												<option value="">Selet Floor Type</option>
 												<option value="{{ floors }}" *ngFor="let floors of getValues('floor_type')">{{ floors }}</option>
 											</select>
-											<img src="assets/images/tooltip.png" title="Geschosswohnung Wohnung liegt auf einer Etage im Gebäude &#013; Maisonettewohnung Wohnung auf zwei Etagen die innerhalb der Wohnung verbunden sind &#013; Souterrainwohnung Wohnung im Kellergeschoss, die einen Ausgang ebenerdig hat (z.B. Terrasse) &#013; Einliegerwohnung zusätzliche Wohnung in einem Ein- oder Zweifamilienhaus. &#013; Loft Zum Wohnraum umgebaute Lager- oder Industrieflächen &#013; Penthouse auf ein Dach gebaute luxuriöse Wohnung" height="20px" width="20px">
+											<img src="assets/images/tooltip.png" title="Geschosswohnung Wohnung liegt auf einer Etage im Gebäude &#013;  &#013;Maisonettewohnung Wohnung auf zwei Etagen die innerhalb der Wohnung verbunden sind &#013;  &#013;Souterrainwohnung Wohnung im Kellergeschoss, die einen Ausgang ebenerdig hat (z.B. Terrasse) &#013;  &#013; Einliegerwohnung zusätzliche Wohnung in einem Ein- oder Zweifamilienhaus. &#013;  &#013; Loft Zum Wohnraum umgebaute Lager- oder Industrieflächen &#013;  &#013; Penthouse auf ein Dach gebaute luxuriöse Wohnung" height="20px" width="20px">
 										</div>
 										<div class="form-group">
 											<select class="form-control" name="room" autocomplete="off" [(ngModel)]="propertyObj.room" tabindex="16">
@@ -289,7 +289,7 @@
 												<div class="col" *ngFor="let images of propertyImagePreview">
 													<img [src]="images" width="80px;" height="80px;">
 												</div>
-												<a class="pull-right" (click)="clearPropertyImages(property_image, true)" *ngIf="propertyImagePreview.length > 0" style="position: absolute; right: 0; align-self: center;">Clear all</a>
+												<a class="pull-right" (click)="clearPropertyImages(property_image, true)" *ngIf="propertyImagePreview.length > 0" style="position: absolute; right: 0; align-self: center; cursor: pointer;">Clear all</a>
 											</div>
 										</div>
 
@@ -304,7 +304,7 @@
 												<div class="col" *ngFor="let images of floorPlansImagePreview">
 													<img [src]="images"  width="80px;" height="80px;">	
 												</div>
-												<a class="pull-right" (click)="clearPropertyImages(floor_plans)" *ngIf="floorPlansImagePreview.length > 0" style="position: absolute; right: 0; align-self: center;" >Clear all</a>
+												<a class="pull-right" (click)="clearPropertyImages(floor_plans)" *ngIf="floorPlansImagePreview.length > 0" style="position: absolute; right: 0; align-self: center; cursor: pointer;" >Clear all</a>
 											</div>												
 										</div>
 									</div>
