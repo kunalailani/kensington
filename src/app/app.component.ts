@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   public headerObj: any;
   showSearchHeader: boolean = true;
   hideFooter: boolean = false;
+  headerFooterSettingSubscriber:any;
 
   constructor(private loaderService: LoaderService, private apiHandlerService: ApiHandlerService, private modalService: ModalService, private router: Router) {
      this.router.events.pipe(filter((event) => event instanceof NavigationEnd),
@@ -47,11 +48,11 @@ export class AppComponent implements OnInit {
     })         
   	this.loaderService.loaderStatus.subscribe((val: boolean) => {
   		this.objLoaderStatus = val;
-  	})       
+  	})
   }
 
   fetchHeaderFooterSettings() {
-    this.apiHandlerService.get('/api/v1/header-footer/settings').subscribe((res) => {
+    this.headerFooterSettingSubscriber = this.apiHandlerService.get('/api/v1/header-footer/settings').subscribe((res) => {
       this.headerObj = res.data;
       localStorage.setItem('search_image', res.data.search_img);      
       localStorage.setItem('sidebar_add_img', res.data.sidebar_ad_img);
@@ -64,6 +65,10 @@ export class AppComponent implements OnInit {
         this.modalService.displayModal(true);
       }, 500);
     }
+  }
+
+  ngOnDestroy() {
+    this.headerFooterSettingSubscriber.unsubscribe();
   }
 
   onActivate(event) {

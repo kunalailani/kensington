@@ -137,21 +137,21 @@
 										<td>Vacant From</td>
 										<td>{{propertyDetails.vacant_from}}</td>
 										<td>Monthly Rent</td>
-										<td>{{propertyDetails.rent_price}}</td>
+										<td><b>€</b> {{propertyDetails.rent_price}}</td>
 									</tr>
 									<tr>
 										<td>Deposite</td>
-										<td>{{propertyDetails.deposite}}</td>
+										<td><b>€</b> {{propertyDetails.deposite}}</td>
 										<td>Additional Costs</td>
-										<td>{{propertyDetails.additional_costs}}</td>
+										<td><b>€</b> {{propertyDetails.additional_costs}}</td>
 									</tr>
 									<tr>
 										<td>Heating Costs</td>
-										<td>{{propertyDetails.heating_costs}}</td>
+										<td><b>€</b> {{propertyDetails.heating_costs}}</td>
 										<td>Other Costs</td>
 										<td>
 											<span *ngFor="let costs of otherCostsArray; let i = index;">
-												{{ costs + '-' +  propertyDetails.other_costs[costs] }} 
+												{{ costs + ' - € ' +  propertyDetails.other_costs[costs] }}
 												<!-- {{ breakPoint(i) }} -->
 											</span>
 										</td>
@@ -403,7 +403,7 @@
 		</div>
 		<div class="property-list archive-flex archive-with-footer" style="margin-top: 20px;">
 			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let property of relatedProperty" [routerLink]="['/property-detail', property._id]">
+				<div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let property of relatedProperty" (click)="relatedPropDetails(property._id)">
 						
 						<div class="property-item" style="margin-bottom: 24px;">
 							<div class="property-heading">

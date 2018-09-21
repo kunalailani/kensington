@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiHandlerService } from '../shared/api-handler.service';
 import { environment } from '../../environments/environment';
 import { LoaderService } from '../shared/loader.service';
@@ -38,7 +38,8 @@ export class PropertyDetailComponent implements OnInit {
   isLoggedIn: boolean = localStorage.getItem('username') ? true: false;
   inquireFormData: any = {};
 
-  constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiHandlerService: ApiHandlerService, private loaderService: LoaderService,
+     private router: Router) { }
 
   ngOnInit() {   
   	this.activatedRoute.params.subscribe(params => {  		
@@ -125,6 +126,11 @@ export class PropertyDetailComponent implements OnInit {
 
   changeImage(index) {
     this.activeImage = index;
+  }
+
+  relatedPropDetails(property_id) {    
+    this.router.navigate(['/property-detail', property_id]);
+    window.scroll(0,550);
   }
 
   submitInquiryForm(inquireForm) {    

@@ -134,9 +134,7 @@ export class AddOwnerPropertyComponent implements OnInit {
   getValues(propName) {  	
   	return getPropertyConfigurationData(propName);
   }
-
-  
-
+    
   propertyImageLimit(event, property_image) {
     let returnValue = this.fileSelectionLimitValidations(event, property_image, this.propertyImagePreview);
     if (!returnValue) {
