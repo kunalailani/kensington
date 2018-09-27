@@ -118,7 +118,7 @@ export class AddOwnerPropertyComponent implements OnInit {
         Object.assign(this.propertyObj['other_costs'], other_costs)
       }
     }
-    this.propertyObj['propery_type'] ="rent apartment";
+    this.propertyObj['property_type'] ="rent apartment";
     this.propertyObj['is_OnRent'] = true;
     this.propertyObj['lat'] = lat;
     this.propertyObj['lng'] = lng;
